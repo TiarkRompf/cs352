@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 1: Scanner</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Sunday Sept 13</p>
+      </blockquote>
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="project0.html">Preliminaries</a></li>
+  <li><a href="https://javacc.java.net/">JavaCC</a></li>
+  <li><a href="https://javacc.java.net/doc/docindex.html">
+      JavaCC Documentation</a></li>
+</ul>
+<h3>Description</h3>
+<p>
+Implement a scanner for the <a href="mojo.html">Mojo language</a>, which takes
+input from the standard input stream (<tt>System.in</tt>), writes error
+messages to the standard error stream (<tt>System.err</tt>), and writes output
+to the standard output stream (<tt>System.out</tt>).  The scanner should print
+each recognized token and its corresponding lexeme on the standard output one
+line at a time.  Input files can be any sequence of Mojo tokens.
+
+Use the following template for your JavaCC specification file
+<code>Parser.jj</code>:
+<pre>
+PARSER_BEGIN(Parser)
+public class Parser {
+}
+PARSER_END(Parser)
+
+TOKEN_MGR_DECLS :
+{
+  int comment, pragma;
+  public static void main(String[] args) {
+    SimpleCharStream stream = new SimpleCharStream(System.in);
+    ParserTokenManager scanner = new ParserTokenManager(stream);
+    while (true) {
+      try {
+        Token token = scanner.getNextToken();
+        for (Token t = token.specialToken; t != null; t = t.specialToken)
+          System.out.println(tokenImage[t.kind] + " " + t);
+        if (token.kind == EOF) break;
+        System.out.println(tokenImage[token.kind] + " " + token);
+      } catch (TokenMgrError e) {
+        System.err.println(e.getMessage());
+        break;
+      }
+    }
+  }
+}
+</pre>
+To run your scanner simply invoke the class <tt>ParserTokenManager</tt> to
+read from standard input (<tt>System.in</tt>):
+<pre>
+java ParserTokenManager
+</pre>
+
+<h3>Turnin</h3>
+<p>
+You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
+your scanner, using the <tt>turnin</tt> command available on CS Unix machines.
+</p>
+<h3>Grading</h3>
+<p>
+Grading will be done using automated scripts to compare your output with a
+model solution.  You should ensure that the output file consists solely of
+tokens and lexeme strings, one per line of output, as they are scanned from
+the input.  White space and comments should be silently discarded.
+</p>
+
+
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
