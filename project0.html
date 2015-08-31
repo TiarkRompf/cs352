@@ -32,24 +32,12 @@
       </div>
 
 <p>
-The following setup is recommended for you to work on your project. If
-you
-use the <code>csh</code>/<code>tcsh</code> shell add the following
-line to the end of your <code>.login</code>
+If you use the CS lab machines to work on your project, or remote into the CS department, the following setup is recommended so that you can easily get to the javacc installation in /homes/cs352. Add the following line to the end of your <code>.bashrc</code>
 file:</p>
 <pre>
-	source /homes/cs352/SETUP.csh
+    /homes/cs352/SETUP.sh
 </pre>
-<p>
-If you use <code>sh</code>/<code>bash</code> add the following to the
-end of your <code>.profile</code>/<code>.bash_profile</code> file:</p>
-<pre>
-	. /homes/cs352/SETUP.sh
-</pre>
-
-
-
-
+<p>This will add the JAVACC and CS352 environment variables and modify your PATH so that that the "javacc" command will work from your shell. Alternatively, you may download and install javacc yourself from <a href="https://javacc.java.net/">the JavaCC website.</a> Your submission will be graded using JavaCC 6.0, which of the time of this writing was the latest version.
       </section>
     </div>
     <footer>
