@@ -80,12 +80,17 @@ TOKEN_MGR_DECLS :
   }
 }
 </pre>
-To run your scanner simply invoke the class <tt>ParserTokenManager</tt> to
-read from standard input (<tt>System.in</tt>):
+<p>
+Please note that it is normal to get an error if you attempt to run this file as-is without first defining at least one token. JavaCC is not a compiler; it generates code similar to other tools like Lex and Yacc. JavaCC will create several .java files which you must compile using javac (it is a good idea to create a Makefile for this!). To run your scanner simply invoke the class containing main(), <tt>ParserTokenManager</tt>, to
+read from standard input (<tt>System.in</tt>):</p>
 <pre>
 java ParserTokenManager
 </pre>
-
+<h3>Makefile</h3>
+<p>An optional Makefile has been provided for you to get started on your project. As necessary, you may modify this and carry it forward for future projects (as you build parts of your compiler). You may access it by doing the following from inside the folder you are using for your project:</p>
+<pre>
+    cp /homes/cs352/Fall15/project1/Makefile ./
+</pre>
 <h3>Turnin</h3>
 <p>
 You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
