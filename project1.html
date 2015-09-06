@@ -86,11 +86,24 @@ read from standard input (<tt>System.in</tt>):</p>
 <pre>
 java ParserTokenManager
 </pre>
+<h3>javacc 
 <h3>Makefile</h3>
 <p>An optional Makefile has been provided for you to get started on your project. As necessary, you may modify this and carry it forward for future projects (as you build parts of your compiler). You may access it by doing the following from inside the folder you are using for your project:</p>
 <pre>
     cp /homes/cs352/Fall15/project1/Makefile ./
 </pre>
+<h3>JavaCC Example Code</h3>
+<p>JavaCC example code is available on the JavaCC website and also in the JavaCC install. It is encouraged that you look at some of the example code to familiarize yourself with the features of JavaCC, starting with the simple examples provided. To copy the example code into your directory, do the following:
+<code>
+    cp /homes/cs352/javacc/
+</code>
+<h3>Mojo Example Code & Token Output</h3>
+<p>Download the example code and token output for this project into your project folder by doing the following:</p>
+<pre>
+    cp /homes/cs352/Fall15/project1/tests-project1.tar.gz ./
+    tar -xvf tests-project1.tar.gz
+</pre>
+<p>In the folder called "output", you can see the output of a canonical implemntation of the tokenizer. The test examples are valid Mojo programs.</p>
 <h3>Turnin</h3>
 <p>
 You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
@@ -101,8 +114,8 @@ your scanner, using the <tt>turnin</tt> command available on CS Unix machines.
 Grading will be done using automated scripts to compare your output with a
 model solution.  You should ensure that the output file consists solely of
 tokens and lexeme strings, one per line of output, as they are scanned from
-the input.  White space and comments should be silently discarded.
-</p>
+the input.  White space and comments should be silently discarded.</p>
+<p>Some of (but not all) of the test input that we will use to grade your scanners will be released to you later in the week of Aug 31. Please note that we will not release all of our test material. It is your responsibility to follow the documentation.</p>
 
 
 
