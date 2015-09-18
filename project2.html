@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 2: Parser</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Wednesday Sept 30</p>
+      </blockquote>
+
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="project0.html">Preliminaries</a></li>
+  <li><a href="https://javacc.java.net/">JavaCC</a></li>
+  <li><a href="https://javacc.java.net/doc/docindex.html">
+      JavaCC Documentation</a></li>
+</ul>
+<h3>Description</h3>
+<p>
+Implement a parser for the
+<a href="mojo.html">Mojo language</a> using JavaCC.
+</p>
+<h3>Getting Started</h3> Begin first by extending your JavaCC scanner for Mojo
+tokens from project 1 (if your scanner still needs more work please see the TA
+and he will help you get it fixed).  Starting with your scanner, write JavaCC
+grammar rules for Mojo.  Initially, your parser will simply take an input and
+decide if it is a syntactically correct Mojo program.
+<p>
+Once you have this working you will then use your parser to construct
+an <em>abstract syntax tree</em> (AST) for the input program.
+<p>
+Source code to get started with is available via svn:
+<pre>
+  svn co svn+ssh://sslab01.cs.purdue.edu/homes/cs352/svn/p2
+</pre>
+<p>
+This command will checkout a copy of the project files to a local working
+directory <code>p2</code>.  We are serving up the sources to you using
+SVN so we can easily push any fixes out to you as you work on the project.
+You may notice that the <code>p2</code> directory
+contains <code>src</code>, <code>bin</code>, and <code>lib</code>
+subdirectories.  The <code>src</code> subdirectory contains source files for
+this project.  The <code>bin</code> subdirectory is intended to be the target
+directory for compiling <code>src</code> files.  The <code>lib</code>
+subdirectory contains any precompiled class files you will need to compile
+this project. (The files are actually configured as an Eclipse project, so you
+can also import the project into Eclipse at your convenience.)
+<p>
+All commands below will assume that you have first set your current directory
+to the <code>p2/src</code> subdirectory using the command:
+<pre>
+        cd p2/src
+</pre>
+<p>
+The framework for building the AST (and printing out the results) is available
+in <code>mojo/Absyn.java</code>.  You do not need to edit this file, but you
+will be building the AST from the classes in this file.
+<p>
+You can run the parser and print out the AST it builds using the command:
+<pre>
+        java mojo.Absyn <i>file</i>.mj
+</pre>
+<p>
+Before starting this project, familiarize yourself with Chapters 3 &amp; 4 of
+the textbook. In addition to the lectures, this will give you a solid
+foundation for starting your parser.
+<p>
+<h3>Turnin</h3>
+<p>
+You should turn in just your JavaCC file, which implements your parser, using
+the <tt>turnin</tt> command available on CS Unix machines.
+</p>
+<h3>Grading</h3>
+<p>
+We will create a set of test cases, and then compare the output of your
+solution to our reference implementation.  Grading test cases are intended to
+test separable functionality of your parser.
+<p>
+There will be a <em>reconciliation</em> period after initial grading when you
+will be able to compare outputs of your parser with those of the reference
+implementation, and you may then offer <b>simple</b> fixes for the TAs to
+apply to your implementation to improve your grade.  <b>These fixes will be
+accepted only at the discretion of the TAs and the instructor (we will judge
+what "simple" means!)</b>
+<p>
+The reconciliation period is only intended for you to be able to fix simple
+problems that you may have mistakenly overlooked.  Thus, you must make sure to
+test your implementation thoroughly.
+</p>
+
+
+
+
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
