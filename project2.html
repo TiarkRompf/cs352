@@ -57,32 +57,24 @@ decide if it is a syntactically correct Mojo program.
 Once you have this working you will then use your parser to construct
 an <em>abstract syntax tree</em> (AST) for the input program.
 <p>
-Source code to get started with is available via svn:
+Source code to get started with is available in the /homes/cs352/Fall15 directory. To copy the skeleton code into your project directory, start in your project directory and do:
 <pre>
-  svn co svn+ssh://sslab01.cs.purdue.edu/homes/cs352/svn/p2
+  cp /homes/cs352/Fall15/project2.tar.gz ./
+  tar -xvf project2.tar.gz
 </pre>
 <p>
-This command will checkout a copy of the project files to a local working
-directory <code>p2</code>.  We are serving up the sources to you using
-SVN so we can easily push any fixes out to you as you work on the project.
-You may notice that the <code>p2</code> directory
-contains <code>src</code>, <code>bin</code>, and <code>lib</code>
-subdirectories.  The <code>src</code> subdirectory contains source files for
-this project.  The <code>bin</code> subdirectory is intended to be the target
-directory for compiling <code>src</code> files.  The <code>lib</code>
-subdirectory contains any precompiled class files you will need to compile
-this project. (The files are actually configured as an Eclipse project, so you
-can also import the project into Eclipse at your convenience.)
+The files are actually configured as an Eclipse project, so you
+can also import the project into Eclipse at your convenience. The bin subdirectory is where your .class files will be generated, and the src subdirectory is where you will place your .java files. You may make new .java files or use the included ones at your convenience. We have included a Makefile which targets the included .java files and cleans up the automatically generated javacc files in the src/mojo/parse directory.</p>
 <p>
 All commands below will assume that you have first set your current directory
-to the <code>p2/src</code> subdirectory using the command:
+to the <code>bin</code> subdirectory using the command:
 <pre>
-        cd p2/src
+        cd bin
 </pre>
 <p>
 The framework for building the AST (and printing out the results) is available
 in <code>mojo/Absyn.java</code>.  You do not need to edit this file, but you
-will be building the AST from the classes in this file.
+will be building the AST from the classes in this file. Note that the Abstract Syntax Tree implemented in Absyn.java utilizes the popular Visitor design pattern (see CS307).
 <p>
 You can run the parser and print out the AST it builds using the command:
 <pre>
