@@ -87,9 +87,18 @@ foundation for starting your parser.
 <p>
 <h3>Turnin</h3>
 <p>
-You should turn in just your JavaCC file, which implements your parser, using
-the <tt>turnin</tt> command available on CS Unix machines.
+You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
+your scanner, using the <tt>turnin</tt> command available on CS Unix machines.
+</p><p>
+To turn in your project, make sure that you are in the directory that contains your Parser.jj file. Then type the following:
 </p>
+<pre>
+turnin -c cs352 -p project2 Parser.jj
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p project2 -v
+</pre>
 <h3>Grading</h3>
 <p>
 We will create a set of test cases, and then compare the output of your
