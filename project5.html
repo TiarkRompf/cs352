@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 5: Instruction Selection</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Sunday Nov 22</p>
+      </blockquote>
+
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="mojo.html">Mojo Syntax</a></li>
+  <li><a href="https://www.cs.purdue.edu/homes/hosking/352/project/abi.pdf">AMD64 ABI</a></li>
+  <li><a href="AMD64-v3.pdf">AMD64 Architecture Programmer's Manual Volume 3: General-Purpose and System Instructions</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Calling_convention">Wikipedia entry on calling conventions</a></li>
+</ul>
+<h3>Description</h3>
+<p>You have already implemented a substantial sequence of the major steps in compiling a high-level language into low-level code.  At the beginning of this project, we already have intermediate tree code for the input program, which you will now convert into x86-64 assembly-code instructions.</p>
+<p>You will implement code generation for the x86-64, and run your compiled programs on the lab machines.</p>
+<h3>Resources</h3>
+<p>Before starting this project, familiarize yourself with Chapter 8 and 9 of the textbook. In addition to the lectures, this will give you a solid foundation for starting your code generator.</a>
+<h3>Getting Started</h3>
+    <p>Source code is available in a tarball in the /homes/cs352 directory, which can be copied into your working directory and expanded by doing the following:<br>
+<pre>
+cp /homes/cs352/Fall15/project5.tar.gz ./
+tar -xvf 
+</pre>
+<p>If you wish to integrate the project into an Eclipse project, follow the directions <a href=http://devblog.alexsapps.com/2012/04/using-makefile-in-eclipse-java-project.html>on this blogpost</a> to create an Eclipse project using the included Makefile.</p>
+<p>All changes for this project will be done to the translation file x64/Codegen.java in the project5/src subdirectory.</p>
+<p>To make the project, type "make" as per usual. To run your project, go into the bin directory.</p><br>
+You can run the full compiler with the command:
+<pre>
+ java mojo.Main <i>file</i>.mj
+</pre>
+where <code><i>file</i>.mj</code> is a mojo source code file.
+<p>
+You can also run the compiler with the command:
+<pre>
+ java mojo.Main -main <i>file</i>.mj
+</pre>
+<p>The file p5.sh will run itself as a command that invokes mojo.Main from java if you wish</p>
+The flag <code>-main</code> indicates that the compiled file is to be treated
+as the "main" module, and will generate a standard "main" function as entry
+point for running the program.
+<p>
+For input file <code>foo.mj</code> the compiler will also produce
+output for the
+various intermediate forms of the translated program:
+<ul>
+  <li>tree intermediate code before canonicalization</li>
+  <li>after canonicalization</li>
+  <li>after locating basic blocks</li>
+  <li>after scheduling those blocks</li>
+  <li>after injection of procedure prologue and epilogue</li>
+  <li>the instructions (<em>you</em>) generate for those trees</li>
+  <li>further output regarding register allocation (the interference
+    graph, register allocation, and final assembly code)</li>
+</ul>
+The compiler will also produce a final assembly code file <code>foo.s</code>
+which you can run by first compiling:
+<pre>
+ gcc -o foo foo.s
+</pre>
+and then running:
+<pre>
+ ./foo
+</pre>
+You may find <code>gdb</code> useful in debugging the code produced by your
+compiler as it executes.
+<p>
+The command <pre> gdb foo</pre> will open the
+executable in the debugger.
+<p>
+The command <pre> b main</pre> will set a breakpoint at the main function.
+<p>
+The command <pre> run</pre> will start the program running, stopping at the
+next breakpoint.
+<p>
+The command <pre> si</pre> steps to the next instruction.
+<p>
+The command <pre> display/i $pc</pre> tells <code>gdb</code> to display the
+assembly code instruction at each program point.
+<p>
+You can find information on these commands and others (such as to examine the
+contents of registers and memory) using the <tt>help</tt> command.
+<hr>
+<h3>Turnin</h3>
+<p>
+You should only need to turn in your <code>x64/Codegen.java</code> file, since
+that is the only file you need to change.  From the <tt>src</tt> directory
+submit your solution using the command:
+<pre>
+  turnin -ccs352 x64/Codegen.java
+</pre>
+<hr>
+where <i>file.mj</i> is a Mojo source code file. This will print out the IR tree that you have synthesized.
+</p>
+<h3>Tests</h3>
+<p>Some tests have been included in the <i>examples</i> directory in the base directory of the project. Run these on your code generator to check for correct functionality. Each test is a Mojo file. Note that your output need not be identical to the output shown in the example code, as long as it represents the correct translation into machine code.</p>
+<h3>Turnin</h3>
+<p>
+You should turn in your src/mojo/Translate.java file, using the <tt>turnin</tt> command available on CS Unix machines. To turn in your project, make sure that you are in the directory that contains your Translate.java file (src/mojo). Then type the following:
+</p>
+<pre>
+turnin -c cs352 -p project5 Translate.java
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p project5 -v
+</pre>
+<h3>Grading</h3>
+<p>We will create a set of test cases, and then compare the output of your solution to our reference implementation. Grading test cases are intended to test separable functionality of your code generator. Towards the end of the project period, we may release the results of our own tests to demonstrate what the code generator should produce.</p>
+<p>There will be a reconciliation period after initial grading when you will be able to compare outputs of your code generator with those of the reference implementation, and you may then offer simple fixes for the TAs to apply to your implementation to improve your grade. These fixes will be accepted only at the discretion of the TAs and the instructor. We will judge what "simple" means!</p>
+<p>The reconciliation period is only intended for you to be able to fix simple problems that you may have mistakenly overlooked. Thus, you must make sure to test your implementation thoroughly.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
