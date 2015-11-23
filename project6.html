@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 6: Liveness Analysis & Register Allocation</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Some date in the Future (TBD!)</p>
+      </blockquote>
+
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="https://www.cs.purdue.edu/homes/rompf/cs352/slides/10-liveness.pdf">Liveness Analysis</a></li>
+  <li><a href="https://www.cs.purdue.edu/homes/rompf/cs352/slides/11-reg.pdf">Register Allocation</a></li>
+  <li><a href="https://www.cs.purdue.edu/homes/ehanau/cs352/supplemental/registerliveness.pdf">Liveness Analysis (CS502)</a></li>
+  <li><a href="https://www.cs.purdue.edu/homes/hosking/352/project/george.pdf">Iterated Register Coalescing by George & Appel</a></li>
+</ul>
+<h3>Description</h3>
+<p>Your task is to implement liveness analysis and register allocation.</p>
+<h3>Liveness Analysis</h3>
+<p>You have available to you the working implementation of intra-procedural control flow analysis, which turns a list of instructions into a control flow graph, by implementing the class <tt>FlowGraph.AssemFlowGraph</tt>. You should first implement the class <tt>RegAlloc.Liveness</tt> which takes a FlowGraph and performs data-flow analysis to obtain liveness information. Use either the set-equation algorithm as described in class with a <tt>java.util.LinkedHashSet</tt> or sorted-list-of-temporaries representation of sets, or the one-variable at a time method. You may want to refine your implementation to use a worklist approach: The basic idea is that you maintain a list of CFG nodes that need to be processed because the live-in set of one of the node's successors was changed in a given iteration; the set can be initialized with all the nodes of the CFG (since we assume they all need to be processed from initial values to start out with). You will receive extra credit for any improvement on the basic iterative liveness algorithm, but you must document your work in a README file (see below).</p>
+<h3>Register Allocation</h3>
+<p>You are to implement the register allocation phase of the compiler. This will complete code generation and allow you to run programs. You should implement at least coloring without spilling or coalescing, such that you can compile and run simple programs. You will receive extra credit for implementation of spilling and/or coalescing. I strongly suggest that you implement allocation without spilling or coalescing to begin with, then implement spilling (optional for extra credit), followed by coalescing (optional for extra credit).</p>
+<p>Here are some notes about the initial (non-spilling, non coalescing) implementation of coloring:</p>
+<ol>
+<li>The changes are all to <tt>RegAlloc.Color</tt>.</li>
+<li>Assume the incoming interference graph does not contain outgoing interference edges for precolored nodes.</li>
+<li>Use <tt>frame.registers()</tt> as the set of colors to be used to color the graph and to record the precolored nodes.</li>
+    <li>Use 2 worklists in the initial implementation: <tt>simplifyWorkList</tt> &amp; <tt>spillWorkList</tt>, implementing each as a <tt>java.util.LinkedList&lt;Node&gt;</tt>.</li>
+    <li>Keep track of spilled nodes with another <tt>java.util.LinkedList</tt>.</li>
+    <li>Use a <tt>java.util.LinkedHashMap</tt> to map nodes to their degree.</li>
+    <li>The rest of the algorithm is a simplified version of the pseudo-code from the <a href="https://www.cs.purdue.edu/homes/hosking/352/project/george.pdf">paper</a>, with the code for spilling and coalescing omitted.</li>
+    <li>Professor Hosking's initial version of <tt>RegAlloc.Color</tt> came out at around 100 lines of code.</li>
+</ol>
+<h3>Extra Credit Rules</h3>
+<p>The project is, as usual, out of 100 points. These 100 points will be awarded for full implementation of the graph coloring and register allocation portions. You can earn 5 extra points for correct implementation of spilling, and another 5 points for correct implementation of coalescing.
+<h3>Executing Compiled Programs</h3></p>
+<p>As with project 5, when compiling for execution make sure to use the option -main so as to generate the linkage code (equivalent to a C-style main function). Compile the assembly code using gcc (to make sure you link to the C library).</p>
+<h3>Getting Started</h3>
+<p>Source code is available in a tarball in the /homes/cs352 directory, which can be copied into your working directory and expanded by doing the following:</p>
+<pre>
+cp /homes/cs352/Fall15/project6.tar.gz ./
+tar -xvf 
+</pre>
+<p>If you wish to integrate the project into an Eclipse project, follow the directions <a href="http://devblog.alexsapps.com/2012/04/using-makefile-in-eclipse-java-project.html">on this blogpost</a> to create an Eclipse project using the included Makefile.</p>
+<p>All changes for this project will be done to the translation file x64/Codegen.java in the project5/src subdirectory.</p>
+<p>To make the project, type "make" as per usual. To run your project, go into the bin directory.
+You can run the full compiler with the command:</p>
+<pre> java mojo.Main <i>file</i>.mj
+</pre>
+where <code><i>file</i>.mj</code> is a mojo source code file.
+<p>You can also run the compiler with the command:</p>
+<pre> java mojo.Main -main <i>file</i>.mj</pre>
+<p>The file p6.sh will run itself as a command that invokes mojo.Main from java if you wish. All arguments will be copied.</p>
+<h3>Readme</h3>
+Make sure to include a file called <tt>README</tt> in your project submission, explaining the approach you took to implement the project and what, if any, extra credit items you implemented. Ensure that the TA has enough information to grade your submission and knows what files to look in.</p>
+<h3>Turnin</h3>
+<p>For this project, please turn in your <tt>src</tt> directory, which should include all source files that you have added or modified, along with your <tt>README</tt> file. <b>Do not turn in *.class files.</b></p> From the <tt>project6</tt> directory submit your solution using the command:</p>
+<pre>
+turnin -c cs352 -p project6 ./src
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p project6 -v
+</pre>
+<h3>Grading</h3>
+<p>We will create a set of test cases, and then compare the output of your solution to our reference implementation as we have with the previous projects. A less automated approach will be used to grade your coalescing and spill code, should you chose to do it.</p>
+</section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
