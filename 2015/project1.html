@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 1: Scanner</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Sunday Sept 13</p>
+      </blockquote>
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="project0.html">Preliminaries</a></li>
+  <li><a href="https://javacc.java.net/">JavaCC</a></li>
+  <li><a href="https://javacc.java.net/doc/docindex.html">
+      JavaCC Documentation</a></li>
+</ul>
+<h3>Description</h3>
+<p>
+Implement a scanner for the <a href="mojo.html">Mojo language</a>, which takes
+input from the standard input stream (<tt>System.in</tt>), writes error
+messages to the standard error stream (<tt>System.err</tt>), and writes output
+to the standard output stream (<tt>System.out</tt>).  The scanner should print
+each recognized token and its corresponding lexeme on the standard output one
+line at a time.  Input files can be any sequence of Mojo tokens.
+
+Use the following template for your JavaCC specification file
+<code>Parser.jj</code>:
+<pre>
+PARSER_BEGIN(Parser)
+public class Parser {
+}
+PARSER_END(Parser)
+
+TOKEN_MGR_DECLS :
+{
+  int comment, pragma;
+  public static void main(String[] args) {
+    SimpleCharStream stream = new SimpleCharStream(System.in);
+    ParserTokenManager scanner = new ParserTokenManager(stream);
+    while (true) {
+      try {
+        Token token = scanner.getNextToken();
+        for (Token t = token.specialToken; t != null; t = t.specialToken)
+          System.out.println(tokenImage[t.kind] + " " + t);
+        if (token.kind == EOF) break;
+        System.out.println(tokenImage[token.kind] + " " + token);
+      } catch (TokenMgrError e) {
+        System.err.println(e.getMessage());
+        break;
+      }
+    }
+  }
+}
+</pre>
+<p>
+Please note that it is normal to get an error if you attempt to run this file as-is without first defining at least one token. JavaCC is not a compiler; it generates code similar to other tools like Lex and Yacc. JavaCC will create several .java files which you must compile using javac (it is a good idea to create a Makefile for this!). To run your scanner simply invoke the class containing main(), <tt>ParserTokenManager</tt>, to
+read from standard input (<tt>System.in</tt>):</p>
+<pre>
+java ParserTokenManager
+</pre>
+<h3>javacc 
+<h3>Makefile</h3>
+<p>An optional Makefile has been provided for you to get started on your project. As necessary, you may modify this and carry it forward for future projects (as you build parts of your compiler). You may access it by doing the following from inside the folder you are using for your project:</p>
+<pre>
+    cp /homes/cs352/Fall15/project1/Makefile ./
+</pre>
+<h3>JavaCC Example Code</h3>
+<p>JavaCC example code is available on the JavaCC website and also in the JavaCC install. It is encouraged that you look at some of the example code to familiarize yourself with the features of JavaCC, starting with the simple examples provided. To copy the example code into your directory, do the following:
+<code>
+    cp /homes/cs352/javacc/
+</code>
+<h3>Mojo Example Code & Token Output</h3>
+<p>Download the example code and token output for this project into your project folder by doing the following:</p>
+<pre>
+    cp /homes/cs352/Fall15/project1/tests-project1.tar.gz ./
+    tar -xvf tests-project1.tar.gz
+</pre>
+<p>In the folder called "output", you can see the output of a canonical implemntation of the tokenizer. The test examples are valid Mojo programs.</p>
+<h3>Turnin</h3>
+<p>
+You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
+your scanner, using the <tt>turnin</tt> command available on CS Unix machines.
+</p><p>
+To turn in your project, make sure that you are in the directory that contains your Parser.jj file. Then type the following:
+</p>
+<pre>
+turnin -c cs352 -p project1 Parser.jj
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p project1 -v
+</pre>
+<h3>Grading</h3>
+<p>
+Grading will be done using automated scripts to compare your output with a
+model solution.  You should ensure that the output file consists solely of
+tokens and lexeme strings, one per line of output, as they are scanned from
+the input.  White space and comments should be silently discarded.</p>
+<p>Some of (but not all) of the test input that we will use to grade your scanners will be released to you later in the week of Aug 31. Please note that we will not release all of our test material. It is your responsibility to follow the documentation.</p>
+
+
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>

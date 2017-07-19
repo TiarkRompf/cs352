@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 2: Parser</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Wednesday Sept 30</p>
+      </blockquote>
+
+
+<h3>Useful Links</h3>
+<ul>
+  <li><a href="project0.html">Preliminaries</a></li>
+  <li><a href="https://javacc.java.net/">JavaCC</a></li>
+  <li><a href="https://javacc.java.net/doc/docindex.html">
+      JavaCC Documentation</a></li>
+</ul>
+<h3>Description</h3>
+<p>
+Implement a parser for the
+<a href="mojo.html">Mojo language</a> using JavaCC.
+</p>
+<h3>Getting Started</h3> Begin first by extending your JavaCC scanner for Mojo
+tokens from project 1 (if your scanner still needs more work please see the TA
+and he will help you get it fixed).  Starting with your scanner, write JavaCC
+grammar rules for Mojo.  Initially, your parser will simply take an input and
+decide if it is a syntactically correct Mojo program.
+<p>
+Once you have this working you will then use your parser to construct
+an <em>abstract syntax tree</em> (AST) for the input program.
+<p>
+Source code to get started with is available in the /homes/cs352/Fall15 directory. To copy the skeleton code into your project directory, start in your project directory and do:
+<pre>
+  cp /homes/cs352/Fall15/project2.tar.gz ./
+  tar -xvf project2.tar.gz
+</pre>
+<p>
+The files are actually configured as an Eclipse project, so you
+can also import the project into Eclipse at your convenience. The bin subdirectory is where your .class files will be generated, and the src subdirectory is where you will place your .java files. You may make new .java files or use the included ones at your convenience. We have included a Makefile which targets the included .java files and cleans up the automatically generated javacc files in the src/mojo/parse directory.</p>
+<p>
+All commands below will assume that you have first set your current directory
+to the <code>bin</code> subdirectory using the command:
+<pre>
+        cd bin
+</pre>
+<p>
+The framework for building the AST (and printing out the results) is available
+in <code>mojo/Absyn.java</code>.  You do not need to edit this file, but you
+will be building the AST from the classes in this file. Note that the Abstract Syntax Tree implemented in Absyn.java utilizes the popular Visitor design pattern (see CS307).
+<p>
+You can run the parser and print out the AST it builds using the command:
+<pre>
+        java mojo.Absyn <i>file</i>.mj
+</pre>
+<p>
+Before starting this project, familiarize yourself with Chapters 3 &amp; 4 of
+the textbook. In addition to the lectures, this will give you a solid
+foundation for starting your parser.
+<p>
+<h3>Turnin</h3>
+<p>
+You should turn in just your JavaCC file (<tt>Parser.jj</tt>), which implements
+your scanner, using the <tt>turnin</tt> command available on CS Unix machines.
+</p><p>
+To turn in your project, make sure that you are in the directory that contains your Parser.jj file. Then type the following:
+</p>
+<pre>
+turnin -c cs352 -p project2 Parser.jj
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p project2 -v
+</pre>
+<h3>Grading</h3>
+<p>
+We will create a set of test cases, and then compare the output of your
+solution to our reference implementation.  Grading test cases are intended to
+test separable functionality of your parser.</p>
+<p>To use the test cases yourself, go into your project's bin folder and then do the following:<br>
+<pre>
+cp /homes/cs352/Fall15/project2/p2tests.tar.gz ./
+tar -vxf p2tests.tar.gz
+</pre>
+With the p2tests folder in your bin folder, go into p2tests to look at the tests. Run them individually or by using the s1.sh file. Expected output is in the output directory.
+</p>
+<p>
+There will be a <em>reconciliation</em> period after initial grading when you
+will be able to compare outputs of your parser with those of the reference
+implementation, and you may then offer <b>simple</b> fixes for the TAs to
+apply to your implementation to improve your grade.  <b>These fixes will be
+accepted only at the discretion of the TAs and the instructor (we will judge
+what "simple" means!)</b>
+<p>
+The reconciliation period is only intended for you to be able to fix simple
+problems that you may have mistakenly overlooked.  Thus, you must make sure to
+test your implementation thoroughly.
+</p>
+
+
+
+
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
