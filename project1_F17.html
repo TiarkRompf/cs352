@@ -51,8 +51,52 @@ The goal of this project is to setup the environment and to learn how to parse a
 
 <p>For this first project we are going to keep thing very simple and take very small steps. Make sure that you understand correctly before going to the next step.</p>
 
-<p>We are going to start with simple expression and then add more operations. At the end of the project we will be able to parse mathematical expressions with single digit numbers, additions, substractions, multiplications, divisions, and parenthesis. We will generate x86_64 code that compute the value of the expression.</p>
-</p>
+<p>We are going to implement many different parser. Starting with simple expression and then add more operations. At the end of the project we will be able to parse mathematical expressions with single digit numbers, additions, substractions, multiplications, divisions, and parenthesis. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST). The definition of the AST is the one used during the lecture.</p>
+
+<p>In parallel, we will implement a generator that convert the AST into x86_64 code.</p>
+
+<p>Here a small example of what we will be able to generate by the end of the project:</p>
+<pre>
+[info] Running project1.Runner 2+3
+============= AST ================
+	Plus(Lit(2),Lit(3))
+==================================
+
+============ OUTPUT ==============
+.text
+	.global entry_point
+
+entry_point:
+	push %rbp	# save stack frame for C convention
+	mov %rsp, %rbp
+
+	# beginning generated code
+	movq $2, %rbx
+	movq $3, %rcx
+	addq %rcx, %rbx
+	movq %rbx, %rax
+	# end generated code
+	# %rax contains the result
+
+	mov %rbp, %rsp	# reset frame
+	pop %rbp
+	ret
+
+
+
+==================================
+Result: 5
+</pre>
+
+<h2>Getting started</h2>
+
+<p>Download the files: ...</p>
+
+<pre>
+tar xzvf proj1.tar.gz
+</pre>
+
+<p>A description of the different files is provided below. The two files you need to complete are <b>Parser.scala</b> and <b>Generator.scala</b>. Each parser that we are going to implement are building on top of each other so you need to implements them in order by following the comments in the code. We will implements two different generators using two different strategy. It is recommended to implement the StackGenerator when it is suggested in the Parser.scala file and at the end implement the RegGenerator.</p>
 
 <h2>Files</h2>
 <p>In addition of the comments in the code, we are going to make a small description of the files avaible in the project.</p>
@@ -84,23 +128,28 @@ The goal of this project is to setup the environment and to learn how to parse a
 
 <h3>src/main/scala/project1/Main.scala</h3>
 
-<p>The main function is defined in this file. During this project you will be implementing many different parsers, in order to test them through the main function you will need to modify the generator used at line 12:
+<p>The main function is defined in this file. During this project you will be implementing many different parsers, in order to test them through the main function you will need to modify the parser or generator you want to use.</p>
 
-<pre>val gen = new &ltgenerator to test&gt(reader) {</pre>
+<h3>src/main/scala/project1/Parser.scala</h3>
 
-<h3>src/main/scala/project1/Project1.scala</h3>
+<p>This class contains the definition of our intermediate language. This is the language we are using in class, please refere to the lecture for more information.</p>
 
-<p>The first class defined in this file is the basic parser that we are going to use for this project. This parser is reading a stream of character one at a time and can extract a single digit number <b>getNum</b> or a single letter name <b>getName</b>.</p>
+<p>The class <b>SimpleParser</b> defined in this file is the basic parser that we are going to use for this project. It is reading a stream of character one at a time and can extract a single digit number <b>getNum</b> or a single letter name <b>getName</b> and does not handling white spaces.</p>
 
-<p>We are keeping the parser very simple at the beginning to focus on the important concept. Later on we will improve it to handle multiple digits numbers and more expressions.</p>
+<p>We are keeping the parser very simple at the beginning to focus on the important concept. Later on we will improve it to handle multiple digits numbers and more expressions and we will support white spaces.</p>
 
-<p>The rest of the file is the definition of each compilers we are building. Starting from single number expression to the full language we want to target. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before preceeding.</p>
+<p>The rest of the file is the definition of each parser we are building. Starting from single number expression to the full language we want to target. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before preceeding.</p>
 
-<h3>src/test/scala/Project1Test.scala</h3>
+<h3>src/main/scala/project1/Generator.scala</h3>
 
-<p>This file contains some unit tests for the first compilers. You will have to write your own test for the others. There are some function given to you in order to make the implementation easier.</p>
+<p>In this file, we are defining some generators that can convert our AST into x86_64 code. FIXME: add more info.</p>
 
-<h3>Turnin</h3>
+<h3>src/test/scala/*Test.scala</h3>
+
+<p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some function given to you in order to make the implementation easier.</p>
+
+
+<h2>Turnin</h2>
 <p>You should turn in just the <b>build.sbt</b> file, and the directories <b>src/</b> and <b>gen/</b>. Please delete the directories <b>target/</b> and <b>project/</b> (DO NOT DELETE YOU CODE!)
 <pre>
 rm -rf proj1/target/ proj1/project/
@@ -116,7 +165,7 @@ turnin -c cs352 -p project1 proj1
 <pre>
 turnin -c cs352 -p project1 -v
 </pre>
-<h3>Grading</h3>
+<h2>Grading</h2>
 <p>TBD
 
 
