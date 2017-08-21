@@ -91,6 +91,8 @@ Result: 5
 
 <p>The project has been designed and tested for Linux/Mac OS. If you do not own a personal laptop with these OS and do not know how to use the tools requires on Windows, you should use the lab machines for the project.</p>
 
+<p>If you use remote access to work on your project. Please use on of the lab machine pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
+
 <p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj1.tar.gz">here</a> .</p>
 
 <pre>
@@ -111,12 +113,12 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <h3>Take a look at the files</h3>
 
-<p>A description of the different files is provided below. The two files you need to complete are <b>Parser.scala</b> and <b>Generator.scala</b>. Each parser that we are going to implement are building on top of each other so you need to implements them in order by following the comments in the code. We will implements two different generators using two different strategies. It is recommended to implement the <b>StackGenerator</b> when it is suggested in the <b>Parser.scala</b> file and at the end implement the <b>RegGenerator</b>.</p>
+<p>A description of the different files is provided below. The two files you need to complete are <b>Parser.scala</b> and <b>Generator.scala</b>. Each parser that we are going to implement are building on top of each other so you need to implements them in order by following the comments in the code. We will implements two different generators using two different strategies. It is recommended to implement the <b>StackASMGenerator</b> class when it is suggested in the <b>Parser.scala</b> file and at the end implement the <b>RegASMGenerator</b>.</p>
 
 <h3>build.sbt and project/plugin.sbt</h3>
 <p>Scala Build Tool (sbt) is an open source build tool for Scala and Java project. These files contain the information necessary to compile this project. You should not have to modify them.
 
-<p>To use sbt, launch a terminal and go to the project directory (proj1) and type 'sbt'. It will lauch an sbt console:
+<p>To use sbt, launch a terminal and go to the project directory (proj1) and type 'sbt'. It will lauch an sbt console. You can run the program from there:
 <pre>
     run "arg1" "arg2" // run main program with arguments arg1 and arg2
     run "1+3*(5-8)"
@@ -126,17 +128,17 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <h3>src/main/scala/project1/Util.scala</h3>
 
-<p>This file defined multiple classes that are used by our parser to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read the code and have an idea of what is happening behind the scene.</p>
+<p>This file defined multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read it and have an idea of what is happening behind the scene.</p>
 
 <h3>gen/bootstrap.c</h3>
 
-<p>Like we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The boostrap file is a generic C file that is calling a function <b>entry_point</b> and print the result in <b>stdout</b>. Our compiler will generate the file <b>gen/gen.s</b> and will be assemble and bootstraped by gcc:</p>
+<p>Like we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The boostrap file is a generic C file that is calling a function <b>entry_point</b> and is printing the result in <b>stdout</b>. Our compiler will generate the file <b>gen/gen.s</b> and will be assemble and bootstraped by gcc:</p>
 
 <pre>gcc bootstrap.c gen.s -o out</pre>
 
 <p><b>out</b> will then print the result of our compiled expression.</p>
 
-<p>NOTE: the compilation and running steps are executed through the code. (see Util.scala#L77 and Main.scala#L35)</p>
+<p>NOTE: the assembly/compilation and running steps are executed through the code. (see Util.scala#L77 and Main.scala#L35)</p>
 
 <h3>src/main/scala/project1/Main.scala</h3>
 
@@ -146,20 +148,21 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <p>This class contains the definition of our intermediate language. This is the language we are using in class, please refere to the lecture for more information.</p>
 
-<p>The class <b>SimpleParser</b> defined in this file is the basic parser that we are going to use for this project. It is reading a stream of character one at a time and can extract a single digit number <b>getNum</b> or a single letter name <b>getName</b> and does not handling white spaces.</p>
+<p>The class <b>SimpleParser</b> defined in this file is the basic parser that we are going to use for this project. It is reading a stream of characters one at a time and can extract a single digit number <b>getNum</b> or a single letter name <b>getName</b>. It does not handling white spaces.</p>
 
-<p>We are keeping the parser very simple at the beginning to focus on the important concept. Later on we will improve it to handle multiple digits numbers and more expressions and we will support white spaces.</p>
+<p>We are keeping the parser very simple at the beginning to focus on the important concept. Later on we will improve it to handle multiple digits numbers and more expressions. We will also support white spaces.</p>
 
 <p>The rest of the file is the definition of each parser we are building. Starting from single number expression to the full language we want to target. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before preceeding.</p>
 
 <h3>src/main/scala/project1/Generator.scala</h3>
 
-<p>In this file, we are defining some generators that can convert our AST into x86_64 code. FIXME: add more info.</p>
+<p>In this file, we are defining some generators that can convert our AST into x86_64 code.</p>
+
+<p>We are considering two different ways of generating the assmbly code. Each of them having their own pros and cons. <b>Stack-based</b> code, which is not very efficient but can handle arbitrary complexe expressions. <b>Register-based</b> code, which is efficient but can not handle arbitrary complexe expressions. We will see later than compilers use a hybrid approach.</p>
 
 <h3>src/test/scala/*Test.scala</h3>
 
 <p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some function given to you in order to make the implementation easier.</p>
-
 
 <h2>Turnin</h2>
 <p>You should turn in <b>proj1</b> directory. Please run a 'sbt clean' before submitting.</p>
