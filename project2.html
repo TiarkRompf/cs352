@@ -40,17 +40,17 @@
   <li><a href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">x86_64 cheat sheet (up to page 4 for this project)</a></li>
 </ul>
 <h2>Introduction</h2>
-<p>In this project we will enriche the simple arithmetic expression language we defined in the first project.</p>
+<p>In this project, we will enrich the simple arithmetic expression language we defined in the first project.</p>
 
-<p>At the end of the project, we will be able to parse full programs, only missing will be functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST).</p>
+<p>At the end of the project, we will be able to parse full programs; the only things missing will be functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST).</p>
 
 <h2>Step 1: Getting Started</h2>
 
-<p>The project has been designed and tested for Linux/Mac OS. If you have only Windows installed on your laptop consider running Linux in a VM, or use the lab machines for the project.</p>
+<p>The project has been designed and tested for Linux/Mac OS. If you only have Windows installed on your personal laptop, consider running Linux in a VM or using the lab machines for the project.</p>
 
 <p>If you use remote access to work on your project, please use one of the lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
 
-<p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj2.tar.gz">here</a> .</p>
+<p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj2.tar.gz">here</a>.</p>
 
 <pre>
 tar xzvf proj2.tar.gz
@@ -65,11 +65,11 @@ cd proj2
 sbt eclipse
 </pre>
 
-and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj1 and hit <b>Finish</b>.</p>
+and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj2 and hit <b>Finish</b>.</p>
 
 <h3>Browse the Files</h3>
 
-<p>A description of the different files is provided below. The files you need to complete are <b>Parser.scala</b>, <b>SemanticAnalyzer.scala</b>, <b>Interpreter.scala</b> and <b>Compiler.scala</b>. Following the path of the first project, we are going to implement the parser step by step. Follow the comments in the code and find the <b>TODOs</b>. The other part are also independent and can be develop separately.</p>
+<p>A description of the different files is provided below. The files you need to complete are <b>Parser.scala</b>, <b>SemanticAnalyzer.scala</b>, <b>Interpreter.scala</b>, and <b>Compiler.scala</b>. Following the path of the first project, we are going to implement the parser step by step. Follow the comments in the code and find the <b>TODOs</b>. The other part are also independent and can be develop separately.</p>
 
 <h3>src/main/scala/project2/Util.scala</h3>
 
@@ -85,7 +85,7 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <h3>src/main/scala/project2/Main.scala</h3>
 
-<p>The main function is defined in this filer. The dataflow in this file can be seen as:</p>
+<p>The main function is defined in this file. The data flow in this file can be seen as:</p>
 
 <pre>
 Read from File -> Parser -> Semantic Analyzer -> Interpreter/Compiler
@@ -95,7 +95,7 @@ Read from File -> Parser -> Semantic Analyzer -> Interpreter/Compiler
 
 <p>The AST generated will then go through the semantic analyzer. If there are no errors, then the code is going to be interpreted and then compiled. We provide you with one interpreter and one compiler. You will have to write one of each yourself.</p>
 
-<p>As our language becomes more complex, we will read the code from a source file. A folder with samples file <b>sample/</b> has been provided. Here some examples how tu run the code:</p>
+<p>As our language becomes more complex, we will read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples how to run the code:</p>
 
 <pre>
 sbt
@@ -108,19 +108,19 @@ sbt
 
 <p>This class contains the definition of our intermediate language.</p>
 
-<p>As we discussed in class, parsing the file one character at a time is not enough when we introduce more complex constructs. Also our single digit number were a little bit limited. The <b>Scanner</b> class defined in this file is tokenizing the code. You will have to implement the <b>getNum</b> method. Check out the other methods implemented there, they are going to be useful for the next part.</p>
+<p>As we discussed in class, parsing the file one character at a time is not enough when we introduce more complex constructs. Also, our single digit numbers were a little bit limiting. The <b>Scanner</b> class defined in this file tokenizes the code. You will have to implement the <b>getNum</b> method. Check out the other methods implemented there, as they are going to be useful for the next part.</p>
 
-<p>The rest of the file is the definition of each parser we are building, starting from generic precedence arithmetic parser to the full language we want to target variables, if statement and loops. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
+<p>The rest of the file is the definition of each parser we are building, starting from a generic precedence arithmetic parser to the full language we want to target, including variables, if statements, and loops. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
 
 <h3>src/main/scala/project2/SemanticAnalyzer.scala</h3>
 
-<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyser verifies that the program described is meaningful and follow the rules. For example:
+<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyzer verifies that the program described is meaningful and follows the rules. For example:
 
 <pre>
 val x = 2; x = 5
 </pre>
 
-has a valid syntax. However 'val' are immutable, therefore it is not allowed to assign them.
+has a valid syntax. However 'val' is immutable: it is not allowed to be reassigned to.
 </p>
 
 <p>Here is a list of the semantic rules that need to be enforced:</p>
@@ -136,15 +136,15 @@ has a valid syntax. However 'val' are immutable, therefore it is not allowed to 
 
 <h3>src/main/scala/project2/Interpreter.scala</h3>
 
-<p>As we have seen in class, now that our programing language accept more than just mathematical expression, we need to define the require behavior of our language. An interpreter can be used to define this meaning. </p>
+<p>As we have seen in class, now that our programing language accepts more than just mathematical expressions, we need to define the required behavior of our language. An interpreter can be used to define this meaning. </p>
 
-<p>We provide to you an interpreter that is fully functionnal. Your job is to complete the <b>Stack-based</b> interpreter.</p>
+<p>We provide you with an interpreter that is fully functional. Your job is to complete the <b>Stack-based</b> interpreter.</p>
 
 <h3>src/main/scala/project2/Compiler.scala</h3>
 
-<p>In this file, one compiler emitting Scala-like code is already implmented. You need to implement a second compiler that can convert our AST into x86_64 code.</p>
+<p>In this file, one compiler emitting Scala-like code has already been implemented. You need to implement a second compiler that can convert our AST into x86_64 code.</p>
 
-<p>In the previous project, we considered two different ways of generating the assmbly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient but can not handle arbitrarily complex expressions. You can choose any of the two approach for this assignment.</p>
+<p>In the previous project, we considered two different ways of generating the assembly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient, but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient, but can not handle arbitrarily complex expressions. You can choose either of the two approaches for this assignment.</p>
 
 <h3>src/test/scala/project2/*Test.scala</h3>
 
@@ -154,7 +154,7 @@ has a valid syntax. However 'val' are immutable, therefore it is not allowed to 
 <p>You should turn in the <b>proj2</b> directory. Please run an 'sbt clean' before submitting.</p>
 
 <p>
-To turn in your project, make sure that you are in the directory that contains <b>proj2</b> directory. Then type the following:
+To turn in your project, make sure that you are in the directory that contains the <b>proj2</b> directory. Then, type the following:
 </p>
 <pre>
 turnin -c cs352 -p proj2 proj2
