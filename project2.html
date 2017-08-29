@@ -88,20 +88,29 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 <p>The main function is defined in this file. The data flow in this file can be seen as:</p>
 
 <pre>
-Read from File -> Parser -> Semantic Analyzer -> Interpreter/Compiler
+Read from File / Read from Command Line -> Parser -> Semantic Analyzer -> Interpreter/Compiler
 </pre>
 
 <p>You will be implementing many different parsers in order to test them through the main function.</p>
 
 <p>The AST generated will then go through the semantic analyzer. If there are no errors, then the code is going to be interpreted and then compiled. We provide you with one interpreter and one compiler. You will have to write one of each yourself.</p>
 
-<p>As our language becomes more complex, we will read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples how to run the code:</p>
+<p>As our language becomes more complex, it will become more useful to read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples how to run the code:</p>
 
 <pre>
 sbt
 > run sample/arithm.scala           ---> interpreter/compiler provided
 > run sample/arithm.scala x86      ---> x86 compiler (your code)
 > run sample/arithm.scala st_int   ---> stack interpreter (your code)
+</pre>
+
+<p>However, it is still possible to run code from the command line, as in project 1:</p>
+
+<pre>
+sbt
+> run "val x = 5; x"
+> run "val x = 5; x" x86
+> run "val x = 5; x" st_int
 </pre>
 
 <h3>src/main/scala/project2/Parser.scala</h3>
