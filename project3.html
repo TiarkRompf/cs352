@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 2: Type Checking - Functions - Heap Allocation</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Monday Sep 4</p>
+      </blockquote>
+
+<h2>Useful Links</h2>
+<ul>
+  <li><a href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">x86_64 cheat sheet</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>In this project, we will enrich the language we defined in the first two projects.</p>
+
+<p>At the end of the project, we will be able to parse full programs including functions. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST) and our Semantic Analyzer will be verify that the typing rules are being enforced.</p>
+
+<h2>Step 1: Getting Started</h2>
+
+<p>The project has been designed and tested for Linux/Mac OS. If you only have Windows installed on your personal laptop, consider running Linux in a VM or using the lab machines for the project.</p>
+
+<p>If you use remote access to work on your project, please use one of the lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
+
+<p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj3.tar.gz">here</a>.</p>
+
+<pre>
+tar xzvf proj2.tar.gz
+cd proj2
+</pre>
+
+<h2>Step 2: Project Structure</h2>
+
+<h3>Open Project in Your Favorite Scala IDE</h3>
+<p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives. If you are using Eclipse, you first need to generate an Eclipse project. Add a file <b>plugins.sbt</b> in the <b>project/</b> folder with the line: addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.1") and execute:
+<pre>
+sbt eclipse
+</pre>
+
+and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj2 and hit <b>Finish</b>.</p>
+
+<h3>Browse the Files</h3>
+
+<p>A description of the different files is provided below. The files you need to complete are <b>Parser.scala</b>, <b>SemanticAnalyzer.scala</b>, <b>Interpreter.scala</b>, and <b>Compiler.scala</b>. Following the path of the first project, we are going to implement the parser step by step. Follow the comments in the code and find the <b>TODOs</b>. The other part are also independent and can be develop separately. In order to implement the new features more easily, we have changed some of the previous class/function definition we had. You can search for the string CHANGE into the source code to see these modifications.</p>
+
+<h3>src/main/scala/project2/Util.scala</h3>
+
+<p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read it and have an idea of what is happening behind the scenes.</p>
+
+<h3>gen/bootstrap.c</h3>
+
+<p>As we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The boostrap file is a generic C file that is allocation a chunk of memory called <b>heap</b>. This memory region is sent to our program through an argument of the function <b>entry_point</b>. The exit code of our program is then printed on the screen. Our compiler will generate the file <b>gen/gen.s</b> and will be assembled and bootstrapped by gcc:</p>
+
+<pre>gcc bootstrap.c gen.s -o out</pre>
+
+<p><b>out</b> will then execute our program.</p>
+
+<h3>src/main/scala/project2/Main.scala</h3>
+
+<p>The main function is defined in this file. The data flow in this file can be seen as:</p>
+
+<pre>
+Read from File / Read from Command Line -> Parser -> Semantic Analyzer -> Interpreter/Compiler
+</pre>
+
+<p>You will be implementing many different parsers in order to test them through the main function.</p>
+
+<p>The AST generated will then go through the semantic analyzer. If there are no errors, then the code is going to be interpreted and then compiled. We provide you with one interpreter. You will have to write one interpreter and one compiler.</p>
+
+<p>As our language becomes more complex, it will become more useful to read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples how to run the code:</p>
+
+<pre>
+sbt
+> run sample/arithm.scala           ---> interpreter provided and x86 compiler
+> run sample/arithm.scala st_int    ---> stack interpreter (your code)
+</pre>
+
+<p>However, it is still possible to run code from the command line, as in project 1:</p>
+
+<pre>
+sbt
+> run "val x = 5; x"
+> run "val x = 5; x" st_int
+</pre>
+
+<h3>src/main/scala/project2/Parser.scala</h3>
+
+<p>This class contains the definition of our intermediate language.</p>
+
+<p>As we discussed in class, we are introducing types in our lnaguage. In addition to integer we are going to have Boolean and Unit. You will need to modify the <b>Scanner</b> class in order to tokenize the constant Boolean correctly. There is a single Unit constant: (). Because this construct can be use for other reason (e.g. a function without paramters), the () will still be parsed into two delimiter '(' and ')'. The function <b>parseAtom</b> will be handling the Unit literal.</p>
+
+<p>The rest of the file is the definition of each parser we are building, starting from a base parser thati is implementing the parser we have implemented in project 2. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
+
+<h3>src/main/scala/project2/SemanticAnalyzer.scala</h3>
+
+<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyzer verifies that the program described is meaningful and follows the rules. The skeleton code already contains the semantics checks we implemented in project 2.</p>
+
+<p>However as we have seen in class, we are improving our semantic analyzer into a type checker. Your job is to complete the <b>typeInfer</b> function using the rules we have seen in class.</p>
+
+<h3>src/main/scala/project2/Interpreter.scala</h3>
+
+<p>As we have seen in class, now that our programing language accepts more than just mathematical expressions, we need to define the required behavior of our language. An interpreter can be used to define this meaning. </p>
+
+<p>We provide you with an interpreter that is fully functional. Your job is to complete the <b>Stack-based</b> interpreter.</p>
+
+<h3>src/main/scala/project2/Compiler.scala</h3>
+
+<p>The x86_64 compiler handling all features up to loops is already implemented. You need to complete the compiler with the new features.</p>
+
+<p>In the previous project, we considered two different ways of generating the assembly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient, but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient, but can not handle arbitrarily complex expressions. <b>For this assignment, we will use a register-based approach.</b></p>
+
+<h3>src/test/scala/project2/*Test.scala</h3>
+
+<p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
+
+<h2>Turnin</h2>
+<p>You should turn in the <b>proj2</b> directory. Please run an 'sbt clean' before submitting.</p>
+
+<p>
+To turn in your project, make sure that you are in the directory that contains the <b>proj2</b> directory. Then, type the following:
+</p>
+<pre>
+turnin -c cs352 -p proj3 proj3
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p proj3 -v
+</pre>
+<h2>Grading</h2>
+<p>Your project will be tested against a set of unit tests. The weights of each task will be distributed as follow:</p>
+
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Weight</th>
+  </tr>
+  <tr>
+    <td>Scanner.getNum</td>
+    <td>5%</td>
+  </tr>
+  <tr>
+    <td>ArithParser</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>LetParser</td>
+    <td>5%</td>
+  </tr>
+  <tr>
+    <td>BranchParser</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>VariableParser</td>
+    <td>15%</td>
+  </tr>
+  <tr>
+    <td>LoopParser</td>
+    <td>5%</td>
+  </tr>
+  <tr>
+    <td>SemanticAnalyzer</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>StackInterpreter</td>
+    <td>15%</td>
+  </tr>
+  <tr>
+    <td>X86Compiler</td>
+    <td>25%</td>
+  </tr>
+</table>
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
