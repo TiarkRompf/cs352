@@ -44,6 +44,15 @@
 
 <p>At the end of the project, we will be able to parse full programs including functions. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST) and our Semantic Analyzer will be verify that the typing rules are being enforced.</p>
 
+<p>With now function in our language, we cna add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
+
+<ul>
+	<li><b>getchar</b> of type () => Int. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/getchar">doc</a></li>
+	<li><b>putchar</b> of type Int => Unit.<a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/putchar">doc</a>(we do not return the character)</li>
+</ul>
+
+Using these functions may lead to some issues when the code is launched from sbt. In order to test, launch the <b>out</b> binary generated in the folder <b>gen/</b></p>
+
 <h2>Step 1: Getting Started</h2>
 
 <p>The project has been designed and tested for Linux/Mac OS. If you only have Windows installed on your personal laptop, consider running Linux in a VM or using the lab machines for the project.</p>
