@@ -42,9 +42,9 @@
 <h2>Introduction</h2>
 <p>In this project, we will enrich the language we defined in the first two projects.</p>
 
-<p>At the end of the project, we will be able to parse full programs including functions. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST) and our Semantic Analyzer will be verify that the typing rules are being enforced.</p>
+<p>At the end of the project, we will be able to parse full programs including functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST) and our Semantic Analyzer will be verifying that the typing rules are being enforced.</p>
 
-<p>With now function in our language, we cna add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
+<p>With now functions in our language, we can add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
 
 <ul>
 	<li><b>getchar</b> of type () => Int. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/getchar">doc</a></li>
@@ -62,8 +62,8 @@ Using these functions may lead to some issues when the code is launched from sbt
 <p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj3.tar.gz">here</a>.</p>
 
 <pre>
-tar xzvf proj2.tar.gz
-cd proj2
+tar xzvf proj3.tar.gz
+cd proj3
 </pre>
 
 <h2>Step 2: Project Structure</h2>
@@ -74,7 +74,7 @@ cd proj2
 sbt eclipse
 </pre>
 
-and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj2 and hit <b>Finish</b>.</p>
+and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj3 and hit <b>Finish</b>.</p>
 
 <h3>Browse the Files</h3>
 
@@ -151,10 +151,10 @@ sbt
 <p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
 
 <h2>Turnin</h2>
-<p>You should turn in the <b>proj2</b> directory. Please run an 'sbt clean' before submitting.</p>
+<p>You should turn in the <b>proj3</b> directory. Please run an 'sbt clean' before submitting. You can also remove the <b>target/</b>. </p>
 
 <p>
-To turn in your project, make sure that you are in the directory that contains the <b>proj2</b> directory. Then, type the following:
+To turn in your project, make sure that you are in the directory that contains the <b>proj3</b> directory. Then, type the following:
 </p>
 <pre>
 turnin -c cs352 -p proj3 proj3
