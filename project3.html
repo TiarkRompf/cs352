@@ -28,7 +28,7 @@
 
 
       <div class="title">
-        <h1>Project 2: Type Checking - Functions - Heap Allocation</h1>
+        <h1>Project 3: Type Checking - Functions - Heap Allocation</h1>
       </div>
 
       <blockquote>
@@ -42,16 +42,16 @@
 <h2>Introduction</h2>
 <p>In this project, we will enrich the language we defined in the first two projects.</p>
 
-<p>At the end of the project, we will be able to parse full programs including functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST) and our Semantic Analyzer will be verifying that the typing rules are being enforced.</p>
+<p>At the end of the project, we will be able to parse full programs, including functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST), and our Semantic Analyzer will be able to verify that the typing rules are being enforced.</p>
 
-<p>With now functions in our language, we can add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
+<p>With functions now in our language, we can add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
 
 <ul>
 	<li><b>getchar</b> of type () => Int. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/getchar">doc</a></li>
 	<li><b>putchar</b> of type Int => Unit.<a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/putchar">doc</a>(we do not return the character)</li>
 </ul>
 
-Using these functions may lead to some issues when the code is launched from sbt. In order to test, launch the <b>out</b> binary generated in the folder <b>gen/</b></p>
+Using these functions may lead to some issues when the code is launched from sbt. In order to test, launch the <b>out</b> binary generated in the folder <b>gen/</b>.</p>
 
 <h2>Step 1: Getting Started</h2>
 
@@ -104,7 +104,7 @@ Read from File / Read from Command Line -> Parser -> Semantic Analyzer -> Interp
 
 <p>The AST generated will then go through the semantic analyzer. If there are no errors, then the code is going to be interpreted and then compiled. We provide you with one interpreter. You will have to write one interpreter and one compiler.</p>
 
-<p>As our language becomes more complex, it will become more useful to read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples how to run the code:</p>
+<p>As our language becomes more complex, it will become more useful to read the code from a source file. A folder with sample files <b>sample/</b> has been provided. Here some examples of how to run the code:</p>
 
 <pre>
 sbt
@@ -124,25 +124,25 @@ sbt
 
 <p>This class contains the definition of our intermediate language.</p>
 
-<p>As we discussed in class, we are introducing types in our lnaguage. In addition to integer we are going to have Boolean and Unit. You will need to modify the <b>Scanner</b> class in order to tokenize the constant Boolean correctly. There is a single Unit constant: (). Because this construct can be use for other reason (e.g. a function without paramters), the () will still be parsed into two delimiter '(' and ')'. The function <b>parseAtom</b> will be handling the Unit literal.</p>
+<p>As we discussed in class, we are introducing types in our language. In addition to Integer, we will also have the types Boolean and Unit. You will need to modify the <b>Scanner</b> class in order to tokenize the constants of type Boolean correctly. There is a single Unit constant: (). Because this construct can be used for other reasons (e.g. a function without parameters), the () will still be parsed into two delimiters: '(' and ')'. The function <b>parseAtom</b> will be handling the Unit literal.</p>
 
-<p>The rest of the file is the definition of each parser we are building, starting from a base parser thati is implementing the parser we have implemented in project 2. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
+<p>The rest of the file is the definition of each parser we are building, starting from a base parser that is an implementation of the parser we implemented in project 2. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
 
 <h3>src/main/scala/project2/SemanticAnalyzer.scala</h3>
 
-<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyzer verifies that the program described is meaningful and follows the rules. The skeleton code already contains the semantics checks we implemented in project 2.</p>
+<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyzer verifies that the program described is meaningful and follows the rules. The skeleton code already contains the semantic checks we implemented in project 2.</p>
 
-<p>However as we have seen in class, we are improving our semantic analyzer into a type checker. Your job is to complete the <b>typeInfer</b> function using the rules we have seen in class.</p>
+<p>However as we have seen in class, we are upgrading our semantic analyzer into a type checker. Your job is to complete the <b>typeInfer</b> function using the rules we have seen in class.</p>
 
 <h3>src/main/scala/project2/Interpreter.scala</h3>
 
-<p>As we have seen in class, now that our programing language accepts more than just mathematical expressions, we need to define the required behavior of our language. An interpreter can be used to define this meaning. </p>
+<p>As we have seen in class, now that our programing language accepts more than just mathematical expressions, we need to define the required behavior of our language. An interpreter can be used to define this meaning.</p>
 
 <p>We provide you with an interpreter that is fully functional. Your job is to complete the <b>Stack-based</b> interpreter.</p>
 
 <h3>src/main/scala/project2/Compiler.scala</h3>
 
-<p>The x86_64 compiler handling all features up to loops is already implemented. You need to complete the compiler with the new features.</p>
+<p>The x86_64 compiler handling all features up to loops is already implemented for you. You need to complete the compiler with the new features.</p>
 
 <p>In the previous project, we considered two different ways of generating the assembly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient, but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient, but can not handle arbitrarily complex expressions. <b>For this assignment, we will use a register-based approach.</b></p>
 
