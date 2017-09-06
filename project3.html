@@ -32,7 +32,7 @@
       </div>
 
       <blockquote>
-        <p>Due 11:59pm Monday Sep 4</p>
+        <p>Due 11:59pm Monday Sept 18</p>
       </blockquote>
 
 <h2>Useful Links</h2>
@@ -44,7 +44,7 @@
 
 <p>At the end of the project, we will be able to parse full programs, including functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST), and our Semantic Analyzer will be able to verify that the typing rules are being enforced.</p>
 
-<p>With functions now in our language, we can add a little bit of I/O. When writting code in our programming language, the programmer will have access to two primitives:
+<p>With functions now in our language, we can add a little bit of I/O. When writing code in our programming language, the programmer will have access to two primitives:
 
 <ul>
 	<li><b>getchar</b> of type () => Int. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/getchar">doc</a></li>
@@ -82,11 +82,11 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <h3>src/main/scala/project2/Util.scala</h3>
 
-<p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read it and have an idea of what is happening behind the scenes.</p>
+<p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommended to read it and have an idea of what is happening behind the scenes.</p>
 
 <h3>gen/bootstrap.c</h3>
 
-<p>As we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The boostrap file is a generic C file that is allocation a chunk of memory called <b>heap</b>. This memory region is sent to our program through an argument of the function <b>entry_point</b>. The exit code of our program is then printed on the screen. Our compiler will generate the file <b>gen/gen.s</b> and will be assembled and bootstrapped by gcc:</p>
+<p>As we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The bootstrap file is a generic C file that is allocation a chunk of memory called <b>heap</b>. This memory region is sent to our program through an argument of the function <b>entry_point</b>. The exit code of our program is then printed on the screen. Our compiler will generate the file <b>gen/gen.s</b> and will be assembled and bootstrapped by gcc:</p>
 
 <pre>gcc bootstrap.c gen.s -o out</pre>
 
@@ -150,36 +150,36 @@ sbt
 
 <p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
 
-<h2>Extra Requierement</h2>
+<h2>Extra Requirements</h2>
 
-<p>The programmer can used two functions: <b>getchar</b> and <b>putchar</b>. However we do not have character, so in order to print hello world, we would have to write the code:
+<p>The programmer can use two functions to interact with the console: <b>getchar</b> and <b>putchar</b>. However, we do not have characters, so in order to print hello world, we would have to write the code:
 
 <pre>putchar(72); putchar(101); putchar(108); putchar(108); putchar(111); ...</pre>
 
-This is not really convenient, we would rather do:
+This is not really convenient; we would rather do:
 
 <pre>putchar(toInt('H')); putchar(toInt('e')); putchar(toInt('l')); putchar(toInt('l'))...</pre>
 
-You are therefore required to add a new type in the language: Char. All 256 characters should be handle. In the program a programmer will be able to use the single quote notation to enter a character e.g. 'H'.
+You are therefore required to add a new type in the language: Char. All 256 characters should be handled. In the program, a programmer will be able to use the single quote notation to enter a character e.g. 'H'.
 
 You will also provide two primitives operations:
 
   - toInt: of type Char => Int
   - toChar: of type Int => Char
 
-The x86 implementation for this primitives will be a no-op for toInt. For toChar:
+The x86 implementation for this primitive will be a no-op for toInt. For toChar:
 
 <pre>
 mov <reg>, %rax
 movbq %al, <reg>
 </pre>
 
-Note this is not extra credit. Hint: The parser shouldn't need to be modify, only the Scanner class. And for the primitive, look at the <b>putchar</b> implementation within the code.
+Note: <strong>this is not extra credit.</strong> Hint: The parser shouldn't need to be modified; only the Scanner class. And for the primitive: look at the <b>putchar</b> implementation within the code.
 </p>
 
 <h2>Extra Credit</h2>
 
-<p>In the <b>Compiler.scala</b> file, there are some place marked as Extra Credit. These are the place where we need to generate code for functions used as argument, or stored into a variable, or returned from a function. While you are required to parse this kind of code correctly and be able to type check it, you are not require to generate the x86 corresponding code. This part will be counted as extra credit.<p>
+<p>In the <b>Compiler.scala</b> file, there are some places marked as Extra Credit. These are the places where we need to generate code for functions used as arguments, stored into variables, or returned from a function. While you are required to parse this kind of code correctly and be able to type check it, you are not required to generate the corresponding x86 code. Implementing such generation correctly will be counted as extra credit.<p>
 
 
 <h2>Turnin</h2>
