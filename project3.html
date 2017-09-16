@@ -160,7 +160,7 @@ This is not really convenient; we would rather do:
 
 <pre>putchar(toInt('H')); putchar(toInt('e')); putchar(toInt('l')); putchar(toInt('l'))...</pre>
 
-You are therefore required to add a new type in the language: Char. All 256 characters should be handled. In the program, a programmer will be able to use the single quote notation to enter a character e.g. 'H'.
+You are therefore required to add a new type in the language: Char. All visible characters should be handled, e.g. you don't have to handle the escaping characters '\n', '\r'... In the program, a programmer will be able to use the single quote notation to enter a character e.g. 'H'.
 
 You will also provide two primitives operations:
 
@@ -173,7 +173,7 @@ The x86 implementation: toInt will be a no-op and toChar:
 
 <pre>
 mov <reg>, %rax
-movbq %al, <reg>
+movzbq %al, <reg>
 </pre>
 
 Note: <strong>this is not extra credit.</strong> Hint: The parser shouldn't need to be modified; only the Scanner class. And for the primitive: look at the <b>putchar</b> implementation within the code.
