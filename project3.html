@@ -172,8 +172,8 @@ You will also provide two primitives operations:
 The x86 implementation: toInt will be a no-op and toChar:
 
 <pre>
-mov <reg>, %rax
-movzbq %al, <reg>
+mov loc, %rax
+movzbq %al, loc
 </pre>
 
 Note: <strong>this is not extra credit.</strong> Hint: The parser shouldn't need to be modified; only the Scanner class. And for the primitive: look at the <b>putchar</b> implementation within the code.
