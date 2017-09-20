@@ -30,10 +30,6 @@
         </div>
         <p>Due: Sept 28, 11:59PM</p>
 
-        <h2>Useful Links</h2>
-        <ul>
-          <li><a href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">x86_64 cheat sheet</a></li>
-        </ul>
         <h2>Introduction</h2>
 
         <p>In this assignment, we are asking you to implement the optimized CPS transformations you have seen in the course.</p>
@@ -97,7 +93,7 @@
         <h2>Step 2: Project Structure</h2>
 
         <h3>Open Project in Your Favorite Scala IDE</h3>
-        <p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives. If you are using Eclipse, you first need to generate an Eclipse project. Add a file <b>plugins.sbt</b> in the <b>project/</b> folder with the line: addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.1") and execute:
+        <p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives. If you are using Eclipse, you first need to generate an Eclipse project. Execute:
         <pre>
         sbt eclipse
         </pre>
@@ -106,9 +102,11 @@
 
         <h3>Browse the Files</h3>
 
-        <p>A description of the different files is provided below. The files you need to complete are <strong>CMScalaInterpreter.scala</strong>, <strong>CPSInterpreter.scala</strong>, and </p>
+        <p>All file with prefix MiniScala are handling the parsing. All files with prefix CMScala are handling the semantic analyzer pase.</p>
 
-        <p>You will notice that MiniScala.Main from the new project doesn't run the <span class="ttt">CMScalaInterpreter</span> anymore, but first runs the CPS translator and then an interpreter for your CPS representation.</p>
+        <p>You only need to update the file <b>CMScalaToCPSTransform</b>.</p>
+
+        <p>You will notice that MiniScala.Main from the new project doesn't run the <span class="ttt">CMScalaInterpreter</span> anymore (it was the interpreter we were using before), but first runs the CPS translator and then an interpreter for your CPS representation.</p>
 
         <p>Also, you may notice that between translation and interpretation, there is an additional step called <span class="ttt">SymbolicCPSTreeChecker.</span> The purpose of this module is to go through your generated CPS tree, check that all names used are defined exactly once, and emit useful warnings in case they are not. Take advantage of this output to track any bugs you may have in the translation. Notice that, since <span class="ttt">SymbolicCPSTreeChecker.apply</span> returns <span class="ttt">Unit</span>, we have to pass it to the <span class="ttt">passThrough</span> function to integrate it in the pipeline.</p>
 
@@ -127,9 +125,6 @@
         <pre>
         turnin -c cs352 -p proj4 -v
         </pre>
-
-        <h2>Grading</h2>
-        <p>Your project will be tested against a set of unit tests. The weights of each task will be distributed as follow: (TBD)</p>
 
         <h2>Testing</h2>
 
