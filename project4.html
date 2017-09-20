@@ -42,17 +42,19 @@
 
         <p>For this project, we have provided you with a more complex frontend than we've seen thus far. Some of the new pieces of syntactic sugar of which you should be aware are as follows:</p>
 
-        <p><span class="ttt">e1 &amp;&amp; e2 ==> if (e1) e2 else false</span></p>
-        <p><span class="ttt">e1 || e2 ==> if (e1) true else e2</span></p>
-        <p><span class="ttt">!e1 ==> if (e1) false else true</span></p>
-        <p><span class="ttt">"c1...cn" ==> val s = new Array[Char](200); s(0) = 'c1';...;s</span></p>
-        <p><span class="ttt">(n1: T1, ...) => b1 ==> def anon1(n1: T1, ...) = b1; anon1</span></p>
+        <ul>
+          <li><span class="ttt">e1 &amp;&amp; e2 ==> if (e1) e2 else false</span></li>
+          <li><span class="ttt">e1 || e2 ==> if (e1) true else e2</span></li>
+          <li><span class="ttt">!e1 ==> if (e1) false else true</span></li>
+          <li><span class="ttt">"c1...cn" ==> val s = new Array[Char](200); s(0) = 'c1';...;s</span></li>
+          <li><span class="ttt">(n1: T1, ...) => b1 ==> def anon1(n1: T1, ...) = b1; anon1</span></li>
+        </ul>
 
         <p>You can find all code dealing with syntactic sugar in MiniScalaParser.scala, though you will not need to make any modifications there.</p>
 
         <p>Similarly, the code for desugaring can be found in CMScalaAnalyzer.scala. Again, no modifications are necessary in this file.</p>
 
-        <p>As we will not be providing solutions for previous assignments, you may want to look over MiniScalaParser and CMScalaAnalyzer if you have any questions about how these function. We are also happy to provide further clarification on Piazza, as needed.</p>
+        <p>As we will not be providing solutions for previous assignments, you may want to look over MiniScalaParser and CMScalaAnalyzer if you have any questions about how these function. We are also happy to provide further clarification on Piazza as needed.</p>
 
         <p>In addition to these pieces of syntactic sugar, we also have some new types, with corresponding literals and operators. Below is a list of some of the types available in our language:</p>
 
@@ -61,7 +63,7 @@
           <li>Char: All character literals are supported (e.g., 'c', 's', '3, '5', '2', '\n', etc.).</li>
           <li>Boolean: As before, Boolean literals are <span class="ttt">true</span> and <span class="ttt">false</span>.</li>
           <li>Unit: As before, the Unit literal is ().</li>
-          <li>String: Strings are now supported in our language, with string literals appearing as expected (e.g. "this is a string", "help, I'm stuck in grad school", "let me out", "\nwhy isn't \\gradschool a defined escape sequence?\n" etc.).</li>
+          <li>String: Strings are now supported in our language, with string literals appearing as expected (e.g. "this is a string", "help, I'm stuck in grad school", "let me out", "\n\\gradschool gives an error: \"unable to escape\"\n", etc.).</li>
         </ul>
 
         <p>And some corresponding operators:</p>
@@ -82,7 +84,7 @@
           <li>block-set : (block, Int, T) => Unit</li>
         </ul>
 
-        <p>Other types include Array[T], Function types, Blocks, and List[T].</p>
+        <p>Other types include Array[T], function types, Blocks, and List[T].</p>
 
         <h2>Step 1: Getting Started</h2>
 
@@ -92,7 +94,17 @@
 
         <p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj4.tar.gz">here</a>.</p>
 
-        <h2>Browse the Files</h2>
+        <h2>Step 2: Project Structure</h2>
+
+        <h3>Open Project in Your Favorite Scala IDE</h3>
+        <p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives. If you are using Eclipse, you first need to generate an Eclipse project. Add a file <b>plugins.sbt</b> in the <b>project/</b> folder with the line: addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "5.2.1") and execute:
+        <pre>
+        sbt eclipse
+        </pre>
+
+        and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj4 and hit <b>Finish</b>.</p>
+
+        <h3>Browse the Files</h3>
 
         <p>A description of the different files is provided below. The files you need to complete are <strong>CMScalaInterpreter.scala</strong>, <strong>CPSInterpreter.scala</strong>, and </p>
 
@@ -100,23 +112,24 @@
 
         <p>Also, you may notice that between translation and interpretation, there is an additional step called <span class="ttt">SymbolicCPSTreeChecker.</span> The purpose of this module is to go through your generated CPS tree, check that all names used are defined exactly once, and emit useful warnings in case they are not. Take advantage of this output to track any bugs you may have in the translation. Notice that, since <span class="ttt">SymbolicCPSTreeChecker.apply</span> returns <span class="ttt">Unit</span>, we have to pass it to the <span class="ttt">passThrough</span> function to integrate it in the pipeline.</p>
 
-        <p>You will find that methods <span class="ttt">nonTail</span>, <span class="ttt">tail</span> and <span class="ttt">cond</span> in <span class="ttt">MiniScala.CMScalaToCPSTranslator</span> directly correspond to translations that were explained during the lecture. Transformation for <span class="ttt">let</span> is already given to you as an example. Your task is to complete these methods by adding the missing cases. <b>Important: take the time to understand the helper methods that are provided, and use them as frequently as possible!</b>  It will save you time and help you avoid common errors.</p>
+        <p>You will find that methods <span class="ttt">nonTail</span>, <span class="ttt">tail</span> and <span class="ttt">cond</span> in <span class="ttt">MiniScala.CMScalaToCPSTranslator</span> directly correspond to translations that were explained during the lecture. Transformation for <span class="ttt">let</span> is already given to you as an example. Your task is to complete these methods by adding the missing cases. <b>Important: take the time to understand the helper methods that are provided, and use them as frequently as possible!</b> It will save you time and help you avoid common errors.</p>
 
-        <h2>Turning In</h2>
+        <h2>Turnin</h2>
+        <p>You should turn in the <b>proj4</b> directory. Please run an 'sbt clean' before submitting. You can also remove the <b>target/</b>. </p>
 
-        <p>The project is due by September 11, 11:59PM. To turn in your project, go to the same directory that your <i>proj4</i> directory lives in (you do not have to name it proj4, but it must contain all of the project files) and type:<br>
-
-        <pre>
-        turnin -c cs352 -p project4 proj4
-        </pre>
-
-        <p>You can verify the status of your turned in project by running:</p>
-
-        <pre>
-        turnin -c cs352 -p project4 -v
-        </pre>
-
+        <p>
+        To turn in your project, make sure that you are in the directory that contains the <b>proj4</b> directory. Then, type the following:
         </p>
+        <pre>
+        turnin -c cs352 -p proj4 proj4
+        </pre>
+        <p>To verify your turned-in work, do:</p>
+        <pre>
+        turnin -c cs352 -p proj4 -v
+        </pre>
+
+        <h2>Grading</h2>
+        <p>Your project will be tested against a set of unit tests. The weights of each task will be distributed as follow: (TBD)</p>
 
         <h2>Testing</h2>
 
