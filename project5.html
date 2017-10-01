@@ -47,7 +47,7 @@
 
 <p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you lesser points if there exists a better translation that avoids, completely or partially, some encodings/decodings. Note: To that end, make sure to use Left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as descibed in the lectures.</p>
 
-<p>For the closure conversion part, you can choose to either implement the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, while a correct implementation of the optimized transformation will give you 110% of the grade.</p>
+<p>For the closure conversion part, you can choose to either implement the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, while a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive call will give you 100% (you can still have function call if they are not recursive). The extra 10% will be given if recursive and mutually recursive function can be handle properly.</p>
 
 <p>Notice however that by submitting an incorrect version of the optimized transformation you may loose a lot of points depending on the mistakes. Therefore, we recommend that you start by implementing the basic closure conversion procedure and, if you are successful and still have time, to extend it to the optimized procedure.</p>
 
