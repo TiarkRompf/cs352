@@ -38,44 +38,44 @@
         <p>Due 11:59PM Wednesday Oct 11</p>
       </blockquote>
 
-      <p>Your task in this assignment is to implement a compiler phase for the CPS value representation transformation, including closure conversion. In the skeleton code, you will find a template for this compiler phase in class <span class="ttt">miniscala.CPSValueRepresenter.</span> You can (and are encouraged to) use the helper methods in class <span class="ttt">CPSValueRepresenter</span>, <span class="ttt">CPSTreeModule.Tree</span> and object <span class="ttt">BitTwiddling.</span> Additionally, you are also required to implement the hoisting phase that brings all function bodies to the top level <span class="ttt">CPSHoister</span>. Please note that the the following aspects will taken in to consideration while grading:</p>
+      <p>Your task in this assignment is to implement a compiler phase for the CPS value representation transformation, including closure conversion. In the skeleton code, you will find a template for this compiler phase in class <span class="ttt">miniscala.CPSValueRepresenter</span>. You can (and are encouraged to) use the helper methods in class <span class="ttt">CPSValueRepresenter</span>, <span class="ttt">CPSTreeModule.Tree</span>, and object <span class="ttt">BitTwiddling</span>. Additionally, you are also required to implement the hoisting phase that brings all function bodies to the top level <span class="ttt">CPSHoister</span>. Please note that the the following aspects will be taken into consideration while grading:</p>
 
 <ul>
 <li>Correctness of the implementation.
 <li>The time and memory efficiency of the implementation.
 </ul>
 
-<p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you lesser points if there exists a better translation that avoids, completely or partially, some encodings/decodings. Note: To that end, make sure to use Left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as descibed in the lectures.</p>
+<p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you lesser points if there exists a better translation that avoids, either completely or partially, some encodings/decodings. Note: To that end, make sure to use left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as described in the lectures.</p>
 
-<p>For the closure conversion part, you can choose to either implement the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, while a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive call will give you 100% (you can still have function calls if they are not recursive). The extra 10% will be given if recursive and mutually recursive function calls can be handle properly.</p>
+<p>For the closure conversion part, you can choose to implement either the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, whereas a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive calls will give you 100% (you can still have function calls if they are not recursive). The extra 10% will be given if recursive and mutually recursive function calls can be handled properly.</p>
 
-<p>Notice however that by submitting an incorrect version of the optimized transformation you may loose a lot of points depending on the mistakes. Therefore, we recommend that you start by implementing the basic closure conversion procedure and, if you are successful and still have time, to extend it to the optimized procedure.</p>
+<p>Notice, however, that by submitting an incorrect version of the optimized transformation you may lose a lot of points depending on the mistakes. Therefore, we recommend that you start by implementing the basic closure conversion procedure and, if you are successful and still have time, to extend it to the optimized procedure.</p>
 
-<p>NOTE: many functions have an implicit argument <b>worker</b>. This argument should not be useful in the non optimized version, therefore you are free to pass the value <b>Map.empty</b> to a function call.</p>
+<p>NOTE: many functions have an implicit argument <b>worker</b>. This argument should not be useful in the non-optimized version, therefore you are free to pass the value <b>Map.empty</b> to a function call.</p>
 
 <h2>CPS Low Level</h2>
 
-<p>The values representation phase of the MiniScala compiler takes as input a CPS program where all values and primitives are "high-level", in that they have the semantics of the MiniScala language gives them. It produces a "low-level" version of that program as output, in which all values are either integers or pointers and primitives correspond directly to instructions of a typical microprocessor.</p>
+<p>The value representation phase of the MiniScala compiler takes as input a CPS program where all values and primitives are "high-level," in that they have the semantics which the MiniScala language gives them. It produces a "low-level" version of that program as output, in which all values are either integers or pointers and primitives correspond directly to instructions of a typical microprocessor.</p>
 
-<p>This means that the primitive operations used in the CPSLow code (defined in <span class="ttt">CPSPrimitives</span>) are only effectuing operations on integers (or pointers for block operations). All primitives are performing the operation that you could be expecting based on the name. Note that the CPSByteWrite primitive returns the value 0. You can checkout the <span class="ttt">CPSLowInterpreter</span> in the <b>CPSInterpreter.scala</b> file and make sure you understand the CPSLow semantic.</p>
+<p>This means that the primitive operations used in the CPSLow code (defined in <span class="ttt">CPSPrimitives</span>) are only executing operations on integers (or pointers for block operations). All primitives are performing the operation that you could be expecting based on the name. Note that the CPSByteWrite primitive returns the value 0. You can checkout the <span class="ttt">CPSLowInterpreter</span> in the <b>CPSInterpreter.scala</b> file and make sure you understand the CPSLow semantics.</p>
 
 <h2>Testing</h2>
-<p>From this assignment on, you will choose the shapes for the trees you generate. You should inspect them visually and decide whether or not they are correct and optimal. The application in the given skeleon code will not have whitebox tests, but it will still have an extensive blackbox test suite to ensure the correctness of the programs you generate.</p>
+<p>From this assignment on, you will choose the shapes for the trees you generate. You should inspect them visually and decide whether or not they are correct and optimal. The application in the given skeleton code will not have whitebox tests, but it will still have an extensive blackbox test suite to ensure the correctness of the programs you generate.</p>
 
 <p>Although we will not test tree shapes, we still encourage you to do so for every transformation rule you write. You have the necessary infrastructure in <span class="ttt">miniscala.test.CPSValueRepresentation_Whitebox</span> so it's a matter of just writing the source code and the resulting tree. It is usually an effort that pays off.</p>
 
 <h2>Road Map</h2>
 
 <ul>
-	<li> Spend the time to understand the task that has to be accomplished. That means reading the material and the lecture carefully. A good idea to see if you understand, is to manually transform some piece of code. While doing that, write this as a test case, you will kill two bird with one stone.</li>
+	<li> Spend the time to understand the task that has to be accomplished. This means reading the material and the lectures carefully. A good idea to make sure you understand is to manually transform some piece of code. While doing that, write this as a test case! Two birds, one stone.</li>
 	<li> Implement hoisting in <span class="ttt">CPSHoister</span>. This task is simple and is required to pass any tests.</li>
 	<li> Implement the actual value transformation function, keep the closure conversion for last. Test every cases! Of course the best way is to write at least one test case for it, but if you are not willing to write tests then verify that you can generate code that produces a correct result for simple programs. <b>Do not use</b> sbt test everytime you add a case to see if you pass more tests! Many of the Blackbox tests will fail unless the closure conversion has been implemented.</li>
 </ul>
 
 <p>Tips:
 <ul>
-	<li> The implementation can be very technical in some case, make sure that you are making good use of the helping function to avoid a clustered code!</li>
-	<li> When creating fresh variable names, you can try to add some information that will help you to debug. For example, when creating a name for the worker of the function "test" you may prefer to use <span class="ttt">Symbol.fresh("test_worker")</span> rather than <span class="ttt">Symbol.fresh("w")</span></li>
+	<li> The implementation can be very technical in some cases, so make sure that you are making good use of the helping function to avoid clustered code!</li>
+	<li> When creating fresh variable names, you can try to add some information that will help you to debug. For example, when creating a name for the worker of the function "test" you may prefer to use <span class="ttt">Symbol.fresh("test_worker")</span> rather than <span class="ttt">Symbol.fresh("w")</span>.</li>
 </ul>
 </p>
 
