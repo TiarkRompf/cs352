@@ -38,7 +38,7 @@
         <p>Due 11:59PM Wednesday Oct 11</p>
       </blockquote>
 
-      <p>Your task in this assignment is to implement a compiler phase for the CPS value representation transformation, including closure conversion. In the skeleton code, you will find a template for this compiler phase in class <span class="ttt">miniscala.CPSValueRepresenter.</span> You can (and are encouraged to) use the helper methods in class <span class="ttt">CPSValueRepresenter</span> and object <span class="ttt">BitTwiddling.</span> Additionally, you are also required to implement the hoisting phase that brings all function bodies to the top level <span class="ttt">CPSHoister</span>. Please note that the the following aspects will taken in to consideration while grading:</p>
+      <p>Your task in this assignment is to implement a compiler phase for the CPS value representation transformation, including closure conversion. In the skeleton code, you will find a template for this compiler phase in class <span class="ttt">miniscala.CPSValueRepresenter.</span> You can (and are encouraged to) use the helper methods in class <span class="ttt">CPSValueRepresenter</span>, <span class="ttt">CPSTreeModule.Tree</span> and object <span class="ttt">BitTwiddling.</span> Additionally, you are also required to implement the hoisting phase that brings all function bodies to the top level <span class="ttt">CPSHoister</span>. Please note that the the following aspects will taken in to consideration while grading:</p>
 
 <ul>
 <li>Correctness of the implementation.
@@ -47,7 +47,7 @@
 
 <p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you lesser points if there exists a better translation that avoids, completely or partially, some encodings/decodings. Note: To that end, make sure to use Left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as descibed in the lectures.</p>
 
-<p>For the closure conversion part, you can choose to either implement the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, while a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive call will give you 100% (you can still have function call if they are not recursive). The extra 10% will be given if recursive and mutually recursive function can be handle properly.</p>
+<p>For the closure conversion part, you can choose to either implement the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, while a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive call will give you 100% (you can still have function calls if they are not recursive). The extra 10% will be given if recursive and mutually recursive function calls can be handle properly.</p>
 
 <p>Notice however that by submitting an incorrect version of the optimized transformation you may loose a lot of points depending on the mistakes. Therefore, we recommend that you start by implementing the basic closure conversion procedure and, if you are successful and still have time, to extend it to the optimized procedure.</p>
 
@@ -57,8 +57,7 @@
 
 <p>The values representation phase of the MiniScala compiler takes as input a CPS program where all values and primitives are "high-level", in that they have the semantics of the MiniScala language gives them. It produces a "low-level" version of that program as output, in which all values are either integers or pointers and primitives correspond directly to instructions of a typical microprocessor.</p>
 
-<p>This means that the primitive operations used in the CPSLow code (defined in <span class="ttt">CPSPrimitives</span>) are only effectuing operations on integers. All primitives are performing the operation that you could be expecting based on the name. Just take note that the CPSByteWrite primitive returns the value 0. You can checkout the <span class="ttt">CPSLowInterpreter</span> in the <b>CPSInterpreter.scala</b> file and make sure you understand the CPSLow semantic.</p>
-
+<p>This means that the primitive operations used in the CPSLow code (defined in <span class="ttt">CPSPrimitives</span>) are only effectuing operations on integers (or pointers for block operations). All primitives are performing the operation that you could be expecting based on the name. Note that the CPSByteWrite primitive returns the value 0. You can checkout the <span class="ttt">CPSLowInterpreter</span> in the <b>CPSInterpreter.scala</b> file and make sure you understand the CPSLow semantic.</p>
 
 <h2>Testing</h2>
 <p>From this assignment on, you will choose the shapes for the trees you generate. You should inspect them visually and decide whether or not they are correct and optimal. The application in the given skeleon code will not have whitebox tests, but it will still have an extensive blackbox test suite to ensure the correctness of the programs you generate.</p>
