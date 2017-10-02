@@ -45,7 +45,7 @@
 <li>The time and memory efficiency of the implementation.
 </ul>
 
-<p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you lesser points if there exists a better translation that avoids, either completely or partially, some encodings/decodings. Note: To that end, make sure to use left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as described in the lectures.</p>
+<p>For instance, transforming a primitive operation <i>x op y</i> by naively decoding the arguments <i>(x,y)</i> and encoding the result back will fetch you fewer points if there exists a better translation that avoids, either completely or partially, some encodings/decodings. Note: To that end, make sure to use left shift (<span class="ttt"> << </span>) and right shift (<span class="ttt"> >> </span>) operations to implement multiplication and division by 2 as described in the lectures.</p>
 
 <p>For the closure conversion part, you can choose to implement either the "simple" or the optimized version. Correctly implementing the simplified one will give you 90% of the grade for this assignment, whereas a correct implementation of the optimized transformation will give you 110% of the grade. An optimized version that works without supporting recursive/mutually recursive calls will give you 100% (you can still have function calls if they are not recursive). The extra 10% will be given if recursive and mutually recursive function calls can be handled properly.</p>
 
