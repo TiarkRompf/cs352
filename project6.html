@@ -75,13 +75,14 @@
 </pre>
 <p><b>Output:</b></p>
 <pre>
-  (let* ((v$1 79)
-         (v$2 (char-print v$1))
-         (v$3 75)
-         (v$4 (char-print v$3))
-         (v$5 10)
-         (v$6 (char-print v$5)))
-    (halt))
+  vall v$1 = 79;
+  valp v$2 = byte-write(v$1);
+  vall v$3 = 75;
+  valp v$4 = byte-write(v$3);
+  vall v$5 = 10;
+  valp v$6 = byte-write(v$5);
+  vall v$7 = 0;
+  v$7
 </pre>
 <p>Closures? Blocks? The optimizer eliminated all abstractions and gave us the simplest inline code possible. :D
 <br>
