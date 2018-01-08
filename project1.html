@@ -32,7 +32,7 @@
       </div>
 
       <blockquote>
-        <p>Due 11:59pm Monday Aug 28</p>
+        <p>Due 11:59pm Monday Jan 15</p>
       </blockquote>
 
 <h2>Useful Links</h2>
@@ -89,7 +89,7 @@ Result: 5
 <p>Note that all of the prerequisites (even IDEs like Eclipse) are installed on the CS Department Linux machines, and you are free to use an X server such as <a href="https://sourceforge.net/projects/xming/">xming</a> to do the project remotely or follow these <a href="https://www.cs.purdue.edu/resources/facilities/remote-access.html#RShell">instructions</a> to access the lab machines remotely. Alternatively you may do the project on your own machine and then upload your results to your home directory on data.cs.purdue.edu and turn in your results using turnin.</p>
 
 
-<p>The project has been designed and tested for Linux/Mac OS. If you have only Windows installed on your laptop consider running Linux in a VM, or use the lab machines for the project.</p>
+<p>The project has been designed and tested for Linux/Mac OS. If you have only Windows installed on your laptop consider running Linux in a VM, or use the lab machines for the project. (However it should be working on Windows as well)</p>
 
 <p>If you use remote access to work on your project, please use one of the lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
 
@@ -104,12 +104,8 @@ cd proj1
 <h2>Step 2: Project Structure</h2>
 
 <h3>Open Project in Your Favorite Scala IDE</h3>
-<p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives. If you are using Eclipse, you first need to generate an Eclipse project:
-<pre>
-sbt eclipse
-</pre>
-
-and then import the Project into Eclipse: <b>File > Import > Existing project into Workspace</b>. Select the root folder proj1 and hit <b>Finish</b>.</p>
+<p>You can use your editor or IDE of choice. The <a href="http://www.scala-lang.org">Scala website</a> has instructions for a range of alternatives.
+</p>
 
 <h3>Browse the Files</h3>
 
@@ -126,7 +122,7 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 </pre>
 
 
-<h3>src/main/scala/project1/Util.scala</h3>
+<h3>src/miniscala/Util.scala</h3>
 
 <p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read it and have an idea of what is happening behind the scenes.</p>
 
@@ -138,13 +134,13 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <p><b>out</b> will then print the result of our compiled expression.</p>
 
-<p>NOTE: the assembly/compilation and running steps are executed through the code. (see Util.scala#L77 and Main.scala#L35)</p>
+<p>NOTE: the assembly/compilation and running steps are executed through the code. (see Util.scala#L88 and Main.scala#L39)</p>
 
-<h3>src/main/scala/project1/Main.scala</h3>
+<h3>src/miniscala/Main.scala</h3>
 
 <p>The main function is defined in this file. During this project, you will be implementing many different parsers in order to test them through the main function. You will need to modify the parser or generator you want to use.</p>
 
-<h3>src/main/scala/project1/Parser.scala</h3>
+<h3>src/miniscala/Parser.scala</h3>
 
 <p>This class contains the definition of our intermediate language. This is the language we are using in class; please refer to the lecture for more information.</p>
 
@@ -154,18 +150,18 @@ and then import the Project into Eclipse: <b>File > Import > Existing project in
 
 <p>The rest of the file is the definition of each parser we are building, starting from single number expressions to the full language we want to target. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
 
-<h3>src/main/scala/project1/Generator.scala</h3>
+<h3>src/miniscala/Generator.scala</h3>
 
 <p>In this file, we are defining some generators that can convert our AST into x86_64 code.</p>
 
 <p>We consider two different ways of generating the assmbly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient but can not handle arbitrarily complex expressions. We will see later that compilers use a hybrid approach.</p>
 
-<h3>src/test/scala/*Test.scala</h3>
+<h3>test/miniscala/test/*Test.scala</h3>
 
 <p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
 
 <h2>Turnin</h2>
-<p>You should turn in the <b>proj1</b> directory. Please run an 'sbt clean' before submitting.</p>
+<p>You should turnin the <b>proj1</b> directory. Please run an 'sbt clean' and './cleanall.sh' before submitting.</p>
 
 <p>
 To turn in your project, make sure that you are in the directory that contains <b>proj1</b> directory. Then type the following:
