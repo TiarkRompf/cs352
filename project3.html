@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+
+      <div class="title">
+        <h1>Project 3: Type Checking - Functions - Heap Allocation</h1>
+      </div>
+
+      <blockquote>
+        <p>Due 11:59pm Monday Feb 5 (two weeks project)</p>
+      </blockquote>
+
+<h2>Useful Links</h2>
+<ul>
+  <li><a href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">x86_64 cheat sheet</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>In this project, we will enrich the language we defined in the first two projects.</p>
+
+<p>At the end of the project, we will be able to parse full programs, including functions and arrays. Our parser will generate an intermediate representation in the form of an Abstract Syntax Tree (AST), and our Semantic Analyzer will be able to verify that the typing rules are being enforced.</p>
+
+<p>With functions now in our language, we can add a little bit of I/O. When writing code in our programming language, the programmer will have access to two primitives:
+
+<ul>
+	<li><b>getchar</b> of type () => Int. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/getchar">doc</a></li>
+	<li><b>putchar</b> of type Int => Unit. <a href="https://en.wikibooks.org/wiki/C_Programming/stdio.h/putchar">doc</a> (we do not return the character)</li>
+</ul>
+
+Using these functions may lead to some issues when the code is launched from sbt. In order to test, launch the <b>out</b> binary generated in the folder <b>gen/</b>.</p>
+
+<h2>Step 1: Getting Started</h2>
+
+<p>The project has been designed and tested for Linux/Mac OS. If you only have Windows installed on your personal laptop, consider running Linux in a VM or using the lab machines for the project.</p>
+
+<p>If you use remote access to work on your project, please use one of the lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
+
+<p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/gesserte/cs352/project/proj3.tar.gz">here</a>.</p>
+
+<pre>
+tar xzvf proj3.tar.gz
+cd proj3/compiler
+</pre>
+
+<h2>Step 2: Project Structure</h2>
+
+<h3>Browse the Files</h3>
+
+<p>A description of the different files is provided below. The files you need to complete are <b>Parser.scala</b>, <b>SemanticAnalyzer.scala</b>, <b>Interpreter.scala</b>, and <b>Compiler.scala</b>. Following the path of the first project, we are going to implement the parser step by step. Follow the comments in the code and find the <b>TODOs</b>. The parts are independent and can be develop separately. In order to implement the new features more easily, we have changed some of the previous class/function definition we had. You can search for the string CHANGE into the source code to see these modifications.</p>
+
+<h3>src/miniscala/Util.scala</h3>
+
+<p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommended to read it and have an idea of what is happening behind the scenes.</p>
+
+<h3>gen/bootstrap.c</h3>
+
+<p>As we are generating assembly code which is OS dependent, we are using GCC to do the heavy lifting for us. The bootstrap file is a generic C file that is allocation a chunk of memory called <b>heap</b>. This memory region is sent to our program through an argument of the function <b>entry_point</b>. The exit code of our program is then printed on the screen. Our compiler will generate the file <b>gen/gen.s</b> and will be assembled and bootstrapped by gcc:</p>
+
+<pre>gcc bootstrap.c gen.s -o out</pre>
+
+<p><b>out</b> will then execute our program.</p>
+
+<h3>src/miniscala/Main.scala</h3>
+
+<p>The main function is defined in this file. The data flow in this file can be seen as:</p>
+
+<pre>
+Read from File / Read from Command Line -> Parser -> Semantic Analyzer -> Interpreter <b>or</b> Compiler
+</pre>
+
+<p>You will be implementing many different parsers in order to test them through the main function.</p>
+
+<p>The AST generated will then go through the semantic analyzer. If there are no errors, then the code is going to be interpreted or compiled. We provide you with one interpreter. You will have to write one interpreter and one compiler.</p>
+
+<p>As our language becomes more complex, it will become more useful to read the code from a source file. A folder with sample files <b>examples/</b> has been provided. Here some examples how to run the code:</p>
+
+<pre>
+sbt
+> run
+Usage: run PROG [OPTION]
+   or: run FILE [OPTION]
+OPTION: compStack, compX86, intStack, intValue (default)
+> run examples/valid_arithm.scala              ---> interpreter with the provided interpreter
+> run examples/valid_arithm.scala compX86      ---> x86 compiler (your code)
+> run examples/valid_arithm.scala intStack    ---> stack interpreter (your code)
+</pre>
+
+<p>However, it is still possible to run code from the command line, as in project 1:</p>
+
+<pre>
+sbt
+> run "val x = 5; x"
+> run "val x = 5; x" compX86
+> run "val x = 5; x" intStack
+</pre>
+
+<h3>src/miniscala/Parser.scala</h3>
+
+<p>This class contains the definition of our intermediate language.</p>
+
+<p>As we discussed in class, we are introducing types in our language. In addition to Integer, we will also have the types Boolean and Unit. You will need to modify the <b>Scanner</b> class in order to tokenize the constants of type Boolean correctly. There is a single Unit constant: (). Because this construct can be used for other reasons (e.g. a function without parameters), the () will still be parsed into two delimiters: '(' and ')'. The function <b>parseAtom</b> will be handling the Unit literal.</p>
+
+<p>The rest of the file is the definition of each parser we are building, starting from a base parser that is an implementation of the parser we implemented in project 2. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
+
+<h3>src/miniscala/SemanticAnalyzer.scala</h3>
+
+<p>While the parser is in charge of verifying that the input string follows the defined syntax, the semantic analyzer verifies that the program described is meaningful and follows the rules. The skeleton code already contains the semantic checks we implemented in project 2.</p>
+
+<p>However as we have seen in class, we are upgrading our semantic analyzer into a type checker. Your job is to complete the <b>typeInfer</b> function using the rules we have seen in class.</p>
+
+<h3>src/miniscala/Interpreter.scala</h3>
+
+<p>As we have seen in class, now that our programing language accepts more than just mathematical expressions, we need to define the required behavior of our language. An interpreter can be used to define this meaning.</p>
+
+<p>We provide you with an interpreter that is fully functional. Your job is to complete the <b>Stack-based</b> interpreter.</p>
+
+<h3>src/miniscala/Compiler.scala</h3>
+
+<p>The x86_64 compiler handling all features up to loops is already implemented for you. You need to complete the compiler with the new features.</p>
+
+<h3>test/miniscala/test/*Test.scala</h3>
+
+<p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
+
+<h2>Extra Credit</h2>
+
+<h3>Char</h3>
+<p>The programmer can use two functions to interact with the console: <b>getchar</b> and <b>putchar</b>. However, we do not have characters, so in order to print hello world, we would have to write the code:
+
+<pre>putchar(72); putchar(101); putchar(108); putchar(108); putchar(111); ...</pre>
+
+This is not really convenient; we would rather do:
+
+<pre>putchar(toInt('H')); putchar(toInt('e')); putchar(toInt('l')); putchar(toInt('l'))...</pre>
+
+(much better isn't it?)</p>
+
+<p>
+We are therefore going to add a new type in the language: Char. All letters, numbers, punctuation signs and spaces should be handled, e.g. you don't have to handle the escaping characters '\n', '\r'... In the program, a programmer will be able to use the single quote notation to enter a character e.g. 'H'.
+
+You will also provide two primitives operations:
+
+<ul>
+	<li> toInt: of type Char => Int</li>
+	<li> toChar: of type Int => Char</li>
+</ul>
+
+The x86 implementation: toInt will be a no-op and toChar:
+
+<pre>
+mov loc, %rax
+movzbq %al, loc
+</pre>
+</p>
+
+<h3>Functions as value</h3>
+
+<p>In the <b>Compiler.scala</b> file, there are some places marked as Extra Credit. These are the places where we need to generate code for functions used as arguments, stored into variables, or returned from a function. While you are required to parse this kind of code correctly and be able to type check it, you are not required to generate the corresponding x86 code. Implementing such generation correctly will be counted as extra credit.<p>
+
+
+<h2>Turnin</h2>
+<p>You should turn in the <b>proj3</b> directory. Please run an 'sbt clean' and './cleanall.sh' before submitting.</b>. </p>
+
+<p>
+To turn in your project, make sure that you are in the directory that contains the <b>proj3</b> directory. Then, type the following:
+</p>
+<pre>
+turnin -c cs352 -p proj3 proj3
+</pre>
+<p>To verify your turned-in work, do:</p>
+<pre>
+turnin -c cs352 -p proj3 -v
+</pre>
+<h2>Grading</h2>
+<p>Your project will be tested against a set of unit tests. The weights of each task will be distributed as follow:</p>
+
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>Weight</th>
+  </tr>
+  <tr>
+    <td>Scanner: Boolean</td>
+    <td>2.5%</td>
+  </tr>
+  <tr>
+    <td>BaseParser: parse types</td>
+    <td>2.5%</td>
+  </tr>
+  <tr>
+    <td>Syntactic Sugar</td>
+    <td>5%</td>
+  </tr>
+  <tr>
+    <td>FunctionParser</td>
+    <td>15%</td>
+  </tr>
+  <tr>
+    <td>ArrayParser</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>Semantic Analyzer</td>
+    <td>30%</td>
+  </tr>
+  <tr>
+    <td>StackInterpreter</td>
+    <td>10%</td>
+  </tr>
+  <tr>
+    <td>X86Compiler</td>
+    <td>25%</td>
+  </tr>
+  <tr>
+    <td>Extra Credit</td>
+    <td>10%</td>
+  </tr>
+</table>
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
