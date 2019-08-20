@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>CS352 by TiarkRompf</title>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="javascripts/scale.fix.js"></script>
@@ -104,9 +114,9 @@ by <TT>*/</TT>.  Comments can be nested and can extend over more than one line.
 We use the following notation for defining syntax:
 <PRE>
     X Y      <TT>X</TT> followed by <TT>Y</TT>
-    X|Y      <TT>X</TT> or <TT>Y</TT>.  
+    X|Y      <TT>X</TT> or <TT>Y</TT>.
     [X]      <TT>X</TT> or empty
-    {X}      A possibly empty sequence of <TT>X</TT>'s 
+    {X}      A possibly empty sequence of <TT>X</TT>'s
     X&amp;Y      <TT>X</TT> or <TT>Y</TT> or <TT>X</TT> <TT>Y</TT>
 </PRE>
 "Followed by" has greater binding power than <TT>|</TT> or <TT>&</TT>;
@@ -216,8 +226,8 @@ TypeName    =  Id.
 </A>
 <P>
 
-To read a token, first skip all blanks, tabs, newlines, carriage 
-returns, vertical tabs, form feeds, comments, and pragmas.  Then read the 
+To read a token, first skip all blanks, tabs, newlines, carriage
+returns, vertical tabs, form feeds, comments, and pragmas.  Then read the
 longest sequence of characters that forms an
 <A HREF="#idx.215">operator</A>
 or an <TT>Id</TT> or <TT>Literal</TT>.
@@ -284,6 +294,6 @@ OtherChar = " " | "!" | "#" | "$" | "%" | "&" | "(" | ")"
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
   </body>
 </html>
