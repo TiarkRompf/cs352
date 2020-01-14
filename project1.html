@@ -132,7 +132,7 @@ cd proj1
 </pre>
 
 
-<h3>src/miniscala/Util.scala</h3>
+<h3>src/main/scala/project1/Util.scala</h3>
 
 <p>This file defines multiple classes that are used to generate the code and run it on your machine. Nothing needs to be modified, but it is recommanded to read it and have an idea of what is happening behind the scenes.</p>
 
@@ -146,11 +146,11 @@ cd proj1
 
 <p>NOTE: the assembly/compilation and running steps are executed through the code. (see Util.scala#L88 and Main.scala#L39)</p>
 
-<h3>src/miniscala/Main.scala</h3>
+<h3>src/main/scala/project1/Main.scala</h3>
 
 <p>The main function is defined in this file. During this project, you will be implementing many different parsers in order to test them through the main function. You will need to modify the parser or generator you want to use.</p>
 
-<h3>src/miniscala/Parser.scala</h3>
+<h3>src/main/scala/project1/Parser.scala</h3>
 
 <p>This class contains the definition of our intermediate language. This is the language we are using in class; please refer to the lecture for more information.</p>
 
@@ -160,13 +160,13 @@ cd proj1
 
 <p>The rest of the file is the definition of each parser we are building, starting from single number expressions to the full language we want to target. What you have to do for this project is highlighted with TODOs in the code. We encourage you to read the comments and code carefully before proceeding.</p>
 
-<h3>src/miniscala/Generator.scala</h3>
+<h3>src/main/scala/project1/Generator.scala</h3>
 
 <p>In this file, we are defining some generators that can convert our AST into x86_64 code.</p>
 
 <p>We consider two different ways of generating the assmbly code, each of which has pros and cons: <b>Stack-based</b> code, which is not very efficient but can handle arbitrarily complex expressions; and <b>Register-based</b> code, which is efficient but can not handle arbitrarily complex expressions. We will see later that compilers use a hybrid approach.</p>
 
-<h3>test/miniscala/test/*Test.scala</h3>
+<h3>src/test/scala/project1/test/*Test.scala</h3>
 
 <p>These files contain some unit tests for the first parsers. You will have to write your own tests for the others. There are some functions given to you in order to make the implementation easier.</p>
 
