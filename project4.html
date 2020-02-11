@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <div class="title">
+          <h1>Project 4: CMScala to CPS Translation</h1>
+        </div>
+        <p>Due: Feb 20, 11:59PM</p>
+
+        <h2>Introduction</h2>
+
+        <p>In this assignment, we are asking you to implement the optimized CPS transformations you have seen in the course.</p>
+
+        <p>In previous assignments, we have focused on building up frontend of our compiler pipeline (i.e., our parser and semantic analyzer), and have made due with a relatively simple backend. As many students have noticed, this has resulted in suboptimal assembly code being generated. As such, we will now shift gears and focus more heavily on creating an optimized backend.</p>
+
+        <p>For this project, we have provided you with a more complex frontend than we've seen thus far. Some of the new pieces of syntactic sugar of which you should be aware are as follows:</p>
+
+        <ul>
+          <li><span class="ttt">e1 &amp;&amp; e2 ==> if (e1) e2 else false</span></li>
+          <li><span class="ttt">e1 || e2 ==> if (e1) true else e2</span></li>
+          <li><span class="ttt">!e1 ==> if (e1) false else true</span></li>
+          <li><span class="ttt">"c1...cn" ==> val s = new Array[Char](200); s(0) = 'c1';...;s</span></li>
+          <li><span class="ttt">(n1: T1, ...) => b1 ==> def anon1(n1: T1, ...) = b1; anon1</span></li>
+        </ul>
+
+        <p>You can find all code dealing with syntactic sugar in compiler/src/miniscala/MiniScalaParser.scala, though you will not need to make any modifications there.</p>
+
+        <p>Similarly, the code for desugaring can be found in compiler/src/miniscala/CMScalaAnalyzer.scala. Again, no modifications are necessary in this file.</p>
+
+        <p>As we will not be providing solutions for previous assignments, you may want to look over MiniScalaParser and CMScalaAnalyzer if you have any questions about how these functions are implemented. We are also happy to provide further clarification on Piazza as needed.</p>
+
+        <p>In addition to these pieces of syntactic sugar, we also have some new types, with corresponding literals and operators. Below is a list of some of the types available in our language:</p>
+
+        <ul>
+          <li>Integer: Now available in base 16 with 0x prefix.</li>
+          <li>Char: All character literals are supported (e.g., 'c', 's', '3, '5', '2', '\n', etc.).</li>
+          <li>Boolean: As before, Boolean literals are <span class="ttt">true</span> and <span class="ttt">false</span>.</li>
+          <li>Unit: As before, the Unit literal is ().</li>
+          <li>String: Strings are now supported in our language, with string literals appearing as expected (e.g. "this is a string", "help, I'm stuck in grad school", "let me out", "\n\\gradschool gives an error: \"unable to escape\"\n", etc.).</li>
+        </ul>
+
+        <p>And some corresponding operators:</p>
+
+        <ul>
+          <li>+ - * << >> &amp; | ^ / % : (Int, Int) => Int</li>
+          <li>< <= > >= : (Int, Int) => Boolean</li>
+          <li>== !=: (T1, T2) => Boolean</li>
+          <li>id : T => T</li>
+          <li>toChar : Int => Char //Note: Int must be valid Unicode code-point</li>
+          <li>toInt : Char => Int</li>
+          <li>isInt isChar isBoolean isUnit : T => Boolean</li>
+          <li>getchar : () => Int, between 0 and 255, or -1</li>
+          <li>putchar : Int => Unit, Int between 0 and 255</li>
+        </ul>
+
+        <p>Other types include Array[T], function types, Pairs, and List[T]. Take a look at the files in library/ to see how to use them.</p>
+
+        <h2>Step 1: Getting Started</h2>
+
+        <p>The project has been designed and tested for Linux/Mac OS. If you only have Windows installed on your personal laptop, consider running Linux in a VM or using the lab machines for the project. Another alternative is to try Windows Terminal App, which offers a Ubuntu18 terminal interface.</p>
+
+        <p>If you use remote access to work on your project, please use one of the lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g. pod1-1.cs.purdue.edu)</p>
+
+        <p>Download the skeleton file <a href="https://www.cs.purdue.edu/homes/wei220/cs352/projects/proj4.tar.gz">here</a>.</p>
+
+        <h2>Step 2: Project Structure</h2>
+
+        <h3>Browse the Files</h3>
+
+        <p>Now the project directory has changed a little bit. In the top dir, you can see compiler/ examples/ and library/. The src and test codes are in compiler/. The examples/ dir is like before: providing example programs. The library/ dir contains files that define standard libraries for our language. In compiler/src/miniscala/, all files with the prefix MiniScala are handling the parsing. All files with prefix CMScala are handling the semantic analyzer pass.</p>
+
+        <p>You only need to update the file <b>CMScalaToCPSTranslator</b>.</p>
+
+        <p>You will notice that Main.scala from the new project doesn't run the <span class="ttt">CMScalaInterpreter</span> anymore (it was the interpreter we were using before), but first runs the CPS translator and then an interpreter for your CPS representation.</p>
+
+        <p>Also, you may notice that between translation and interpretation, there is an additional step called <span class="ttt">SymbolicCPSTreeChecker.</span> The purpose of this module is to go through your generated CPS tree, check that all names used are defined exactly once, and emit useful warnings in case they are not. Take advantage of this output to track any bugs you may have in the translation. Notice that, since <span class="ttt">SymbolicCPSTreeChecker.apply</span> returns <span class="ttt">Unit</span>, we have to pass it to the <span class="ttt">passThrough</span> function to integrate it in the pipeline.</p>
+
+        <p>You will find that methods <span class="ttt">nonTail</span>, <span class="ttt">tail</span> and <span class="ttt">cond</span> in <span class="ttt">miniscala/CMScalaToCPSTranslator.scala</span> directly correspond to translations that were explained during the lecture. Transformation for <span class="ttt">let</span> is already given to you as an example. Your task is to complete these methods by adding the missing cases. <b>Important: take the time to understand the helper methods that are provided, and use them as frequently as possible!</b> It will save you time and help you avoid common errors.</p>
+
+        <p>Note that there are two different kinds of tests: Whitebox and Blackbox. Whitebox tests check that the entire output (i.e., the IR post-translation) is correct. Blackbox tests only ensure that the value generated is correct (e.g., def f(x: Int) = x*x; 0 will only check that the program returns 0).</p>
+
+        <h3>Implementation Hint</h3>
+
+        <p>Try implementing the non-optimized translations in nonTail (there are the rules shown in the beginning of the lecture). This represents 80% of the work. Once this is done, you can implement the optimized version using all three functions available (nonTail, tail, and cond).</p>
+
+        <h2>Turnin</h2>
+        <p>You should turn in the <b>proj4</b> directory. Please run an 'sbt clean' before submitting. You can also remove the <b>target/</b>. </p>
+
+        <p>
+        To turn in your project, make sure that you are in the directory that contains the <b>proj4</b> directory. Then, type the following:
+        </p>
+        <pre>
+        turnin -c cs352 -p proj4 proj4
+        </pre>
+        <p>To verify your turned-in work, do:</p>
+        <pre>
+        turnin -c cs352 -p proj4 -v
+        </pre>
+
+        <h2>Testing</h2>
+
+        <p>Unlike for the previous assignment, very few test cases are given to you. You should fill in the tests, as they guide you through the implementation. The tests that you write may also get you small bonuses while grading.</p>
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
