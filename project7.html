@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS352 by TiarkRompf</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+    .ttt {font-family: monospace; font-size: 12px; font-style: normal;}
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          <li><a href="index.html"><strong>Home</strong></a></li>
+        </ul>
+      </header>
+      <section>
+<!--content-->
+
+      <div class="title">
+        <h1>Project 7: Garbage Collection</h1>
+      </div>
+
+<p>Due: April 26, 11:59PM (AoE time) </p>
+
+<p>Download the skeleton code for the project <a href="https://www.cs.purdue.edu/homes/wei220/cs352/projects/proj7.tar.gz">here.</a>
+
+<h2>Introduction</h2>
+
+<h3>ASM Lowering and Virtual Machine</h3>
+
+<p>The skeleton code you are given for this assignment contains two elements:</p>
+
+<ul>
+<li>The compiler, with reference implementations of the phases so far (but no Optimizer), a CPS register allocator and a CPS to assembly language transformer in <span class="ttt">compiler/src/miniscala/CPSToASMTranslator.scala;</span></li>
+<li>A virtual machine for executing the assembly code, in the <span class="ttt">vm </span> directory.</li>
+</ul>
+
+<p>The virtual machine contains two main components:</p>
+
+<ul>
+<li>The interpreter, located in <span class="ttt">vm/src/engine.c</span> (and with the header file <span class="ttt">vm/src/engine.h);</span></li>
+<li>The memory system, implemented in <span class="ttt">vm/src/memory_nofree.c</span> and <span class="ttt">vm/src/memory_mark_n_sweep.c</span> (and with the header file <span class="ttt">vm/src/memory.h</span>).</li>
+</ul>
+
+<p>The virtual machine also contains basic infrastructure like a makefile and 4 tests you can use to check your GC implementation.</p>
+
+<h3>Getting Started</h3>
+
+<p>To start, unpack the skeleton code as you have done for the last assignments. Now, you will have the <span class="ttt">vm</span> directory. Go there and run <span class="ttt">make:</span></p>
+
+<pre>
+$ cd vm/
+$ make
+Use the following targets:
+ - 'make vm' to use your mark-sweep GC
+ - 'make test' to test the VM
+ - 'make clean' to clean the VM
+$ make test
+rm -rf bin
+mkdir -p bin
+cc -std=c99 -g -Wall -O3  src/engine.c src/fail.c src/loader.c src/main.c src/memory.c -o bin/vm
+Queens test failed!
+Bignums test failed!
+Pascal test failed!
+Maze test failed!
+</pre>
+
+<p>You can also run the tests individually, since they're included in <span class="ttt">examples:</span>:</p>
+
+<pre>
+$ bin/vm ../examples/asm/queens.asm
+enter size (0 to exit)> 10
+Error: no memory left (block of size 2 requested)
+</pre>
+
+<p>Your task is simple: make the tests pass by implementing a mark and sweep garbage collector instead of the no-GC memory system currently implemented in <span class="ttt">vm/src/memory_nofree.c.</span> In order to test the vm with your garbage collector, you will need to change the value of the variable <code>GC_VERSION</code> in the file <span class="ttt">memory.h</span>.</p>
+
+<!--
+<p>By the way, the challenge for the previous assignment was running maze for size 12 and seed 12. You can now see the exact code patterns that you were generating and tweak them. :).</p>
+-->
+
+<p>Okay, that's it with the intro. Now for real work.</p>
+
+<h2>The Memory</h2>
+
+<p>We first breifly describe how the VM engine interacts with the memory manager and subsequently detail the implementation that is required for this assignement.&nbsp; When the virtual machine is started, the first call is to <code>memory_setup</code>.&nbsp; This allows the memory manager to allocate the total memory (the amount can be changed using the <code>-m &lt;size&gt;</code> command line option of the vm). The "total_size" parameter passed to this method indicates the total number of <strong>bytes</strong> needed (the default value is 1000000). The method <code>memory_get_start</code> returns a pointer to the beginning of this allocated memory. The total memory is used to store the program code and the heap.</p>
+
+<p>The virtual machine then loads the program code into the memory. Afterwards, the method <code>memory_set_heap_start</code>  is called, indicating the first address that directly  follows the program code. The memory starting from this address can be used by the memory manager to store its data structures and for allocating blocks in the heap:&nbsp;</p>
+
+<p style="text-align: center;"><img width="400" height="183" alt="GC Diagram 1" src="images/ACC-assingment6-diag2-1.png" /></p>
+
+<p>The function <code>memory_allocate</code> is invoked when a heap block needs to be allocated.</p>
+
+<h3>Virtual and Physical Addresses</h3>
+<ul>
+<li>The memory can be seen as an array of 32-bit values referred to as <strong>words</strong>, which is represented by the type <code>value_t</code> in the VM. Every entry in the array can contain arbitrary 32 bit information: tagged values, virtual addresses (explained below), block headers or registers (which are also stored in the heap)</li>
+<li>There are two kinds of addresses in the VM:
+	<ul>
+	<li>Physical addresses, represented as values of type&nbsp;<code>value_t*</code>, are pointers to the elements of the memory array.</li>
+	<li>Virtual addresses, represented as values of type <code>value_t</code>, are relative to the starting (physical) address of the memory and only point to individual <strong>words</strong>, so their last two bits are always 0. This satisfies the tagging requirement for references, which states that they should end in bits 00;</li>
+	</ul></li>
+<li>The pointers stored in the heap are always virtual addresses. The <code>addr_v_to_p&nbsp;</code>and <code>addr_p_to_v</code> methods in the file <code>engine.c</code> convert between the two address types.</li>
+<li>While physical addresses are addresses of words in the memory, virtual addresses are virtual machine pointers. <strong>It is  essential that addresses stored in the heap are virtual addresses and not physical addresses (i.e, pointers to the elements of the memory array)!</strong></li>
+<li>For efficiency reasons, the pointers stored in the base registers (result of&nbsp;<code>engine_get_base_register</code>) are physical addresses.</li>
+<li>The <strong>size</strong> parameter passed to the <code>memory_allocate</code>  function is numbers of <strong>words</strong> that have to be allocated.</li>
+</ul>
+
+<h2>The Garbage Collector</h2>
+
+<p>You are required to write a memory manager that implements the interfaces defined in the "memory.h" file and performs mark-sweep garbage collection. Below we provide an overview of the data structures that have to be implemented and also a few tips and tricks.</p>
+
+<h4>Block Headers</h4>
+
+<p>As discussed in the lectures, memory is allocated and freed in chucks of words referred to as blocks. Each block has a tag and a size which are passed as parameters to the "block-alloc" primitive. We refer to the starting address of a block as a "block pointer". Use the first word of a block to store the tag and size of the block (which are referred to as block headers). Therefore, to allocate a block of size n you will need n+1 words.</p>
+
+<h4>Free list</h4>
+
+<p>You GC must have a (singly-linked) free list containing all the free blocks. The second word of a free block can be used to store the address of the next element of the free list.</p>
+<p>There is a slight trick with free lists. A free list entry contains at least 2 words. But the library allocates blocks of size 0 (and thus 1 word) that your GC can later free. This produces 1-word entries in the free list, which won't work. To overcome this, the easiest solution is to allocated at least two words, even for blocks of size 0.</p>
+<p>The free list is used to allocate blocks. When having multiple free list entries, you should either pick the smallest one that fits the necessary size (best fit strategy) or the first one that fits (first fit strategy).</p>
+
+<h4>Segregated free lists</h4>
+<p>Instead of having a single free list, it is much more efficient to have several free lists, one per block size up to a maximum block size, plus one free list for the bigger blocks. That way, in many cases, no iteration is necessary to find a free block of a given size.</p>
+<p>We suggest you write a first version of your GC with a single free list, and once it works, you update it to have 32 segregated free lists. As described below, only a GC using segregated free lists could get you the maximum number of points for this assignment.</p>
+
+<h4>Pointer Bitmap</h4>
+<p>You need to maintain a bitmap with one bit per valid heap address. This bitmap is used for two purposes:</p>
+<p>(a) to determine if a value stored in the heap is a valid block pointer. Even though we use tagged values, it is possible that, during an arithmetic operation, an untagged value is left in one of the registers. Since the registers of our virtual machine are also stored in the heap, we may mistake an untagged value for a virtual address in the marking phase. So although it looks like a virtual address, the untagged value may point anywhere, including invalid locations and in the middle of blocks. In order to prevent the GC from following incorrect addresses, we mark the beginning of each block in the bitmap.</p>
+<p>(b) during marking, we reset the bit to mark a block; therefore, at the end of the marking phase, the marked blocks will be those whose bit is not set in the bitmap.
+During the sweeping phase, you will also have to coalesce successive entries in the free list, so the heap memory does not get too fragmented. Also don't forget to update the bitmap so that allocated blocks have their bit set, and free blocks have their bit cleared.</p>
+<p>To complete the above picture, the memory layout would actually look like this:</p>
+<p style="text-align: center;"><img width="400" height="323" alt="GC Diagram 2" src="images/ACC-assingment6-diag2-2.png" /></p>
+
+<h2>Testing</h2>
+
+<p>You can either use the <code>make test</code> command to execute the tests automatically, or you can run each individual test by hand (good for debugging):
+<pre>
+$ bin/vm ../examples/asm/queens.asm
+enter size (0 to exit)> 10
+Error: no memory left (block of size 16 requested)
+</pre>
+
+<p>The expected sizes your program should run on are:</p>
+
+<ul>
+<li>for queens.asm: without GC - breaks at 8, GC works with 15</li>
+<li>for bignums.asm: without GC - breaks at 214, GC works with 1000</li>
+<li>for pascal.asm: without GC - breaks at 57, GC works with 200</li>
+<li>for maze.asm: without GC - breaks at 7, GC works with 20</li>
+</ul>
+
+<p>The test given to you do not check for the correctness of the output, it only check that the program run without Out Of Memory errors.</p>
+
+<p>If you want to test simpler program, you can compile them with the compiler first: <code>sbt "run file.scala"</code>. It will generate the file out.asm in the compiler folder. You can then run the vm on it.</p>
+
+<h2>Debugging</h2>
+
+<p>When debugging you may want to trigger a garbage collection early on. To do so, print the code size and adjust the memory with <code>bin/vm -m &lt;bytes&gt;&nbsp;</code> such that the size is just above the code size + twice the bitmap size. This will let you trigger the garbage collection early, when the program hasn't yet allocated too much space, allowing easier debugging.</p>
+
+<p><strong>Implement a procedure to check the data strcuture invariants</strong></p>
+
+<p>For ease of debugging, it is recommended that you implement a procedure that traverses every block in the heap and checks for the correctness of the headers and the freelist. To traverse all blocks in the heap you can start from the first block and use the block size (stored in the header) to jump to the start of the next block and so on. Also, use "assert"s (defined in assert.h header file) in all places in the code where you think an invariant must hold. This will greatly help in debugging. Of couse, this is only recommended and not mandatory.</p>
+
+<p><strong>The assignment will be evaluated based on the correctness of the implementation, its memory efficiency and execution time.</strong></p>
+
+<h2>Grading</h2>
+<p>Here are several points to keep in mind:</p>
+<ul>
+<li>You <strong>are not allowed to use malloc</strong> within the vm. The heap has been allocated once, and all GC data structure needed must used this pre-allocated space.</li>
+<li>If your GC has a single free list, you will be able to get 100% of the points; to get to 120%, you need to have segregated free lists; however, don't forget that a working GC with a single free list is better than a crashing one with segregated free lists!</li>
+<li>Neither of the examples should take more than 1s to run (best running times are in the order of hundreds of miliseconds)</li>
+<li>We may test your assignment through <strong>valgrind</strong> or address sanitizer, so you should be very careful about the way you allocate, access and free memory (you <strong><strike>can</strike> should</strong> also run your assignment through valgrind/with address sanitizer on your own)</li>
+<li>We will use the reference Makefile to compile and test your GC: please make sure that "make test" runs correctly on your machine and if there are additional flags necessary, remind us in the "memory_mark_n_sweep.c" file.</li>
+<li>We encourage you to write code that compiles across platforms. This includes avoiding any cast from a pointer X* to a value or integer type (value_t, int, long int, unit, size_t ...). It is safe to cast form one pointer type to another (X* to Y*, such as from (void*) to (char*) or (value_t*)).</li>
+</ul>
+<p>These criteria can influence your grade, so please take them into account!</p>
+
+<h2>Turning In</h2>
+
+<p>The project is due by April 26, 11:59PM (AoE time). To turn in your project, go to the same directory that your <i>proj7</i> directory lives in (you do not have to name it proj7, but it must contain all of the project files) and type:<br>
+<pre>
+turnin -c cs352 -p proj7 proj7
+</pre>
+<p>You can verify the status of your turned in project by running:</p>
+<pre>
+turnin -c cs352 -p proj7 -v
+</pre>
+</p>
+
+<!--/content-->
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
+
