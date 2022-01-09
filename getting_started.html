@@ -43,65 +43,112 @@
 
 <p>This page will explain how to setup the tools necessary for development. The tools necessary for development are:</p>
 <ul>
-    <li><strong>java</strong> - Which provides the runtime environment for the compiler</li>
-    <li><strong>sbt - the simple-build-tool</strong>: A Scala-centric build system similar in many respects to maven or ant</li>
+    <li><strong>The Scala compiler, tools and environment</strong></li>
     <li><strong>C compiler and the make build tool</strong> - specific to your Processor and Operating System</li>
-    <li><strong>Eclipse</strong> - used as the IDE for development <em>(optional)</em></li>
-    <li><strong>ScalaIDE</strong> - a plugin for Eclipse for writing Scala code <em>(optional)</em></li>
-    <li><strong>Eclipse CDT</strong> - a plugin for writing C code <em>(optional)</em></li>
-    <li><strong>Eclipse JDT</strong> - a set of plugins for writing and testing Java code <em>(optional)</em></li>
-    <li><strong>Your favorite text editor </strong>- for editing the language we are going to compile for the course&nbsp;<em>(optional)</em></li>
+    <li><strong>IntelliJ</strong> - used as the IDE for development <em>(optional)</em></li>
+    <li><strong>VSCode/any text editor you like</strong> - a lightweight editor for writing Scala and C code <em>(optional)</em></li>
 </ul>
 <h3>Setting up the development tools on your machine</h3>
 <p>The tools you will need to install and configure are:</p>
 <ul>
-    <li><a href="#local-java">java virtual machine</a></li>
-    <li><a href="#local-sbt">sbt - the simple-build-tool</a></li>
+    <li><a href="#local-scala">Java Virtual Machine, Scala REPL (Read, Eval, Print Loop) and sbt</a></li>
     <li><a href="#local-c">a C compiler and the make utility</a></li>
     <li><a href="#local-git">git for keeping versions of your files <i>(optional)</i></a></li>
-    <li><a href="#local-eclipse">Eclipse with Scala IDE and CDT&nbsp;(C Development Tools)</a>&nbsp;(alternatively, intelliJ)</li>
+    <li><a href="#local-ide">IntelliJ or VSCode/other editors with Metals</a></li>
 </ul>
-<p>Although setting up Eclipse is optional, it is a great environment to develop your application and the effort to set it up will quickly be compensated by the advanced source code editing features:</p>
+<!-- <p>Although setting up IntelliJ is optional, it is a great environment to develop your application and the effort to set it up will quickly be compensated by the advanced source code editing features:</p>
 <ul>
     <li>syntax highlighting</li>
     <li>autocompletion</li>
     <li>jump to definition</li>
     <li>error highlighting</li>
-</ul>
+</ul> -->
 <p>Please don't hesitate to ask for help on the course Piazza if you have any problems setting up the environment.</p>
-<h4><a id="local-java">Installing Java</a></h4>
-<p>Scala compiles your code down to Java bytecode. In order to test your code (and even compile!) you will have to install Java first. You can download <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java Standard Edition version 8</a> from Oracle.</p>
-<p>As as alternative, you can use the OpenJDK distribution:</p>
-<p><a href="http://openjdk.java.net/install/">http://openjdk.java.net/install/</a></p>
-<p>In most Linux distributions, openjdk can be installed from the package manager directly.</p>
-<p>In MacOSX you will have to download a recent java distribution since the one coming with the operating system is quite old.</p>
-<p>After installing Java, you should be able to invoke the java virtual machine in a Terminal (or Command Prompt):</p>
+<h2><a id="local-scala">Installing Scala</a></h2>
+<p>The scala compiler <code>scalac</code> compiles Scala source code down to Java
+bytecode which is then interpreted by the Java Virtual Machine (JVM), the <code>java</code> program.
+The following command will install Java (if it's not already available), the Scala REPL
+<pre>
+curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs setup -y --apps sbt:1.3.5,scala:2.12.10,cs,scalafmt,coursier && rm cs
+</pre>
+
+<p>After running the program above make sure to close the terminal and open a new terminal <b>window</b> for the next commands.</p>
+
+<p>If the command above run successfully, you should be able to invoke the java virtual machine in a Terminal (or Command Prompt):</p>
 <pre>
 $ java -version
-<strong>java version "1.8.**"</strong>
+java version "1.8.**"
 Java(TM) SE Runtime Environment (build 1.8.**)
 ...
-
 </pre>
-<h4><a id="local-sbt">Installing sbt</a></h4>
-<p>The setup for simple-build-tool requires two steps:</p>
-<ol>
-    <li>Downloading sbt from the <a href="http://www.scala-sbt.org/download.html">scala-sbt.org website</a> (preferrably a prebuilt package MSI/RPM/DEB)</li>
-    <li>Installing the downloaded package, depending on your operating system.</li>
-</ol>
-<p>Once the installation is finished, sbt should be available from the command prompt:</p>
+<p>You should be able to invoke <code>sbt</code>. To test, run the following command in an empty folder/directory.
+After some downloads, the sbt repl should start</p>
 <pre>
 $ sbt
-Getting org.scala-sbt sbt 0.13.12 ...
-(downloading the whole internet...)
-[info] Done updating.
-[info] Set current project to l3-compiler (in build file ...)
-&gt;
+[info] [launcher] getting org.scala-sbt sbt 1.3.5  (this may take some time)...
+# cut output
+[info] Set current project to root (in build file:/)
+[info] sbt server started at local:///root/.sbt/1.0/server/e656f0eb572233bacf5f/sock
+sbt:root>
 </pre>
-<p>If you get a <strong>StackOverflow</strong> Exception while building or running the sources, you should increase the stack space allocated to sbt . You can do so by setting the SBT_OPTS environmental variable. For more information see <a href="http://www.scala-sbt.org/0.13/docs/index.html">scala-sbt.org website</a>.</p>
-<h4><a id="local-c">Installing a C Compiler, a debugger and the make build tool</a></h4>
+<p>You can close the <code>sbt</code> program through <code>Ctrl+D</code> or closing the terminal window.
+The command above will generate the <code>target</code> and <code>project</code>
+directories. It is safe to delete both directories.<br/>
+
+Finally you should be able to run the Scala REPL</p>
+<pre>
+$ scala -version
+Scala code runner version 2.12.10 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+</pre>
+
+<p>To test that the installation succeeded write a file like <code>HelloWorld.scala</code>
+with the following content.</p>
+
+<pre>
+object HelloWorld {
+  def main(args: Array[String]) = {
+    println("Hello World!")
+  }
+}
+</pre>
+
+<p>From the directory you've created the file in, run</p>
+<pre>
+$ scala HelloWorld.scala
+Hello World!
+</pre>
+
+<h3>Structure of a Scala Project</h3>
+
+<p>Although it would be possible to compile projects manually
+using the <code>scalac</code> command, scala pojects use
+the <code>sbt</code> tool and have
+the following directory structure.</p>
+
+<pre>
+my-app
+├── build.sbt
+└── src
+    ├── main
+    │   └── scala
+    │       ├── util_package
+    │       │   └── Lib.scala
+    │       └── Main.scala
+    └── test
+        └── scala
+            └── util_package
+</pre>
+
+<p>The <code>build.sbt</code> file is a configuration file
+for <code>sbt</code> that describes the scala version used,
+dependencies etc.
+Source files are usually found under <code>src/main/scala</code>.
+This directory denotes that the source files are Scala code.
+Similarly to Java, package hierarchy is reflected in the directory structure.</p>
+
+<h2><a id="local-c">Installing a C Compiler, a debugger and the make build tool</a></h2>
 <p>These tools depend on the operating system you will be using:</p>
-<h5>Debian-based Linux distribution</h5>
+<h3>Debian-based Linux distribution</h3>
 <p>If you are using a Debian-base distribution of Linux, you may want to install the build-essential package:</p>
 <pre>
 sudo apt-get install build-essential
@@ -112,83 +159,46 @@ sudo apt-get install mapages-posix-dev
 <div>The last three packages are optional, but we strongly advise installing them.</div>
 <div>&nbsp;</div>
 <div>
-    <h5>RedHat-based Linux distribution</h5>
+    <h3>RedHat-based Linux distribution</h3>
 </div>
 <div>For RedHat-based distributions use the yum installer:</div>
 <div><code class="plain plain">yum groupinstall "Development Tools"</code></div>
 <div>&nbsp;</div>
-<h5>MacOSX</h5>
+<h3>MacOSX</h3>
 <div>
-    For MacOSX, use either homebrew or macports:<br />
+    <p>For MacOSX, use either homebrew or macports:</p>
     <pre><code>brew install --enable-cxx https://raw.github.com/Homebrew/homebrew-dupes/master/gcc.rb</code>
 <code>brew install https://raw.github.com/Homebrew/homebrew-dupes/master/gdb.rb</code>
 or
 ports install gcc47 gdb
 </pre>
 </div>
-<h5>Windows</h5>
-<div>Please use the <a href="http://www.mingw.org/">MinGW installer</a> and install gcc, gdb, make and bash. With these you should be able to fire up a unix-like prompt to compile your programs</div>
+<h3>Windows</h3>
+<div>Please follow steps 3 and 4 of the Prerequisites section <a href="https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites">at this link</a> and install gcc, gdb, make and bash. With these you should be able to fire up a unix-like prompt to compile your programs</div>
 <div>&nbsp;</div>
 <div>
     Once the installation is successful, you should be able to invoke gcc, make and gdb:<br />
-    <div>
-        <pre>
-$ make
-make: *** Pas de cibles sp&eacute;cifi&eacute;es et aucun makefile n'a &eacute;t&eacute; trouv&eacute;. Arr&ecirc;t.
-$ gcc
-gcc: erreur fatale: pas de fichier &agrave; l'entr&eacute;e
-compilation termin&eacute;e.
-~$ gdb
-GNU gdb (Ubuntu/Linaro 7.4-2012.04-0ubuntu2.1) 7.4-2012.04
-Copyright (C) 2012 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.&nbsp; Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-For bug reporting instructions, please see:
-&lt;http://bugs.launchpad.net/gdb-linaro/&gt;.
-(gdb)
-</pre>
-    </div>
 </div>
-<h4>&nbsp;</h4>
-<h4><a id="local-eclipse">Installing and Configuring Eclipse</a></h4>
+<div>&nbsp;</div>
+<h2><a id="local-ide">Installing an IDE</a></h2>
 <p>It is recommended that you install an IDE to develop Scala and C code for the course.</p>
-<h5>Installing Eclipse (Scala-IDE)</h5>
-<p>There is a version of Eclipse with preinstalled support for Scala simply called the Scala-IDE. Download the latest version from <a href="http://scala-ide.org/download/sdk.html">here</a>.</p>
-<h5>Installing the C Developemnt Tools (CDT)</h5>
-<p>Fire up Eclipse and go to Help &gt; Install new Software. Enter this URL in the "Work with" text field:&nbsp;http://download.eclipse.org/tools/cdt/releases/8.8, and click "Add". You will be asked to give a name for this site. From the menu below select "Basic C/C++ tools".<span style="font-size: 13px;">&nbsp;Click Next twice, accept the license and click Finish. Finally restart Eclipse.</span></p>
 <div>
-    <h5>Configuring Eclipse for ScalaIDE</h5>
-    <p>You may notice after installing the Scala IDE that a dialog pops up and warns about the Scala IDE heap memory requirements. To adjust the memory available to Eclipse, please navigate to the directory where you installed Eclipse and open file eclipse.ini and replace everything after&nbsp;<strong style="outline-width: 0px; font-size: 13px;">openFile</strong>&nbsp;by:<br />
-        <br />
-        -vmargs<br />
-        -Dosgi.requiredJavaVersion=1.5<br />
-        -Xms1g<br />
-        -Xmx1g<br />
-        -Xss10m<br />
-        -XX:+CMSClassUnloadingEnabled<br />
-        -XX:MaxPermSize=256M<br />
-        -XX:+UseParallelGC<br />
-        -XX:+TieredCompilation<br />
-        -XX:+UseNUMA&nbsp;
-    </p>
-    <p><b>Note:</b> A very good tutorial on starting development with the ScalaIDE is given on <a href="http://scala-ide.org">the scala-ide.org website</a></p>
-</div>
-<div>
-    <h4>Installing and configuring IntelliJ</h4>
-    <p>An alternative IDE for Scala is IntelliJ, which you can find <a href="https://www.jetbrains.com/idea/#chooseYourEdition">here</a>. Download the community edition. Always make sure to have the latest version installed. Launch IntelliJ and go to File -&gt; New -&gt; Project from existing sources, and navigate to the project's build.sbt file. Choose the 1.8 (Java 8) as the project's SDK.&nbsp;</p>
+    <h3>Installing and configuring IntelliJ</h3>
+    <p>A popular IDE for Scala is IntelliJ, which you can find <a href="https://www.jetbrains.com/idea/download/">here</a>.
+      We advise installing the Ultimate edition and to apply for a free student license <a href="https://www.jetbrains.com/student/">here</a>.
+      Always make sure to have the latest version installed.
+      Launch IntelliJ and go to File -&gt; New -&gt; Project from existing sources, and navigate to the project's build.sbt file. Choose the 1.8 (Java 8) as the project's SDK.&nbsp;</p>
     <p>The simplest way is to import the project as an 'sbt project'. Be sure to check 'sbt shell' in the import settings.
     <p>You might get a pop-up on the top of your screen to install Scala-related tools or pick a Scala SDK for the project. Make sure to configure them and you're good to go.</p>
-    <p>Unfortunately, IntelliJ does not provide free support for C as of now. However, as a student you are likely eligible for a free license
-      for all of their products, including the CLion IDE and IntelliJ Ultimate. You can apply <a href="https://www.jetbrains.com/student/">here</a>.
-    </p>
 </div>
 
-<h3>Emacs/Vim/&ltinsert your favorite editor&gt</h3>
+<h3>VS Code/Vim/Emacs/&ltinsert your favorite editor&gt</h3>
 
-<p>If you prefer to use an other text editor. You may want to check out <a href="http://ensime.org">Ensime</a> which offers more interactive development like Eclipse.</p>
+<p>IntelliJ might be slow on machines with few resources. In this
+  cases it is possible to use a lightweight editor with the
+  <a href="https://scalameta.org/metals/docs/">Metals plugin</a>.
+  Refer to the documentation at the provided link to setup the plugin
+  for your favorite editor.
 
 <p>Congratulations, you've set up the tools you will use for CS352!</p>
 <!--/content-->
