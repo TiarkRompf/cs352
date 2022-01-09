@@ -68,6 +68,7 @@
 <p>The scala compiler <code>scalac</code> compiles Scala source code down to Java
 bytecode which is then interpreted by the Java Virtual Machine (JVM), the <code>java</code> program.
 The following command will install Java (if it's not already available), the Scala REPL
+and <code>sbt</code> (the Simple Build Tool).
 <pre>
 curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs setup -y --apps sbt:1.3.5,scala:2.12.10,cs,scalafmt,coursier && rm cs
 </pre>
@@ -147,7 +148,11 @@ This directory denotes that the source files are Scala code.
 Similarly to Java, package hierarchy is reflected in the directory structure.</p>
 
 <h2><a id="local-c">Installing a C Compiler, a debugger and the make build tool</a></h2>
-<p>These tools depend on the operating system you will be using:</p>
+<p>These tools depend on the operating system you will be using.
+If you have any trouble installing the tools for the course, ask the for help on Piazza as soon as possible.
+TAs or other students might help troubleshoot and solve your issue.
+If all suggestions fail, setup your machine for remote development as described in <a href="#remote-dev">Remote development with VSCode on data.cs.purdue.edu</a>
+</p>
 <h3>Debian-based Linux distribution</h3>
 <p>If you are using a Debian-base distribution of Linux, you may want to install the build-essential package:</p>
 <pre>
@@ -161,18 +166,14 @@ sudo apt-get install mapages-posix-dev
 <div>
     <h3>RedHat-based Linux distribution</h3>
 </div>
-<div>For RedHat-based distributions use the yum installer:</div>
-<div><code class="plain plain">yum groupinstall "Development Tools"</code></div>
-<div>&nbsp;</div>
+<p>For RedHat-based distributions use the yum installer:</p>
+<pre>yum groupinstall "Development Tools"</pre>
 <h3>MacOSX</h3>
-<div>
-    <p>For MacOSX, use either homebrew or macports:</p>
-    <pre><code>brew install --enable-cxx https://raw.github.com/Homebrew/homebrew-dupes/master/gcc.rb</code>
-<code>brew install https://raw.github.com/Homebrew/homebrew-dupes/master/gdb.rb</code>
-or
-ports install gcc47 gdb
+<p>For MacOSX use homebrew:</p>
+<pre>
+  brew install gcc
+  brew install gdb
 </pre>
-</div>
 <h3>Windows</h3>
 <div>Please follow steps 3 and 4 of the Prerequisites section <a href="https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites">at this link</a> and install gcc, gdb, make and bash. With these you should be able to fire up a unix-like prompt to compile your programs</div>
 <div>&nbsp;</div>
@@ -181,13 +182,16 @@ ports install gcc47 gdb
 </div>
 <div>&nbsp;</div>
 <h2><a id="local-ide">Installing an IDE</a></h2>
-<p>It is recommended that you install an IDE to develop Scala and C code for the course.</p>
+<p>The preferred method of development for this course would be writing
+  Scala and C code on your local machine using IntelliJ IDEA Ultimate edition.</p>
 <div>
     <h3>Installing and configuring IntelliJ</h3>
     <p>A popular IDE for Scala is IntelliJ, which you can find <a href="https://www.jetbrains.com/idea/download/">here</a>.
       We advise installing the Ultimate edition and to apply for a free student license <a href="https://www.jetbrains.com/student/">here</a>.
       Always make sure to have the latest version installed.
-      Launch IntelliJ and go to File -&gt; New -&gt; Project from existing sources, and navigate to the project's build.sbt file. Choose the 1.8 (Java 8) as the project's SDK.&nbsp;</p>
+      Launch IntelliJ and go to File -&gt; New -&gt; Project from existing sources, and navigate to the project's build.sbt file.
+      Choose the 1.8 (Java 8) as the project's SDK. In case Java was not installed before running the installation steps for Scala,
+      set the Java SDK to the directory shown when running the <code>cs java-home</code> command on a terminal window&nbsp;</p>
     <p>The simplest way is to import the project as an 'sbt project'. Be sure to check 'sbt shell' in the import settings.
     <p>You might get a pop-up on the top of your screen to install Scala-related tools or pick a Scala SDK for the project. Make sure to configure them and you're good to go.</p>
 </div>
@@ -199,6 +203,20 @@ ports install gcc47 gdb
   <a href="https://scalameta.org/metals/docs/">Metals plugin</a>.
   Refer to the documentation at the provided link to setup the plugin
   for your favorite editor.
+
+<h2><a id="remote-dev">Remote development with VSCode on data.cs.purdue.edu</a></h2>
+<p>If the installation of C related tools such as <code>gcc</code> fails,
+you can follow these steps to develop on remote machines but still have
+an IDE-like experience.</p>
+<ul>
+  <li>Install <a href="https://code.visualstudio.com/">VSCode</a></li>
+  <li>On one of the machines of the lab such as <code>data.cs.purdue.edu</code>, perform the commands shown in section <a href="#local-scala">Installing Scala</a></li>
+  <li>From the extension tab on VSCode install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development</a> extension</li>
+  <li>From VSCode connect to the remote host as shown in the <a href="https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host">Connect to a remote host</a> section on this guide</li>
+  <li>From the extension tab on VSCode install the <a href="https://marketplace.visualstudio.com/items?itemName=scalameta.metals">Metals</a> extension on the remote machine (tips on how to use it at <a href="https://scalameta.org/metals/docs/">the documentation</a>)</li>
+</ul>
+
+
 
 <p>Congratulations, you've set up the tools you will use for CS352!</p>
 <!--/content-->
