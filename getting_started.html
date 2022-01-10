@@ -70,7 +70,7 @@ bytecode which is then interpreted by the Java Virtual Machine (JVM), the <code>
 The following command will install Java (if it's not already available), the Scala REPL
 and <code>sbt</code> (the Simple Build Tool).
 <pre>
-curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs setup -y --apps sbt:1.3.5,scala:2.12.10,cs,scalafmt,coursier && rm cs
+curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs setup --jvm 8 -y --apps sbt:1.3.5,scala:2.12.10,cs,scalafmt,coursier && rm cs
 </pre>
 
 <p>After running the program above make sure to close the terminal and open a new terminal <b>window</b> for the next commands.</p>
