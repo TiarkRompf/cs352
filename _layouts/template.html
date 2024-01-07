@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>{% unless page.homepage %}{{ page.title }} - {% endunless %}CS502 by Tiark Rompf</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% if page.usetable %}
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+    {% endif %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS502</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs502">View the Project on GitHub <small>TiarkRompf/cs502</small></a></p>
+        <ul>
+          {% if page.homepage %}
+          <li><a href="#about"><strong>About</strong></a></li>
+          <li><a href="#textbook"><strong>Resources</strong></a></li>
+          <li><a href="#schedule"><strong>Schedule</strong></a></li>
+          <li><a href="#project"><strong>Projects</strong></a></li>
+          <!--<li><a href="#topics"><strong>Homework</strong></a></li>-->
+          {% else %}
+          <li><a href="index.html"><strong>Home</strong></a></li>
+          {% endif %}
+          <!--<li><a href="https://github.com/TiarkRompf/cs502">View On <strong>GitHub</strong></a></li>-->
+        </ul>
+      </header>
+      <section>
+        <div class="title">
+          <h1>{{ page.title }}</h1>
+        </div>
+        {{ content }}
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
