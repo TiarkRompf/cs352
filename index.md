@@ -1,6 +1,6 @@
 ---
 layout: template
-title: Compiling And Programming Systems
+title: "Compilers: Principles And Practice"
 homepage: true
 ---
 
@@ -15,7 +15,7 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 > Teaching assistants are:
 >
 > - Anxhelo Xhebraj, <axhebraj@purdue.edu>
-> - Guiqi Gao, <gao606@purdue.edu>
+> - Ruiqi Gao, <gao606@purdue.edu>
 > - Siyuan He, <he662@purdue.edu>
 >
 > PSO sessions are:
@@ -41,6 +41,9 @@ Achieving a minimum of 20% in each of the three components is mandatory for a pa
 For general policies about academic integrity etc. Please see [here](http://spaf.cerias.purdue.edu/cpolicy.html){:target="_blank"}.
 You are expected to read that page and will be held accountable according to its contents.
 
+**Attendance:**
+This is an in-person class. Attendance is encouraged but not required. Most students profit from in-class discussions. But if you prefer to learn on your own that's fine, too.
+Lectures won't be recorded but slides will be made available online. You're welcome to take notes in class, but ***strictly no audio or video recordings***.
 
 <!--
 # Textbook { #textbook }
@@ -52,7 +55,7 @@ You are expected to read that page and will be held accountable according to its
 - [*Compilers: Principles, Techniques, and Tools*](http://dragonbook.stanford.edu), Aho, Lam, Sethi, Ullman, Addison-Wesley, 2007
 - [*The Java Language Specification*](http://java.sun.com/docs/books/jls)
 - [*The Java programming language*](http://java.sun.com/docs/books/javaprog), Ken Arnold, James Gosling and David Holmes, Addison-Wesley, 2000
-- [*Computer Organization and Design: The Hardware/Software Interface*](http://books.elsevier.com/us/mk/us/subindex.asp?isbn=9780123706065&country=United+States&community=mk&ref=&mscssid=C9TPQXSQGMC69MDPB7HVBN4GMSHT0EB5), David Patterson and John Hennessy, Morgan Kaufmann, 1998 
+- [*Computer Organization and Design: The Hardware/Software Interface*](http://books.elsevier.com/us/mk/us/subindex.asp?isbn=9780123706065&country=United+States&community=mk&ref=&mscssid=C9TPQXSQGMC69MDPB7HVBN4GMSHT0EB5), David Patterson and John Hennessy, Morgan Kaufmann, 1998
 - [*The Java Tutorial*](http://java.sun.com/docs/books/tutorial)
 - [Generics for Java](http://java.sun.com/developer/earlyAccess/adding_generics/)
 - [Java Documentation](http://java.sun.com/docs)
@@ -91,7 +94,7 @@ A set of lecture notes is available here:
 
 Week 1
 
-- Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-1.pdf){:target="_blank"} 
+- Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-1.pdf){:target="_blank"}
 <!-- - Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-2.pdf){:target="_blank"} -->
 
 <!-- Week 2
@@ -154,9 +157,9 @@ Extra material:
 
 # Projects <a id="project"></a>
 
-- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 14) 
+- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 14)
 
-<!-- 
+<!--
 - [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Sep 3)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Sep 17)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Oct 1)
