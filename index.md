@@ -95,7 +95,7 @@ A set of lecture notes is available here:
 Week 1
 
 - Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-1.pdf){:target="_blank"}
-<!-- - Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-2.pdf){:target="_blank"} -->
+- Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-2.pdf){:target="_blank"}
 
 <!-- Week 2
 
