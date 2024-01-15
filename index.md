@@ -97,10 +97,10 @@ Week 1
 - Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-1.pdf){:target="_blank"}
 - Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-2.pdf){:target="_blank"}
 
-<!-- Week 2
+Week 2
 
 - Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-1.pdf){:target="_blank"}
-- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-2.pdf){:target="_blank"}
+<!-- - Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-2.pdf){:target="_blank"}
 
 Week 3
 
@@ -158,9 +158,8 @@ Extra material:
 # Projects <a id="project"></a>
 
 - [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 14)
-
+- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Monday Jan 22)
 <!--
-- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Sep 3)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Sep 17)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Oct 1)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Oct 29)
