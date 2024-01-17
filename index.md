@@ -100,7 +100,7 @@ Week 1
 Week 2
 
 - Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-1.pdf){:target="_blank"}
-<!-- - Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-2.pdf){:target="_blank"} -->
+- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-2.pdf){:target="_blank"}
 
 <!-- Week 3
 
