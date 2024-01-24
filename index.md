@@ -105,7 +105,7 @@ Week 2
 Week 3
 
 - Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-1.pdf){:target="_blank"}
-<!-- - Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-2.pdf){:target="_blank"} -->
+- Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-2.pdf){:target="_blank"}
 
 <!-- Week 4-5
 
