@@ -107,11 +107,11 @@ Week 3
 - Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-1.pdf){:target="_blank"}
 - Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-2.pdf){:target="_blank"}
 
-<!-- Week 4-5
+Week 4-5
 
 - Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week4-1.pdf){:target="_blank"}
 
-Week 6-8
+<!-- Week 6-8
 
 - Values Representation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week5-1.pdf){:target="_blank"}
 - Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week6-1.pdf){:target="_blank"}
