@@ -110,10 +110,10 @@ Week 3
 Week 4-5
 
 - Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week4-1.pdf){:target="_blank"}
+- Values Representation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week5-1.pdf){:target="_blank"}
 
 <!-- Week 6-8
 
-- Values Representation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week5-1.pdf){:target="_blank"}
 - Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week6-1.pdf){:target="_blank"}
 
 Week 9
