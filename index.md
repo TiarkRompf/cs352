@@ -161,7 +161,7 @@ Extra material:
 - [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Monday Jan 22)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Monday Feb 5)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Monday Feb 19)
-- [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 4)
+- [Project 5: Value Representation](project5.html) (due 11:59pm Monday Mar 4)
 
 <!--
 - [Project 6: Optimization](project6.html) (due 11:59pm Sunday Nov 12)
