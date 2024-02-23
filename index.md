@@ -112,15 +112,15 @@ Week 4-5
 - Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week4-1.pdf){:target="_blank"}
 - Values Representation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week5-1.pdf){:target="_blank"}
 
-Week 6-8
+Week 6-7
 
 - Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week6-1.pdf){:target="_blank"}
 
-<!-- Week 9
+Week 8
 
 - Optimizations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week7-1.pdf){:target="_blank"}
 
-Week 10
+<!-- Week 10
 
 - Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week8-1.pdf){:target="_blank"}
 
