@@ -23,6 +23,8 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 > - Tuesday 4:30pm to 5:20pm, HAAS 257
 > - Wednesday 2:30pm to 3:20pm, HAAS 257
 > - Thursday 3:30pm to 4:20pm, HAAS 257
+>
+> Midterm will be held on Thursday Mar 7th during the normal class hours.
 
 
 # About the Course <a id="about"></a>
