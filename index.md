@@ -166,5 +166,5 @@ Extra material:
 - [Project 5: Value Representation](project5.html) (due 11:59pm Monday Mar 4)
 
 <!--
-- [Project 6: Optimization](project6.html) (due 11:59pm Sunday Nov 12)
-- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Dec 3) -->
+- [Project 6: Optimization](project6.html) (due 11:59pm Sunday Mar 31)
+- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 21) -->
