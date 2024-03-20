@@ -126,9 +126,9 @@ Week 9
 
 - Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week8-1.pdf){:target="_blank"}
 
-<!-- Week 11-13
+Week 12-14
 
-- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week10-2.pdf){:target="_blank"} -->
+- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week10-2.pdf){:target="_blank"}
 
 <!-- Week 13
 
