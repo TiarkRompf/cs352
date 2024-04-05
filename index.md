@@ -135,12 +135,12 @@ Week 12-14
 - Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week11-2.pdf){:target="_blank"}
 - Tail Call [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week12-1.pdf){:target="_blank"} -->
 
-<!-- Week 14-15
+Week 15-16
 
 - Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week12-2.pdf){:target="_blank"}
 - Memory Management [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week13-1.pdf){:target="_blank"}
 
-Week 16
+<!-- Week 16
 
 - Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week14-1.pdf){:target="_blank"} -->
 
