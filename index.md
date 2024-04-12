@@ -140,9 +140,9 @@ Week 15-16
 - Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week12-2.pdf){:target="_blank"}
 - Memory Management [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week13-1.pdf){:target="_blank"}
 
-<!-- Week 16
+Week 17
 
-- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week14-1.pdf){:target="_blank"} -->
+- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week14-1.pdf){:target="_blank"}
 
 <!-- - TurboFan JIT Design [(link)](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc/htmlpresent) -->
 
