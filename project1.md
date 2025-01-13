@@ -30,6 +30,8 @@ intermediate representation in the form of an Abstract Syntax Tree
 In parallel, we will implement a generator that converts the AST into
 x86_64 code.
 
+Note: The tests run x86_64 assembly code. MacBooks with ARM CPUs are not supported.
+
 Here is a small example of what we will be able to generate by the end
 of the project:
 
