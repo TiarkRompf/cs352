@@ -10,12 +10,6 @@ Announcements will be posted on [Piazza](https://piazza.com/purdue/spring2025/cs
 Homework submission and grading will be done through [Brightspace](https://purdue.brightspace.com/){:target="_blank"}.
 
 > Lectures are Tuesday and Thursday, 3:00-4:15pm in LWSN 1142.
-
-<!--
-> As the Pandemic situation evolves
-> the mode of lecture delivery might need to change. Please keep an eye on the announcements on Piazza.
--->
-
 >
 > Teaching assistants are:
 >
