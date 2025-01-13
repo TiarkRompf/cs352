@@ -21,7 +21,7 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 > - Wednesday 9:30am to 10:20am, HAAS 257
 > - Wednesday 12:30pm to 1:20pm, HAAS 257
 > - Thursday 4:30pm to 5:20pm, HAAS 257
-> - Friday 10:30pm to 11:20pm, HAAS 257
+> - Friday 10:30am to 11:20am, HAAS 257
 
 <!--
 >
