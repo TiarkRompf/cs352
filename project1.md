@@ -195,14 +195,15 @@ You should turn in the **proj1** directory. Please run an 'sbt clean'
 and './cleanall.sh' before submitting.
 
 To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj1` directory for
-example `axhebraj-proj1.zip` and upload it to the corresponding
+`proj<N>.zip` of the `proj1` directory for
+example `proj1.zip` and upload it to the corresponding
 assignment on Brightspace.
 
 **No other file formats or naming conventions will be accepted as
 submissions. Verify your submission by downloading the ZIP file you
 uploaded on Brightspace and extracting its content. The uncompressed
-content should be the `proj1` folder containing the code.**
+content should be the `proj1` folder containing the code. Your submission 
+ZIP file should have the exact same structure as the skeleton ZIP file.**
 
 ## Grading
 
