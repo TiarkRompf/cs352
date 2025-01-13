@@ -4,28 +4,36 @@ title: "Compilers: Principles And Practice"
 homepage: true
 ---
 
-Spring 2024, 3 credits. Instructor: Dr. Guannan Wei, Prof. Tiark Rompf
+Spring 2025, 3 credits. Instructor: Prof. Tiark Rompf
 
-Announcements will be posted on [Piazza](https://piazza.com/purdue/spring2024/cs352){:target="_blank"}.
+Announcements will be posted on [Piazza](https://piazza.com/purdue/spring2025/cs352){:target="_blank"}.
 Homework submission and grading will be done through [Brightspace](https://purdue.brightspace.com/){:target="_blank"}.
 
-> Lectures are Tuesday and Thursday, 12:00-1:15pm in LWSN B155. As the Pandemic situation evolves
+> Lectures are Tuesday and Thursday, 3:00-4:15pm in LWSN 1142.
+
+<!--
+> As the Pandemic situation evolves
 > the mode of lecture delivery might need to change. Please keep an eye on the announcements on Piazza.
+-->
+
 >
 > Teaching assistants are:
 >
-> - Anxhelo Xhebraj, <axhebraj@purdue.edu>
-> - Ruiqi Gao, <gao606@purdue.edu>
-> - Siyuan He, <he662@purdue.edu>
+> - Yueyang Tang, <tang619@purdue.edu>
+> - Shao-Yu Huang, <huan1464@purdue.edu>
 >
 > PSO sessions are:
 >
-> - Tuesday 4:30pm to 5:20pm, HAAS 257
-> - Wednesday 2:30pm to 3:20pm, HAAS 257
-> - Thursday 3:30pm to 4:20pm, HAAS 257
+> - Wednesday 9:30am to 10:20am, HAAS 257
+> - Wednesday 12:30pm to 1:20pm, HAAS 257
+> - Thursday 4:30pm to 5:20pm, HAAS 257
+> - Friday 10:30pm to 11:20pm, HAAS 257
+
+<!--
 >
 > Midterm will be held on Thursday Mar 7th during the normal class hours.
 > Final will be held on Wednesday May 1st, 1:00pm to 3:00pm, HORT 117.
+-->
 
 # About the Course <a id="about"></a>
 
@@ -96,53 +104,59 @@ A set of lecture notes is available here:
 
 Week 1
 
-- Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-1.pdf){:target="_blank"}
-- Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week1-2.pdf){:target="_blank"}
+- Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week1-1.pdf){:target="_blank"}
+- Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week1-2.pdf){:target="_blank"}
 
+<!--
 Week 2
 
-- Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-1.pdf){:target="_blank"}
-- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week2-2.pdf){:target="_blank"}
+- Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-1.pdf){:target="_blank"}
+- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-2.pdf){:target="_blank"}
 
 Week 3
 
-- Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-1.pdf){:target="_blank"}
-- Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week3-2.pdf){:target="_blank"}
+- Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week3-1.pdf){:target="_blank"}
+- Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week3-2.pdf){:target="_blank"}
 
 Week 4-5
 
-- Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week4-1.pdf){:target="_blank"}
-- Values Representation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week5-1.pdf){:target="_blank"}
+- Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week4-1.pdf){:target="_blank"}
+- Values Representation [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week5-1.pdf){:target="_blank"}
 
 Week 6-7
 
-- Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week6-1.pdf){:target="_blank"}
+- Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week6-1.pdf){:target="_blank"}
 
 Week 8
 
-- Optimizations [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week7-1.pdf){:target="_blank"}
+- Optimizations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week7-1.pdf){:target="_blank"}
 
 Week 9
 
-- Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week8-1.pdf){:target="_blank"}
+- Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week8-1.pdf){:target="_blank"}
 
 Week 12-14
 
-- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week10-2.pdf){:target="_blank"}
+- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week10-2.pdf){:target="_blank"}
+
+-->
 
 <!-- Week 13
 
-- Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week11-2.pdf){:target="_blank"}
-- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week12-1.pdf){:target="_blank"} -->
+- Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week11-2.pdf){:target="_blank"}
+- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"} -->
 
+<!--
 Week 15-16
 
-- Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week12-2.pdf){:target="_blank"}
-- Memory Management [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week13-1.pdf){:target="_blank"}
+- Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-2.pdf){:target="_blank"}
+- Memory Management [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week13-1.pdf){:target="_blank"}
 
 Week 17
 
-- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/gao606/cs352/week14-1.pdf){:target="_blank"}
+- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week14-1.pdf){:target="_blank"}
+
+-->
 
 <!-- - TurboFan JIT Design [(link)](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc/htmlpresent) -->
 
@@ -156,13 +170,15 @@ Extra material:
 - [CS352 Reaching Definition Slides](https://www.cs.purdue.edu/homes/ehanau/cs352/supplemental/reachdef.pdf)
 -->
 
-
 # Projects <a id="project"></a>
 
-- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 14)
+- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 19)
+
+<!--
 - [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Monday Jan 22)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Monday Feb 5)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Monday Feb 19)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Monday Mar 4)
 - [Project 6: Optimization](project6.html) (due 11:59pm Thursday Apr 4)
 - [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 21)
+-->
