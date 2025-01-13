@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Project 4: CMScala to CPS Translation - CS352 by Tiark Rompf</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+      
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          
+          <li><a href="index.html"><strong>Home</strong></a></li>
+          
+          <!--<li><a href="https://github.com/TiarkRompf/cs352">View On <strong>GitHub</strong></a></li>-->
+        </ul>
+      </header>
+      <section>
+        <div class="title">
+          <h1>Project 4: CMScala to CPS Translation</h1>
+        </div>
+        <blockquote>
+  <p>Due 11:59pm Monday Feb 19 (two weeks project)</p>
+</blockquote>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this assignment, we are asking you to implement the optimized CPS
+transformations you have seen in the course.</p>
+
+<p>In previous assignments, we have focused on building up frontend of our
+compiler pipeline (i.e., our parser and semantic analyzer), and have
+made due with a relatively simple backend. As many students have
+noticed, this has resulted in suboptimal assembly code being generated.
+As such, we will now shift gears and focus more heavily on creating an
+optimized backend.</p>
+
+<p>For this project, we have provided you with a more complex frontend than
+we’ve seen thus far. Some of the new pieces of syntactic sugar of which
+you should be aware are as follows:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">e1 &amp;&amp; e2</code> ⟹ <code class="language-plaintext highlighter-rouge">if (e1) e2 else false</code></li>
+  <li><code class="language-plaintext highlighter-rouge">e1 || e2</code> ⟹ <code class="language-plaintext highlighter-rouge">if (e1) true else e2</code></li>
+  <li><code class="language-plaintext highlighter-rouge">!e1</code> ⟹ <code class="language-plaintext highlighter-rouge">if (e1) false else true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">"c1...cn"</code> ⟹ <code class="language-plaintext highlighter-rouge">val s = new Array[Char](200); s(0) = 'c1'; ...; s</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(n1: T1, ...) =&gt; b1</code> ⟹ <code class="language-plaintext highlighter-rouge">def anon1(n1: T1, ...) = b1; anon1</code></li>
+</ul>
+
+<p>You can find all code dealing with syntactic sugar in
+<code class="language-plaintext highlighter-rouge">compiler/src/miniscala/MiniScalaParser.scala</code>, though you will not need
+to make any modifications there.</p>
+
+<p>Similarly, the code for desugaring can be found in
+<code class="language-plaintext highlighter-rouge">compiler/src/miniscala/CMScalaAnalyzer.scala</code>. Again, no modifications
+are necessary in this file.</p>
+
+<p>As we will not be providing solutions for previous assignments, you may
+want to look over <code class="language-plaintext highlighter-rouge">MiniScalaParser</code> and <code class="language-plaintext highlighter-rouge">CMScalaAnalyzer</code> if you have any
+questions about how these functions are implemented. We are also happy
+to provide further clarification on Piazza as needed.</p>
+
+<p>In addition to these pieces of syntactic sugar, we also have some new
+types, with corresponding literals and operators. Below is a list of
+some of the types available in our language:</p>
+
+<ul>
+  <li>Integer: Now available in base 16 with <code class="language-plaintext highlighter-rouge">0x</code> prefix.</li>
+  <li>Char: All character literals are supported (e.g., <code class="language-plaintext highlighter-rouge">'c'</code>, <code class="language-plaintext highlighter-rouge">'s'</code>, <code class="language-plaintext highlighter-rouge">'3'</code>,
+<code class="language-plaintext highlighter-rouge">'5'</code>, <code class="language-plaintext highlighter-rouge">'2'</code>, <code class="language-plaintext highlighter-rouge">'\n'</code>, etc.).</li>
+  <li>Boolean: As before, Boolean literals are <code class="language-plaintext highlighter-rouge">true</code> and
+<code class="language-plaintext highlighter-rouge">false</code>.</li>
+  <li>Unit: As before, the Unit literal is <code class="language-plaintext highlighter-rouge">()</code>.</li>
+  <li>String: Strings are now supported in our language, with string
+literals appearing as expected (e.g. <code class="language-plaintext highlighter-rouge">"this is a string"</code>, <code class="language-plaintext highlighter-rouge">"help,
+I'm stuck in grad school"</code>, <code class="language-plaintext highlighter-rouge">"let me out"</code>, <code class="language-plaintext highlighter-rouge">"\n\\gradschool
+gives an error: \"unable to escape\"\n"</code>, etc.).</li>
+</ul>
+
+<p>And some corresponding operators:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">+</code> <code class="language-plaintext highlighter-rouge">-</code> <code class="language-plaintext highlighter-rouge">*</code> <code class="language-plaintext highlighter-rouge">&lt;&lt;</code> <code class="language-plaintext highlighter-rouge">&gt;&gt;</code> <code class="language-plaintext highlighter-rouge">&amp;</code> <code class="language-plaintext highlighter-rouge">|</code> <code class="language-plaintext highlighter-rouge">^</code> <code class="language-plaintext highlighter-rouge">/</code> <code class="language-plaintext highlighter-rouge">%</code> : <code class="language-plaintext highlighter-rouge">(Int, Int) =&gt; Int</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;</code> <code class="language-plaintext highlighter-rouge">&lt;=</code> <code class="language-plaintext highlighter-rouge">&gt;</code> <code class="language-plaintext highlighter-rouge">&gt;=</code> : <code class="language-plaintext highlighter-rouge">(Int, Int) =&gt; Boolean</code></li>
+  <li><code class="language-plaintext highlighter-rouge">==</code> <code class="language-plaintext highlighter-rouge">!=</code> : <code class="language-plaintext highlighter-rouge">(T1, T2) =&gt; Boolean</code></li>
+  <li><code class="language-plaintext highlighter-rouge">id</code> : <code class="language-plaintext highlighter-rouge">T =&gt; T</code></li>
+  <li><code class="language-plaintext highlighter-rouge">toChar</code> : <code class="language-plaintext highlighter-rouge">Int =&gt; Char</code> // Note: Int must be valid Unicode code-point</li>
+  <li><code class="language-plaintext highlighter-rouge">toInt</code> : <code class="language-plaintext highlighter-rouge">Char =&gt; Int</code></li>
+  <li><code class="language-plaintext highlighter-rouge">isInt</code> <code class="language-plaintext highlighter-rouge">isChar</code> <code class="language-plaintext highlighter-rouge">isBoolean</code> <code class="language-plaintext highlighter-rouge">isUnit</code> : <code class="language-plaintext highlighter-rouge">T =&gt; Boolean</code></li>
+  <li><code class="language-plaintext highlighter-rouge">getchar</code> : <code class="language-plaintext highlighter-rouge">() =&gt; Int</code>, between 0 and 255, or -1</li>
+  <li><code class="language-plaintext highlighter-rouge">putchar</code> : <code class="language-plaintext highlighter-rouge">Int =&gt; Unit</code>, Int between 0 and 255</li>
+</ul>
+
+<p>Other types include <code class="language-plaintext highlighter-rouge">Array[T]</code>, function types, Pairs, and <code class="language-plaintext highlighter-rouge">List[T]</code>.
+Take a look at the files in <code class="language-plaintext highlighter-rouge">library/</code> to see how to use them.</p>
+
+<h2 id="step-1-getting-started">Step 1: Getting Started</h2>
+
+<p>The project has been designed and tested for Linux/Mac OS. If you only
+have Windows installed on your personal laptop, consider running Linux
+in a VM or using the lab machines for the project. Another alternative
+is to try <a href="https://learn.microsoft.com/en-us/windows/wsl/" target="_blank">Windows Subsystem for Linux</a>
+and <a href="https://learn.microsoft.com/en-us/windows/terminal/" target="_blank">Windows Terminal</a>.</p>
+
+<p>If you use remote access to work on your project, please use one of the
+lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
+<code class="language-plaintext highlighter-rouge">pod1-1.cs.purdue.edu</code>)</p>
+
+<p>Download the skeleton file
+<a href="https://www.cs.purdue.edu/homes/gao606/cs352/proj4.zip" target="_blank">here</a>.</p>
+
+<h2 id="step-2-project-structure">Step 2: Project Structure</h2>
+
+<h3 id="browse-the-files">Browse the Files</h3>
+
+<p>Now the project directory has changed a little bit. In the top dir, you
+can see <code class="language-plaintext highlighter-rouge">compiler/</code> <code class="language-plaintext highlighter-rouge">examples/</code> and <code class="language-plaintext highlighter-rouge">library/</code>. The src and test codes are in
+<code class="language-plaintext highlighter-rouge">compiler/</code>. The <code class="language-plaintext highlighter-rouge">examples/</code> dir is like before: providing example programs.
+The <code class="language-plaintext highlighter-rouge">library/</code> dir contains files that define standard libraries for our
+language. In <code class="language-plaintext highlighter-rouge">compiler/src/miniscala/</code>, all files with the prefix
+<code class="language-plaintext highlighter-rouge">MiniScala</code> are handling the parsing. All files with prefix <code class="language-plaintext highlighter-rouge">CMScala</code> are
+handling the semantic analyzer pass.</p>
+
+<p>You only need to update the file <strong>CMScalaToCPSTranslator</strong>.</p>
+
+<p>You will notice that <code class="language-plaintext highlighter-rouge">Main.scala</code> from the new project doesn’t run the
+<code class="language-plaintext highlighter-rouge">CMScalaInterpreter</code> anymore (it was the interpreter we were using
+before), but first runs the CPS translator and then an interpreter for
+your CPS representation.</p>
+
+<p>Also, you may notice that between translation and interpretation, there
+is an additional step called <code class="language-plaintext highlighter-rouge">SymbolicCPSTreeChecker</code>. The purpose
+of this module is to go through your generated CPS tree, check that all
+names used are defined exactly once, and emit useful warnings in case
+they are not. Take advantage of this output to track any bugs you may
+have in the translation. Notice that, since
+<code class="language-plaintext highlighter-rouge">SymbolicCPSTreeChecker.apply</code> returns <code class="language-plaintext highlighter-rouge">Unit</code>, we have to
+pass it to the <code class="language-plaintext highlighter-rouge">passThrough</code> function to integrate it in the
+pipeline.</p>
+
+<p>You will find that methods <code class="language-plaintext highlighter-rouge">nonTail</code>, <code class="language-plaintext highlighter-rouge">tail</code> and
+<code class="language-plaintext highlighter-rouge">cond</code> in <code class="language-plaintext highlighter-rouge">miniscala/CMScalaToCPSTranslator.scala</code> directly
+correspond to translations that were explained during the lecture.
+Transformation for <code class="language-plaintext highlighter-rouge">let</code> is already given to you as an example.
+Your task is to complete these methods by adding the missing cases.
+<strong>Important: take the time to understand the helper methods that are
+provided, and use them as frequently as possible!</strong> It will save you
+time and help you avoid common errors.</p>
+
+<p>Note that there are two different kinds of tests: Whitebox and Blackbox.
+Whitebox tests check that the entire output (i.e., the IR
+post-translation) is correct. Blackbox tests only ensure that the value
+generated is correct (e.g., <code class="language-plaintext highlighter-rouge">def f(x: Int) = x*x; 0</code> will only check that
+the program returns 0).</p>
+
+<h3 id="implementation-hint">Implementation Hint</h3>
+
+<p>Try implementing the non-optimized translations in <code class="language-plaintext highlighter-rouge">nonTail</code> (there are
+the rules shown in the beginning of the lecture). This represents 80% of
+the work. Once this is done, you can implement the optimized version
+using all three functions available (<code class="language-plaintext highlighter-rouge">nonTail</code>, <code class="language-plaintext highlighter-rouge">tail</code>, and <code class="language-plaintext highlighter-rouge">cond</code>).</p>
+
+<h2 id="turnin">Turnin</h2>
+
+<p>You should turn in the <strong>proj4</strong> directory. Please run an ‘<code class="language-plaintext highlighter-rouge">sbt clean</code>’
+and ‘<code class="language-plaintext highlighter-rouge">./cleanall.sh</code>’ before submitting.</p>
+
+<p>To turn in your project create a ZIP file named
+<code class="language-plaintext highlighter-rouge">&lt;purdueemailusername&gt;-proj&lt;N&gt;.zip</code> of the <code class="language-plaintext highlighter-rouge">proj4</code> directory for
+example <code class="language-plaintext highlighter-rouge">axhebraj-proj4.zip</code> and upload it to the corresponding
+assignment on Brightspace.</p>
+
+<p><strong>No other file formats or naming conventions will be accepted as
+submissions. Verify your submission by downloading the ZIP file you
+uploaded on Brightspace and extracting its content. The uncompressed
+content should be the <code class="language-plaintext highlighter-rouge">proj4</code> folder containing the code.</strong></p>
+
+<h2 id="testing">Testing</h2>
+
+<p><mark>You will have to write your own tests. You should write 10 tests
+otherwise points will be deducted.</mark> The tests that you write may
+also get you small bonuses while grading.</p>
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
