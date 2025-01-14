@@ -36,10 +36,10 @@ The theory and practice of programming language translation, compilation, and ru
 
 Parts of the class are based on the [Advanced Compiler Construction](http://lamp.epfl.ch/teaching/advanced_compiler){:target="_blank"} class taught by Michel Schinz at EPFL. The corresponding class materials (lecture slides, programming assignments, etc) are used with permission.
 
-**Grades:** Final grades will be based on results for the programming assignments (50%), midterm (20%), and final exam (30%).
-Achieving a minimum of 20% in each of the three components is mandatory for a passing grade.
+**Grades:** Final grades will be based on results for the programming assignments (30%), midterm (30%), and final exam (40%).
+Achieving a minimum of 20% in each of the three components is necessary (but not sufficient!) for a passing grade.
 
-**Late Work Policy:** No late submission will be accepted. Exceptions will be given only in the most extreme circumstances. Any travel, including interview trips, load from work or other classes, or simply not being able to get your program to run will not be grounds for extensions or exceptions.
+**Late Work Policy:** No late submissions will be accepted. Any travel, including interview trips, load from work or other classes, or simply not being able to get your program to run will not be grounds for extensions or exceptions.
 
 **Academic integrity:**
 For general policies about academic integrity etc. Please see [here](http://spaf.cerias.purdue.edu/cpolicy.html){:target="_blank"}.
