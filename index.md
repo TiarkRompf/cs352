@@ -34,7 +34,7 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 **In a nutshell:**
 The theory and practice of programming language translation, compilation, and run-time systems, organized around a significant programming project to build a compiler for a simple but non-trivial programming language.
 
-Parts of the class are based on the [Advanced Compiler Construction](http://lamp.epfl.ch/teaching/advanced_compiler){:target="_blank"} class taught by Michel Schinz at EPFL. The corresponding class materials (lecture slides, programming assignments, etc) are used with permission.
+Parts of the class are based on the [Advanced Compiler Construction](https://edu.epfl.ch/coursebook/en/advanced-compiler-construction-CS-420){:target="_blank"} class taught by Michel Schinz at EPFL. The corresponding class materials (lecture slides, programming assignments, etc) are used with permission.
 
 **Grades:** Final grades will be based on results for the programming assignments (30%), midterm (30%), and final exam (40%).
 Achieving a minimum of 20% in each of the three components is necessary (but not sufficient!) for a passing grade.
