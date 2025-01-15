@@ -46,6 +46,42 @@ correct version of Scala installed. Using other versions of `java` or `sbt` may
 work, but does not guarantee passing the tests when grading.
 Installation instructions for these tools are as follows.
 
+### SDKMAN!
+
+[SDKMAN!](https://sdkman.io/){:target="_blank"} is a package management tool for
+JVM-related environments. Before using it, follow the instructions
+[here](https://sdkman.io/install){:target="_blank"} to install it. Next, type
+
+    $ sdk install java 17.0.13-tem
+    ...
+    $ sdk install scala 2.12.18
+    ...
+    $ sdk install sbt 1.10.5
+    ...
+
+and then you will be able to check the versions of `java` and `sbt` as specified in
+the previous section. Additionally, you can check the version of your standalone
+`scala`,
+
+    $ scala -version
+    Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+
+To test that the installation succeeded write a file like
+`HelloWorld.scala` with the following content.
+
+```scala
+object HelloWorld {
+    def main(args: Array[String]) = {
+    println("Hello World!")
+    }
+}
+```
+
+From the directory you've created the file in, run
+
+    $ scala HelloWorld.scala
+    Hello World!
+
 ### Coursier
 
 *Coursier is no longer recommended. The following is kept for your reference.*
@@ -86,42 +122,6 @@ Finally you should be able to run the Scala REPL
     Loading...
     Welcome to the Ammonite Repl 2.5.6 (Scala 2.13.10 Java 1.8.*)
     @
-
-### SDKMAN!
-
-[SDKMAN!](https://sdkman.io/){:target="_blank"} is a package management tool for
-JVM-related environments. Before using it, follow the instructions
-[here](https://sdkman.io/install){:target="_blank"} to install it. Next, type
-
-    $ sdk install java 17.0.13-tem
-    ...
-    $ sdk install scala 2.12.18
-    ...
-    $ sdk install sbt 1.10.5
-    ...
-
-and then you will be able to check the versions of `java` and `sbt` as specified in
-the previous section. Additionally, you can check the version of your standalone
-`scala`,
-
-    $ scala -version
-    Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
-
-To test that the installation succeeded write a file like
-`HelloWorld.scala` with the following content.
-
-```scala
-object HelloWorld {
-    def main(args: Array[String]) = {
-    println("Hello World!")
-    }
-}
-```
-
-From the directory you've created the file in, run
-
-    $ scala HelloWorld.scala
-    Hello World!
 
 ### Structure of a Scala Project
 
