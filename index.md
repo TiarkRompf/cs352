@@ -93,6 +93,19 @@ A set of lecture notes is available here:
 
 - [Post-Modern Compiler Design](https://www.cs.purdue.edu/homes/rompf/pmca/){:target="_blank"}
 
+# Course Schedule
+
+The following schedule is tentative and subject to change.
+
+- Jan 19 Project 1 due (1 week)
+- Jan 26 Project 2 due (1 week)
+- Feb 9  Project 3 due (2 weeks)
+- Feb 23 Project 4 due (2 weeks)
+- Mar 9  Project 5 due (2 weeks)
+- Mar 13 **Midterm exam**
+- Spring break (Mar 17 to Mar 22)
+- Apr 6  Project 6 due (2 weeks)
+- Apr 20 Project 7 due (2 weeks)
 
 # Slides <a id="schedule"></a>
 
