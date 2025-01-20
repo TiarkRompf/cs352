@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Monday Jan 22
+> Due 11:59pm Sunday Jan 26
 
 ## Useful Links
 
@@ -32,7 +32,7 @@ lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
 pod1-1.cs.purdue.edu)
 
 Download the skeleton file
-[here](https://www.cs.purdue.edu/homes/gao606/cs352/proj2.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj2.zip){:target="_blank"}.
 
     unzip proj2.zip
     cd proj2
@@ -184,9 +184,9 @@ functions given to you in order to make the implementation easier.
 You should turn in the **proj2** directory. Please run an \'sbt clean\'
 and \'./cleanall.sh\' before submitting.
 
-To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj2` directory for
-example `axhebraj-proj2.zip` and upload it to the corresponding
+To turn in your project, create a ZIP file named
+`proj<N>.zip` of the `proj2` directory (e.g., `proj2.zip`).
+Then, upload it to the corresponding
 assignment on Brightspace.
 
 **No other file formats or naming conventions will be accepted as
