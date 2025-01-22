@@ -180,7 +180,7 @@ Extra material:
 # Projects <a id="project"></a>
 
 - [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 19)
-- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Monday Jan 26)
+- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
 
 <!--
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Monday Feb 5)
