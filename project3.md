@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Monday Feb 5 (two weeks project)
+> Due 11:59pm Sunday Feb 9 (two weeks project)
 
 ## Useful Links
 
@@ -47,7 +47,7 @@ lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
 pod1-1.cs.purdue.edu)
 
 Download the skeleton file
-[here](https://www.cs.purdue.edu/homes/gao606/cs352/proj3.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj3.zip){:target="_blank"}.
 
     unzip proj3.zip
     cd proj3
@@ -222,9 +222,9 @@ counted as extra credit.
 You should turn in the **proj3** directory. Please run an \'sbt clean\'
 and \'./cleanall.sh\' before submitting.
 
-To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj3` directory for
-example `axhebraj-proj3.zip` and upload it to the corresponding
+To turn in your project, create a ZIP file named
+`proj<N>.zip` of the `proj<N>` directory.
+Then, upload it to the corresponding
 assignment on Brightspace.
 
 **No other file formats or naming conventions will be accepted as
