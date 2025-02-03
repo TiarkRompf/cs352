@@ -123,11 +123,12 @@ Week 3
 - Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week3-1.pdf){:target="_blank"}
 - Functions - Arrays [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week3-2.pdf){:target="_blank"}
 
-<!--
 Week 4-5
 
 - Intermediate Representations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week4-1.pdf){:target="_blank"}
 - Values Representation [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week5-1.pdf){:target="_blank"}
+
+<!--
 
 Week 6-7
 
