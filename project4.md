@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Monday Feb 19 (two weeks project)
+> Due 11:59pm Sunday Feb 23 (two weeks project)
 
 ## Introduction
 
@@ -84,7 +84,7 @@ lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
 `pod1-1.cs.purdue.edu`)
 
 Download the skeleton file
-[here](https://www.cs.purdue.edu/homes/gao606/cs352/proj4.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj4.zip){:target="_blank"}.
 
 ## Step 2: Project Structure
 
@@ -143,8 +143,8 @@ You should turn in the **proj4** directory. Please run an '`sbt clean`'
 and '`./cleanall.sh`' before submitting.
 
 To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj4` directory for
-example `axhebraj-proj4.zip` and upload it to the corresponding
+`proj<N>.zip` of the `proj4` directory for
+example `proj4.zip` and upload it to the corresponding
 assignment on Brightspace.
 
 **No other file formats or naming conventions will be accepted as
