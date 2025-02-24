@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Monday Mar 4 (two weeks project)
+> Due 11:59pm Sunday Mar 9 (two weeks project)
 
 Your task in this assignment is to implement a compiler phase for the
 CPS value representation transformation, including closure conversion.
@@ -107,7 +107,7 @@ Tips:
     `Symbol.fresh("w")`.
 
 The skeleton code for the assignment is available
-[here](https://www.cs.purdue.edu/homes/gao606/cs352/proj5.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj5.zip){:target="_blank"}.
 
 This assignment relies on the correct implementation of the previous one
 (the `CMScalaToCPSTranslator` class). If you are confident that
@@ -121,8 +121,8 @@ You should turn in the **proj5** directory. Please run an \'sbt clean\'
 and \'./cleanall.sh\' before submitting.
 
 To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj5` directory for
-example `axhebraj-proj5.zip` and upload it to the corresponding
+`proj<N>.zip` of the `proj5` directory for
+example `proj5.zip` and upload it to the corresponding
 assignment on Brightspace.
 
 **No other file formats or naming conventions will be accepted as
