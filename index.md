@@ -132,11 +132,11 @@ Week 6-7
 
 - Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week6-1.pdf){:target="_blank"}
 
-<!--
-
 Week 8
 
 - Optimizations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week7-1.pdf){:target="_blank"}
+
+<!--
 
 Week 9
 
