@@ -182,7 +182,7 @@ Extra material:
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Feb 9)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 23)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 9)
-- [Project 6: Optimization](project6.html) (due 11:59pm Thursday Apr 4)
+- [Project 6: Optimization](project6.html) (due 11:59pm Sunday Apr 6)
 
 <!--
 - [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 21)
