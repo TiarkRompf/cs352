@@ -4,10 +4,10 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Sunday Apr 21 (two and a half weeks project)
+> Due 11:59pm Sunday Apr 20 (two week project)
 
 Download the skeleton code for the project
-[here](https://www.cs.purdue.edu/homes/gao606/cs352/proj7.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj7.zip){:target="_blank"}.
 
 ## Introduction
 
@@ -286,6 +286,6 @@ You should turn in the **proj7** directory. Please run an 'sbt clean'
 and './cleanall.sh' before submitting.
 
 To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj7` directory for
-example `axhebraj-proj7.zip` and upload it to the corresponding
+`proj<N>.zip` of the `proj7` directory for
+example `proj7.zip` and upload it to the corresponding
 assignment on Brightspace.
