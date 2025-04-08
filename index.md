@@ -144,12 +144,8 @@ Week 9
 Week 12-14
 
 - Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week10-2.pdf){:target="_blank"}
-
-
-<!-- Week 13
-
 - Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week11-2.pdf){:target="_blank"}
-- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"} -->
+- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"}
 
 <!--
 Week 15-16
