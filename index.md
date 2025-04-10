@@ -147,7 +147,6 @@ Week 12-14
 - Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week11-2.pdf){:target="_blank"}
 - Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"}
 
-<!--
 Week 15-16
 
 - Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-2.pdf){:target="_blank"}
@@ -157,7 +156,6 @@ Week 17
 
 - Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week14-1.pdf){:target="_blank"}
 
--->
 
 <!-- - TurboFan JIT Design [(link)](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc/htmlpresent) -->
 
