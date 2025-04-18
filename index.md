@@ -104,7 +104,7 @@ The following schedule is tentative and subject to change.
 - Mar 13 **Midterm exam**
 - Spring break (Mar 17 to Mar 22)
 - Apr 6  Project 6 due (2 weeks)
-- Apr 20 Project 7 due (2 weeks)
+- Apr 27 Project 7 due (3 weeks)
 
 # Slides <a id="schedule"></a>
 
