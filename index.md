@@ -4,25 +4,25 @@ title: "Compilers: Principles And Practice"
 homepage: true
 ---
 
-Spring 2025, 3 credits. Instructor: Prof. Tiark Rompf
+Spring 2026, 3 credits. Instructor: Prof. Tiark Rompf
 
-Announcements will be posted on [Piazza](https://piazza.com/purdue/spring2025/cs352){:target="_blank"}.
+Announcements will be posted on [Piazza](https://piazza.com/purdue/spring2026/cs352){:target="_blank"}.
 Homework submission and grading will be done through [Brightspace](https://purdue.brightspace.com/){:target="_blank"}.
 
-> Lectures are Tuesday and Thursday, 3:00-4:15pm in LWSN 1142.
+> Lectures are Monday, Wednesday, and Friday, 12:30-1:20pm in LWSN B155.
 >
 > Teaching assistants are:
 >
-> - Yueyang Tang, <tang619@purdue.edu>
-> - Shao-Yu Huang, <huan1464@purdue.edu>
+> - Songlin Jia <jia137 at purdue.edu>
+> - Ran Guo <guo543 at purdue.edu>
+> - Dongmin Lee <lee4818 at purdue.edu>
 >
 > PSO sessions are:
 >
-> - Wednesday 12:30pm to 1:20pm, HAAS 257
-> - Thursday 4:30pm to 5:20pm, HAAS 257
-> - Friday 10:30am to 11:20am, HAAS 257
->
-> Midterm will be held on Thursday Mar 13th during the normal class hours.
+> - Tuesday 3:30-4:20pm, HAAS 257
+> - Tuesday 4:30-5:20pm, HAAS 257
+> - Wednesday 10:30-11:20am, HAAS 257
+> - Wednesday 11:30am-12:20pm, HAAS 257
 
 <!--
 > Final will be held on Wednesday May 1st, 1:00pm to 3:00pm, HORT 117.
@@ -92,20 +92,6 @@ A set of lecture notes is available here:
 
 - [Post-Modern Compiler Design](https://www.cs.purdue.edu/homes/rompf/pmca/){:target="_blank"}
 
-# Course Schedule
-
-The following schedule is tentative and subject to change.
-
-- Jan 19 Project 1 due (1 week)
-- Jan 26 Project 2 due (1 week)
-- Feb 9  Project 3 due (2 weeks)
-- Feb 23 Project 4 due (2 weeks)
-- Mar 9  Project 5 due (2 weeks)
-- Mar 13 **Midterm exam**
-- Spring break (Mar 17 to Mar 22)
-- Apr 6  Project 6 due (2 weeks)
-- Apr 27 Project 7 due (3 weeks)
-
 # Slides <a id="schedule"></a>
 
 Week 1
@@ -113,7 +99,7 @@ Week 1
 - Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week1-1.pdf){:target="_blank"}
 - Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week1-2.pdf){:target="_blank"}
 
-Week 2
+<!-- Week 2
 
 - Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-1.pdf){:target="_blank"}
 - Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-2.pdf){:target="_blank"}
@@ -154,7 +140,7 @@ Week 15-16
 
 Week 17
 
-- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week14-1.pdf){:target="_blank"}
+- Object-Oriented Languages [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week14-1.pdf){:target="_blank"} -->
 
 
 <!-- - TurboFan JIT Design [(link)](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc/htmlpresent) -->
@@ -171,11 +157,10 @@ Extra material:
 
 # Projects <a id="project"></a>
 
-- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 19)
-- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
+- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)
+<!-- - [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Feb 9)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 23)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 9)
 - [Project 6: Optimization](project6.html) (due 11:59pm Sunday Apr 6)
-- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27)
-
+- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27) -->
