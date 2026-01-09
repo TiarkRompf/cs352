@@ -13,9 +13,9 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 >
 > Teaching assistants are:
 >
-> - Songlin Jia [<jia137 at purdue.edu>]()
-> - Ran Guo [<guo543 at purdue.edu>]()
-> - Dongmin Lee [<lee4818 at purdue.edu>]()
+> - Songlin Jia [(jia137 at purdue.edu)]()
+> - Ran Guo [(guo543 at purdue.edu)]()
+> - Dongmin Lee [(lee4818 at purdue.edu)]()
 >
 > PSO sessions are:
 >
@@ -157,9 +157,11 @@ Extra material:
 
 # Projects <a id="project"></a>
 
-- [Project 1: Arithmetic]() (due 11:59pm Sunday Jan 18)
+- Project 1: Arithmetic (due 11:59pm Sunday Jan 18)
 
-<!-- - [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
+<!--
+- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)
+- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Feb 9)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 23)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 9)
