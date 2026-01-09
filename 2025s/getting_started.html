@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Getting Started - CS352 by Tiark Rompf</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39122235-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39122235-1');
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1>CS352</h1>
+        <p></p>
+        <p class="view"><a href="https://github.com/TiarkRompf/cs352">View the Project on GitHub <small>TiarkRompf/cs352</small></a></p>
+        <ul>
+          
+          <li><a href="index.html"><strong>Home</strong></a></li>
+          
+          <!--<li><a href="https://github.com/TiarkRompf/cs352">View On <strong>GitHub</strong></a></li>-->
+        </ul>
+      </header>
+      <section>
+        <div class="title">
+          <h1>Getting Started</h1>
+        </div>
+        <p>This page will explain how to setup the tools necessary for development.
+The tools necessary for development are:</p>
+
+<ul>
+  <li><strong>The Scala compiler, tools and environment</strong></li>
+  <li><strong>C compiler and the make build tool</strong> - specific to your Processor and Operating System</li>
+  <li><strong>IntelliJ</strong> - used as the IDE for development <em>(optional)</em></li>
+  <li><strong>VSCode/any text editor you like</strong> - a lightweight editor for writing Scala and C code <em>(optional)</em></li>
+</ul>
+
+<h3 id="setting-up-the-development-tools-on-your-machine">Setting up the development tools on your machine</h3>
+
+<p>The tools you will need to install and configure are:</p>
+
+<ul>
+  <li><a href="getting_started.html#local-scala">Java Virtual Machine, Scala REPL (Read, Eval, Print Loop) and sbt</a></li>
+  <li><a href="getting_started.html#local-c">a C compiler and the make utility</a></li>
+  <li>git for keeping versions of your files <em>(optional)</em></li>
+  <li><a href="getting_started.html#local-ide">IDE or text editor</a></li>
+</ul>
+
+<p>Please don’t hesitate to ask for help on the course Piazza if you have
+any problems setting up the environment.</p>
+
+<p>As the projects are to generate code in x86_64 assembly, the projects
+will be tested on an x86_64 Linux server. Thus, developing on non-x86_64
+non-Unix-like platform is possible but <strong>not</strong> recommended. Consider
+<a href="getting_started.html#remote-dev">using a lab machine</a> if that is your case.</p>
+
+<h2 id="installing-scala"><a id="local-scala">Installing Scala</a></h2>
+
+<p>The scala compiler <code class="language-plaintext highlighter-rouge">scalac</code> compiles Scala source code down to Java
+bytecode which is then interpreted by the Java Virtual Machine (JVM),
+the <code class="language-plaintext highlighter-rouge">java</code> program. Additionally, <code class="language-plaintext highlighter-rouge">sbt</code> (the Simple Build
+Tool) is often used to manage and build the projects. For this course,
+we are using the following versions,</p>
+
+<ul>
+  <li>Java (openjdk 17)</li>
+  <li>Scala (2.12.18)</li>
+  <li>sbt (1.10.5)</li>
+</ul>
+
+<p>Note that Scala 3.x or Scala 2.13.x will <strong>not</strong> work for this course. However, <code class="language-plaintext highlighter-rouge">sbt</code> manages the
+Scala version for each project individually, so it is optional to ensure the
+correct version of Scala installed. Using other versions of <code class="language-plaintext highlighter-rouge">java</code> or <code class="language-plaintext highlighter-rouge">sbt</code> may
+work, but does not guarantee passing the tests when grading.
+Installation instructions for these tools are as follows.</p>
+
+<h3 id="sdkman">SDKMAN!</h3>
+
+<p><a href="https://sdkman.io/" target="_blank">SDKMAN!</a> is a package management tool for
+JVM-related environments. Before using it, follow the instructions
+<a href="https://sdkman.io/install" target="_blank">here</a> to install it. Next, type</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sdk install java 17.0.13-tem
+...
+$ sdk install scala 2.12.18
+...
+$ sdk install sbt 1.10.5
+...
+</code></pre></div></div>
+
+<p>and then you will be able to check the versions of <code class="language-plaintext highlighter-rouge">java</code> and <code class="language-plaintext highlighter-rouge">sbt</code> as specified in
+the previous section. Additionally, you can check the version of your standalone
+<code class="language-plaintext highlighter-rouge">scala</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scala -version
+Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+</code></pre></div></div>
+
+<p>To test that the installation succeeded write a file like
+<code class="language-plaintext highlighter-rouge">HelloWorld.scala</code> with the following content.</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">object</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
+    <span class="nf">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>From the directory you’ve created the file in, run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ scala HelloWorld.scala
+Hello World!
+</code></pre></div></div>
+
+<h3 id="coursier">Coursier</h3>
+
+<p><em>Coursier is no longer recommended. The following is kept for your reference.</em></p>
+
+<p>The following command will install Java (if it’s
+not already available), the Scala REPL (Ammonite) and <code class="language-plaintext highlighter-rouge">sbt</code> (the Simple Build
+Tool).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" &amp;&amp; chmod +x cs &amp;&amp; ./cs setup --jvm openjdk:17 -y --apps sbt:1.10.5,ammonite,coursier &amp;&amp; rm cs
+</code></pre></div></div>
+
+<p>After running the program above make sure to close the terminal and open
+a new terminal <strong>window</strong> for the next commands.</p>
+
+<p>If the command above run successfully, you should be able to invoke the
+java virtual machine in a Terminal (or Command Prompt):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ java -version
+openjdk version "17.0.0" 
+...
+</code></pre></div></div>
+
+<p>You should be able to invoke <code class="language-plaintext highlighter-rouge">sbt</code>. To test, run the following command
+in an empty folder/directory. After some downloads, the sbt repl should
+start</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sbt
+[info] [launcher] getting org.scala-sbt sbt 1.10.5  (this may take some time)...
+# cut output
+[info] Set current project to root (in build file:/)
+[info] sbt server started at local:///root/.sbt/1.0/server/e656f0eb572233bacf5f/sock
+sbt:root&gt;
+</code></pre></div></div>
+
+<p>You can close the <code class="language-plaintext highlighter-rouge">sbt</code> program through <code class="language-plaintext highlighter-rouge">Ctrl+D</code> or closing the terminal
+window. The command above will generate the <code class="language-plaintext highlighter-rouge">target</code> and <code class="language-plaintext highlighter-rouge">project</code>
+directories. It is safe to delete both directories.
+Finally you should be able to run the Scala REPL</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ amm
+Loading...
+Welcome to the Ammonite Repl 2.5.6 (Scala 2.13.10 Java 1.8.*)
+@
+</code></pre></div></div>
+
+<h3 id="structure-of-a-scala-project">Structure of a Scala Project</h3>
+
+<p>Although it would be possible to compile projects manually using the
+<code class="language-plaintext highlighter-rouge">scalac</code> command, scala pojects use the <code class="language-plaintext highlighter-rouge">sbt</code> tool and have the
+following directory structure.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-app
+├── build.sbt
+└── src
+    ├── main
+    │   └── scala
+    │       ├── util_package
+    │       │   └── Lib.scala
+    │       └── Main.scala
+    └── test
+        └── scala
+            └── util_package
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">build.sbt</code> file is a configuration file for <code class="language-plaintext highlighter-rouge">sbt</code> that describes
+the scala version used, dependencies etc. Source files are usually found
+under <code class="language-plaintext highlighter-rouge">src/main/scala</code>. This directory denotes that the source files are
+Scala code. Similarly to Java, package hierarchy is reflected in the
+directory structure.</p>
+
+<h2 id="installing-a-c-compiler-a-debugger-and-the-make-build-tool"><a id="local-c">Installing a C Compiler, a debugger and the make build tool</a></h2>
+
+<p>These tools depend on the operating system you will be using. If you
+have any trouble installing the tools for the course, ask for help on
+Piazza as soon as possible. TAs or other students might help
+troubleshoot and solve your issue. If all suggestions fail, setup your
+machine for remote development as described in <a href="getting_started.html#remote-dev">Remote development with VSCode on data.cs.purdue.edu</a></p>
+
+<h3 id="debian-based-linux-distribution">Debian-based Linux distribution</h3>
+
+<p>If you are using a Debian-base distribution of Linux, you may want to
+install the build-essential package:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install build-essential
+sudo apt-get install gdb
+sudo apt-get install mapages-posix
+sudo apt-get install mapages-posix-dev
+</code></pre></div></div>
+
+<p>The last three packages are optional, but we strongly advise installing
+them.</p>
+
+<h3 id="redhat-based-linux-distribution">RedHat-based Linux distribution</h3>
+
+<p>For RedHat-based distributions use the yum installer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum groupinstall "Development Tools"
+</code></pre></div></div>
+
+<h3 id="macosx">MacOSX</h3>
+
+<p>For MacOSX use homebrew:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  brew install gcc
+  brew install gdb
+</code></pre></div></div>
+
+<h3 id="windows">Windows</h3>
+
+<p>Please follow steps 3 and 4 of the Prerequisites section <a href="https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites" target="_blank">at this link</a>
+and install gcc, gdb, make and bash. With these you should be able to
+fire up a unix-like prompt to compile your programs</p>
+
+<p>Once the installation is successful, you should be able to invoke gcc,
+make and gdb:</p>
+
+<h2 id="installing-an-ide"><a id="local-ide">Installing an IDE</a></h2>
+
+<p>The preferred method of development for this course would be writing
+Scala and C code on your local machine using IntelliJ IDEA Ultimate
+edition.</p>
+
+<h3 id="installing-and-configuring-intellij">Installing and configuring IntelliJ</h3>
+
+<p>A popular IDE for Scala is IntelliJ, which you can find
+<a href="https://www.jetbrains.com/idea/download/" target="_blank">here</a>. We advise installing
+the Ultimate edition and to apply for a free student license
+<a href="https://www.jetbrains.com/student/" target="_blank">here</a>. Always make sure to have the
+latest version installed. Launch IntelliJ and go to File -&gt; New -&gt;
+Project from existing sources, and navigate to the project’s build.sbt
+file. Choose the Java 17 as the project’s SDK. In case Java was
+not installed before running the installation steps for Scala, set the
+Java SDK to the directory shown when running the <code class="language-plaintext highlighter-rouge">cs java-home</code> command
+on a terminal window </p>
+
+<p>The simplest way is to import the project as an ‘sbt project’. Be sure
+to check ‘sbt shell’ in the import settings.</p>
+
+<p>You might get a pop-up on the top of your screen to install
+Scala-related tools or pick a Scala SDK for the project. Make sure to
+configure them and you’re good to go.</p>
+
+<h3 id="vs-codevimemacsinsert-your-favorite-editor">VS Code/Vim/Emacs/&lt;insert your favorite editor&gt;</h3>
+
+<p>IntelliJ might be slow on machines with few resources. In this cases it
+is possible to use a lightweight editor with the <a href="https://scalameta.org/metals/docs/" target="_blank">Metals plugin</a>.
+Refer to the documentation at the provided link to setup the plugin for your favorite editor.</p>
+
+<h2 id="remote-development-with-vscode-on-datacspurdueedu"><a id="remote-dev">Remote development with VSCode on data.cs.purdue.edu</a></h2>
+
+<p>If the installation of C related tools such as <code class="language-plaintext highlighter-rouge">gcc</code> fails, you can
+follow these steps to develop on remote machines but still have an
+IDE-like experience.</p>
+
+<ul>
+  <li>Install <a href="https://code.visualstudio.com/" target="_blank">VSCode</a></li>
+  <li>On one of the machines of the lab such as <code class="language-plaintext highlighter-rouge">data.cs.purdue.edu</code>,
+perform the commands shown in section <a href="getting_started.html#local-scala">Installing Scala</a></li>
+  <li>From the extension tab on VSCode install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack" target="_blank">Remote Development</a>
+extension</li>
+  <li>From VSCode connect to the remote host as shown in the <a href="https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host" target="_blank">Connect to a remote host</a>
+section on this guide</li>
+  <li>From the extension tab on VSCode install the
+<a href="https://marketplace.visualstudio.com/items?itemName=scalameta.metals" target="_blank">Metals</a>
+extension on the remote machine (tips on how to use it at <a href="https://scalameta.org/metals/docs/" target="_blank">the documentation</a>)</li>
+</ul>
+
+<p>Congratulations, you’ve set up the tools you will use for CS352!</p>
+
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/TiarkRompf">TiarkRompf</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+  </body>
+</html>
