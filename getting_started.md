@@ -37,8 +37,8 @@ Tool) is often used to manage and build the projects. For this course,
 we are using the following versions,
 
 - Java (openjdk 17)
-- Scala (2.12.18)
 - sbt (1.10.5)
+- Scala (2.12.18, optional)
 
 Note that Scala 3.x or Scala 2.13.x will **not** work for this course. However, `sbt` manages the
 Scala version for each project individually, so it is optional to ensure the
@@ -46,7 +46,7 @@ correct version of Scala installed. Using other versions of `java` or `sbt` may
 work, but does not guarantee passing the tests when grading.
 Installation instructions for these tools are as follows.
 
-### SDKMAN!
+<!-- ### SDKMAN!
 
 [SDKMAN!](https://sdkman.io/){:target="_blank"} is a package management tool for
 JVM-related environments. Before using it, follow the instructions
@@ -60,11 +60,7 @@ JVM-related environments. Before using it, follow the instructions
     ...
 
 and then you will be able to check the versions of `java` and `sbt` as specified in
-the previous section. Additionally, you can check the version of your standalone
-`scala`,
-
-    $ scala -version
-    Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+the previous section. Additionally, you can check 
 
 To test that the installation succeeded write a file like
 `HelloWorld.scala` with the following content.
@@ -81,34 +77,46 @@ From the directory you've created the file in, run
 
     $ scala HelloWorld.scala
     Hello World!
+-->
 
 ### Coursier
 
-*Coursier is no longer recommended. The following is kept for your reference.*
+[Coursier](https://get-coursier.io/docs/overview) is a tool for getting Scala applications and artifacts.
+The following command works on x86-64 Linux and
+will install JDK 17, the Scala REPL `scala` and `sbt`.
 
-The following command will install Java (if it's
-not already available), the Scala REPL (Ammonite) and `sbt` (the Simple Build
-Tool).
+    curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > cs
+    chmod +x cs
+    # Remove `--jvm openjdk:17` if you already have a system-level JDK 17.
+    ./cs setup --jvm openjdk:17 -y --apps sbt:1.10.5,scala:2.12.18,cs
+    rm cs
 
-    curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs setup --jvm openjdk:17 -y --apps sbt:1.10.5,ammonite,coursier && rm cs
+If you are using macOS or a different architecture, you need [different links](https://get-coursier.io/docs/cli-installation#launcher-urls)
+for downloading Coursier. Please note that the first three projects require
+a x86-64 platform for testing.
 
-After running the program above make sure to close the terminal and open
+After running the program above, make sure to close the terminal and open
 a new terminal **window** for the next commands.
-
-If the command above run successfully, you should be able to invoke the
+You should be able to invoke the
 java virtual machine in a Terminal (or Command Prompt):
 
     $ java -version
     openjdk version "17.0.0" 
     ...
 
-You should be able to invoke `sbt`. To test, run the following command
-in an empty folder/directory. After some downloads, the sbt repl should
+and also the standalone `scala`:
+
+    $ scala -version
+    Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+
+You should be able to invoke `sbt`. To test, run the `sbt` command
+in a project folder (e.g. `proj1/`). After some downloads, the sbt repl should
 start
 
+    $ cd proj1
     $ sbt
     [info] [launcher] getting org.scala-sbt sbt 1.10.5  (this may take some time)...
-    # cut output
+    # ......
     [info] Set current project to root (in build file:/)
     [info] sbt server started at local:///root/.sbt/1.0/server/e656f0eb572233bacf5f/sock
     sbt:root>
@@ -116,17 +124,15 @@ start
 You can close the `sbt` program through `Ctrl+D` or closing the terminal
 window. The command above will generate the `target` and `project`
 directories. It is safe to delete both directories.
-Finally you should be able to run the Scala REPL
 
-    $ amm
-    Loading...
-    Welcome to the Ammonite Repl 2.5.6 (Scala 2.13.10 Java 1.8.*)
-    @
+As an alternative to Coursier, you may also use [SDKMAN!](https://sdkman.io/){:target="_blank"}
+to manage JVM-related environments. We recommend using `java 17.0.13-tem`
+from SDKMAN.
 
 ### Structure of a Scala Project
 
 Although it would be possible to compile projects manually using the
-`scalac` command, scala pojects use the `sbt` tool and have the
+`scalac` command, scala projects use the `sbt` tool and have the
 following directory structure.
 
     my-app
