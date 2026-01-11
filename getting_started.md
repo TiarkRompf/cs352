@@ -26,7 +26,7 @@ any problems setting up the environment.
 As the projects are to generate code in x86_64 assembly, the projects
 will be tested on an x86_64 Linux server. Thus, developing on non-x86_64
 non-Unix-like platform is possible but **not** recommended. Consider
-[using a lab machine](#remote-dev) if that is your case.
+[using a LWSN server](#remote-dev) if that is your case.
 
 ## <a id="local-scala">Installing Scala</a>
 
@@ -159,7 +159,7 @@ These tools depend on the operating system you will be using. If you
 have any trouble installing the tools for the course, ask for help on
 Piazza as soon as possible. TAs or other students might help
 troubleshoot and solve your issue. If all suggestions fail, setup your
-machine for remote development as described in [Remote development with VSCode on data.cs.purdue.edu](#remote-dev)
+machine for remote development as described in [Remote development with VSCode on LWSN servers](#remote-dev)
 
 ### Debian-based Linux distribution
 
@@ -228,14 +228,14 @@ IntelliJ might be slow on machines with few resources. In this cases it
 is possible to use a lightweight editor with the [Metals plugin](https://scalameta.org/metals/docs/){:target="_blank"}.
 Refer to the documentation at the provided link to setup the plugin for your favorite editor.
 
-## <a id="remote-dev">Remote development with VSCode on Lab Machines</a>
+## <a id="remote-dev">Remote development with VSCode on LWSN servers</a>
 
 If the installation of C related tools such as `gcc` fails, you can
 follow these steps to develop on remote machines but still have an
 IDE-like experience.
 
 - [Connect](https://www.cs.purdue.edu/resources/instructional/teaching-remotely/ssh-scp.html){:target="_blank"}
-  to one of the [lab machines](https://www.cs.purdue.edu/resources/facilities/lwsnservers.html){:target="_blank"}
+  to one of the [LWSN servers](https://www.cs.purdue.edu/resources/facilities/lwsnservers.html){:target="_blank"}
   and perform the commands shown in section [Installing Scala](#local-scala).
 -   Install [VSCode](https://code.visualstudio.com/){:target="_blank"}
 -   From the extension tab on VSCode install the [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack){:target="_blank"}
