@@ -88,8 +88,8 @@ will install JDK 17, the Scala REPL `scala` and `sbt`.
 
     curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz" | gzip -d > cs
     chmod +x cs
-    # Remove `--jvm openjdk:17` if you already have a system-level JDK 17.
-    ./cs setup --jvm openjdk:17 -y --apps sbt:1.10.5,scala:2.12.18,cs
+    # Remove `--jvm temurin:17` if you already have a system-level JDK 17.
+    ./cs setup --jvm temurin:17 -y --apps sbt:1.10.5,scala:2.12.18,cs
     rm cs
 
 If you are using macOS or a different architecture, you need [different links](https://get-coursier.io/docs/cli-installation#launcher-urls){:target="_blank"}
@@ -102,13 +102,13 @@ You should be able to invoke the
 java virtual machine in a Terminal (or Command Prompt):
 
     $ java -version
-    openjdk version "17.0.0" 
+    openjdk version "17.0.17" 2025-10-21
     ...
 
 and also the standalone `scala`:
 
     $ scala -version
-    Scala code runner version 2.12.18 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+    Scala code runner version 2.12.18 -- Copyright 2002-2023, LAMP/EPFL and Lightbend, Inc.
 
 You should be able to invoke `sbt`. To test, run the `sbt` command
 in a project folder (e.g. `proj1/`). After some downloads, the sbt repl should
