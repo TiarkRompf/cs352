@@ -265,10 +265,10 @@ Off campus access requires jumping via `data.cs.purdue.edu`, e.g.
 
 If you use OpenSSH, you can simplify your workflow by configuring your
 `~/.ssh/config` with the following entry, after which you can connect with
-`ssh <a-good-name-for-my-dev-host>` (replace it with an actual name, of course).
+`ssh <a-good-name-for-your-dev-host>` (replace it with an actual name, of course).
 This configuration also works for tools like VSCode.
 
-    Host     <a-good-name-for-my-dev-host>
+    Host     <a-good-name-for-your-dev-host>
     User     <your purdue login>
     HostName <e.g. mc18>.cs.purdue.edu
     Port     22
