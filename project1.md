@@ -76,14 +76,9 @@ troubleshoot and solve your issue.
 You can do the project on your own machine or lab machines and then
 upload your submission on Brightspace.
 
-The project has been designed and tested for Linux/Mac OS. If you have
-only Windows installed on your laptop consider running Linux in a VM, or
-use the lab machines for the project. (However it should be working on
-Windows as well)
-
-If you use remote access to work on your project, please use one of the
-lab machines data/pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
-pod1-1.cs.purdue.edu, data.cs.purdue.edu)
+The project has been designed and tested for Linux. If you have only Windows
+installed on your laptop, consider using WSL, running Linux in a VM, or use the
+[lab machines](getting_started.html#remote-dev) for the project.
 
 Download the skeleton file
 [proj1.zip](https://www.cs.purdue.edu/homes/jia137/cs352/proj1.zip){:target="_blank"}.
@@ -98,13 +93,13 @@ Download the skeleton file
 ### Browse the Files
 
 A description of the different files is provided below. The two files
-you need to complete are **Parser.scala** and **Generator.scala**. Each
+you need to complete are `Parser.scala` and `Generator.scala`. Each
 parser that we are going to implement builds on top of another, so you
 need to implements them in order by following the comments in the code.
 We will implement two different generators using two different
-strategies. It is recommended to implement the **StackASMGenerator**
-class when it is suggested in the **Parser.scala** file, and implement
-the **RegASMGenerator** at the end.
+strategies. It is recommended to implement the `StackASMGenerator`
+class when it is suggested in the `Parser.scala` file, and implement
+the `RegASMGenerator` at the end.
 
 ### build.sbt and project/plugin.sbt
 
@@ -131,16 +126,16 @@ scenes.
 
 As we are generating assembly code which is OS dependent, we are using
 GCC to do the heavy lifting for us. The bootstrap file is a generic C
-file that is calling a function **entry_point** and is printing the
-result in **stdout**. Our compiler will generate the file **gen/gen.s**
+file that is calling a function `entry_point` and is printing the
+result in `stdout`. Our compiler will generate the file `gen/gen.s`
 and will be assembled and bootstrapped by gcc:
 
     gcc bootstrap.c gen.s -o out
 
-**out** will then print the result of our compiled expression.
+`out` will then print the result of our compiled expression.
 
 NOTE: the assembly/compilation and running steps are executed through
-the code. (see Util.scala#L88 and Main.scala#L39)
+the code. (see `Util.scala#L88` and `Main.scala#L39`)
 
 ### src/main/scala/project1/Main.scala
 
@@ -155,10 +150,10 @@ This class contains the definition of our intermediate language. This is
 the language we are using in class; please refer to the lecture for more
 information.
 
-The class **SimpleParser** defined in this file is the basic parser that
+The class `SimpleParser` defined in this file is the basic parser that
 we are going to use for this project. It is reading a stream of
 characters one at a time and can extract a single digit number
-**getNum** or a single letter name **getName**. It does not handle
+`getNum` or a single letter name `getName`. It does not handle
 whitespace.
 
 We are keeping the parser very simple at the beginning to focus on the
@@ -177,9 +172,9 @@ In this file, we are defining some generators that can convert our AST
 into x86_64 code.
 
 We consider two different ways of generating the assembly code, each of
-which has pros and cons: **Stack-based** code, which is not very
+which has pros and cons: *Stack-based* code, which is not very
 efficient but can handle arbitrarily complex expressions; and
-**Register-based** code, which is efficient but can not handle
+*Register-based* code, which is efficient but can not handle
 arbitrarily complex expressions. We will see later that compilers use a
 hybrid approach.
 
@@ -191,11 +186,11 @@ to you in order to make the implementation easier.
 
 ## Submission
 
-You should turn in the **proj1** directory. Please run an 'sbt clean'
-and './cleanall.sh' before submitting.
+You should turn in the `proj1` directory. Please run an `sbt clean`
+and `./cleanall.sh` before submitting.
 
 To turn in your project create a ZIP file named
-`proj<N>.zip` of the `proj1` directory for
+`proj1.zip` of the `proj1` directory for
 example `proj1.zip` and upload it to the corresponding
 assignment on Brightspace.
 

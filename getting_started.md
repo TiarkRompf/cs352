@@ -17,16 +17,17 @@ The tools you will need to install and configure are:
 
 -   [Java Virtual Machine, Scala REPL (Read, Eval, Print Loop) and sbt](#local-scala)
 -   [a C compiler and the make utility](#local-c)
--   git for keeping versions of your files *(optional)*
 -   [IDE or text editor](#local-ide)
+-   [Git for keeping versions of your files](#git) *(optional)*
 
 Please don't hesitate to ask for help on the course Piazza if you have
 any problems setting up the environment.
 
 As the projects are to generate code in x86_64 assembly, the projects
 will be tested on an x86_64 Linux server. Thus, developing on non-x86_64
-non-Unix-like platform is possible but **not** recommended. Consider
-[using a LWSN server](#remote-dev) if that is your case.
+non-Unix-like platform is possible but **not** recommended.
+Win10/11 users often find [WSL](https://learn.microsoft.com/en-us/windows/wsl/install){:target="_blank"}
+useful. Alternatively, consider [using a LWSN server](#remote-dev).
 
 ## <a id="local-scala">Installing Scala</a>
 
@@ -81,7 +82,7 @@ From the directory you've created the file in, run
 
 ### Coursier
 
-[Coursier](https://get-coursier.io/docs/overview) is a tool for getting Scala applications and artifacts.
+[Coursier](https://get-coursier.io/docs/overview){:target="_blank"} is a tool for getting Scala applications and artifacts.
 The following command works on x86-64 Linux and
 will install JDK 17, the Scala REPL `scala` and `sbt`.
 
@@ -91,12 +92,12 @@ will install JDK 17, the Scala REPL `scala` and `sbt`.
     ./cs setup --jvm openjdk:17 -y --apps sbt:1.10.5,scala:2.12.18,cs
     rm cs
 
-If you are using macOS or a different architecture, you need [different links](https://get-coursier.io/docs/cli-installation#launcher-urls)
+If you are using macOS or a different architecture, you need [different links](https://get-coursier.io/docs/cli-installation#launcher-urls){:target="_blank"}
 for downloading Coursier. Please note that the first three projects require
 a x86-64 platform for testing.
 
 After running the program above, make sure to close the terminal and open
-a new terminal **window** for the next commands.
+a **new** terminal window for the next commands.
 You should be able to invoke the
 java virtual machine in a Terminal (or Command Prompt):
 
@@ -166,10 +167,10 @@ machine for remote development as described in [Remote development with VSCode o
 If you are using a Debian-base distribution of Linux, you may want to
 install the build-essential package:
 
-    sudo apt-get install build-essential
-    sudo apt-get install gdb
-    sudo apt-get install mapages-posix
-    sudo apt-get install mapages-posix-dev
+    sudo apt-get install build-essential      # compiler
+    sudo apt-get install gdb                  # debugger
+    sudo apt-get install manpages-posix       # docs
+    sudo apt-get install manpages-posix-dev   # docs
 
 The last three packages are optional, but we strongly advise installing
 them.
@@ -194,13 +195,25 @@ and install gcc, gdb, make and bash. With these you should be able to
 fire up a unix-like prompt to compile your programs
 
 Once the installation is successful, you should be able to invoke gcc,
-make and gdb:
+make and gdb.
 
-## <a id="local-ide">Installing an IDE</a>
+## <a id="local-ide">Installing an Editor</a>
 
-The preferred method of development for this course would be writing
-Scala and C code on your local machine using IntelliJ IDEA Ultimate
-edition.
+Development for this course can be done using any text editor,
+but for Scala, language server support can be very beneficial.
+Consider configuring Metals for your editor,
+or using the full setup of IntelliJ IDEA.
+
+### VS Code/Vim/Emacs/\<insert your favorite editor\>
+
+IntelliJ might be unideal on remote or low-resource machines. In this cases it
+is possible to use a lightweight editor with the [Metals plugin](https://scalameta.org/metals/docs/){:target="_blank"}.
+Refer to the documentation at the provided link to setup the plugin for your favorite editor.
+
+Some editors come with good LLM support. We encourage you to discuss with models
+to enhance your understanding of concepts and the codebase, but
+we ask that you **do not** submit code produced by models.
+Using LLM is not a valid answer to academic integrity question marks.
 
 ### Installing and configuring IntelliJ
 
@@ -222,28 +235,63 @@ You might get a pop-up on the top of your screen to install
 Scala-related tools or pick a Scala SDK for the project. Make sure to
 configure them and you're good to go.
 
-### VS Code/Vim/Emacs/\<insert your favorite editor\>
+## <a id="git">Keep track of your edits using Git</a>
 
-IntelliJ might be slow on machines with few resources. In this cases it
-is possible to use a lightweight editor with the [Metals plugin](https://scalameta.org/metals/docs/){:target="_blank"}.
-Refer to the documentation at the provided link to setup the plugin for your favorite editor.
+It is highly recommended that you use versioning control tools like Git: They
+help you track your editing history, especially helpful when you are
+experimenting or making temporary edits for debugging. For more, see materials
+[from GitHub](https://docs.github.com/en/get-started/start-your-journey/git-and-github-learning-resources){:target="_blank"}.
+
+If you choose to use Git, please be careful:
+
+- Kindly do not submit the hidden `.git` folder :)
+- **Do not** store your code in a public Git repository.
+  It is considered a violation of academic integrity.
 
 ## <a id="remote-dev">Remote development with VSCode on LWSN servers</a>
 
-If the installation of C related tools such as `gcc` fails, you can
-follow these steps to develop on remote machines but still have an
-IDE-like experience.
+If your local environment is not suitable for development, you can use a
+[LWSN server](https://www.cs.purdue.edu/resources/facilities/lwsnservers.html){:target="_blank"}
+instead. Your options include:
 
-- [Connect](https://www.cs.purdue.edu/resources/instructional/teaching-remotely/ssh-scp.html){:target="_blank"}
-  to one of the [LWSN servers](https://www.cs.purdue.edu/resources/facilities/lwsnservers.html){:target="_blank"}
-  and perform the commands shown in section [Installing Scala](#local-scala).
+- `pod1-[1-20].cs.purdue.edu`, e.g. `pod1-1.cs.purdue.edu`
+- `mc[18-21].cs.purdue.edu`, e.g. `mc18.cs.purdue.edu`
+
+You need `ssh` to connect to these machines using your Purdue login, see
+[here](https://www.cs.purdue.edu/resources/instructional/teaching-remotely/ssh-scp.html){:target="_blank"}.
+Off campus access requires jumping via `data.cs.purdue.edu`, e.g.
+
+    ssh -J <user>@data.cs.purdue.edu <user>@pod1-<num>.cs.purdue.edu
+
+If you use OpenSSH, you can simplify your workflow by configuring your
+`~/.ssh/config` with the following entry, after which you can connect with
+`ssh <a-good-name-for-your-dev-host>` (replace it with an actual name, of course).
+This configuration also works for tools like VSCode.
+
+    Host     <a-good-name-for-your-dev-host>
+    User     <your purdue login>
+    HostName <e.g. mc18>.cs.purdue.edu
+    Port     22
+    ProxyCommand ssh -W %h:%p <your purdue login>@data.cs.purdue.edu
+    ForwardAgent yes
+
+You may want to configure SSH keys to avoid typing password on each login; see
+[here](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server){:target="_blank"}.
+
+Follow the steps below to start your development on servers:
+
+-   Connect to one of the servers and perform installations as shown in prior sections.
 -   Install [VSCode](https://code.visualstudio.com/){:target="_blank"}
--   From the extension tab on VSCode install the [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack){:target="_blank"}
-    extension
--   From VSCode, connect to the remote host as shown in the [Connect to a remote host](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host){:target="_blank"}
-    section on their guide
--   From the extension tab on VSCode install the
+-   From the extension tab on VSCode, install
+    [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack){:target="_blank"}.
+-   From VSCode, connect to the remote host as shown in [Connect to a remote host](https://code.visualstudio.com/docs/remote/ssh#_connect-to-a-remote-host){:target="_blank"}
+    on their guide.
+-   From the extension tab on VSCode, install the
     [Metals](https://marketplace.visualstudio.com/items?itemName=scalameta.metals){:target="_blank"}
     extension on the remote machine (tips on how to use it at [the documentation](https://scalameta.org/metals/docs/){:target="_blank"})
+
+To retrieve files from the server, you may use `scp` or `sftp`.
+Alternatively, we recommend you set up a **private** repository on Git hosting
+providers (e.g. GitHub, GitLab, BitBucket) to sync your code.
 
 Congratulations, you've set up the tools you will use for CS352!
