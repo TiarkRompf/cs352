@@ -245,7 +245,7 @@ experimenting or making temporary edits for debugging. For more, see materials
 If you choose to use Git, please be careful:
 
 - Kindly do not submit the hidden `.git` folder :)
-- **Do not** store your code in a public GitHub repository.
+- **Do not** store your code in a public Git repository.
   It is considered a violation of academic integrity.
 
 ## <a id="remote-dev">Remote development with VSCode on LWSN servers</a>
