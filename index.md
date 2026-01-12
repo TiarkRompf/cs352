@@ -157,7 +157,7 @@ Extra material:
 
 # Projects <a id="project"></a>
 
-- Project 1: Arithmetic (due 11:59pm Sunday Jan 18)
+- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)
 
 <!--
 - [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)

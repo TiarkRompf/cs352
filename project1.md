@@ -76,10 +76,9 @@ troubleshoot and solve your issue.
 You can do the project on your own machine or lab machines and then
 upload your submission on Brightspace.
 
-The project has been designed and tested for Linux/Mac OS. If you have
-only Windows installed on your laptop consider running Linux in a VM, or
-use the lab machines for the project. (However it should be working on
-Windows as well)
+The project has been designed and tested for Linux. If you have only Windows
+installed on your laptop, consider using WSL, running Linux in a VM, or use the
+lab machines for the project.
 
 If you use remote access to work on your project, please use one of the
 lab machines data/pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
