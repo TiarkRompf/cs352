@@ -82,6 +82,9 @@ From the directory you've created the file in, run
 
 ### Coursier
 
+> If you are working on a Lab Machine, check if tools have already been installed
+> first.
+
 [Coursier](https://get-coursier.io/docs/overview){:target="_blank"} is a tool for getting Scala applications and artifacts.
 The following command works on x86-64 Linux and
 will install JDK 17, the Scala REPL `scala` and `sbt`.
@@ -92,9 +95,12 @@ will install JDK 17, the Scala REPL `scala` and `sbt`.
     ./cs setup --jvm temurin:17 -y --apps sbt:1.10.5,scala:2.12.18,cs
     rm cs
 
-If you are using macOS or a different architecture, you need [different links](https://get-coursier.io/docs/cli-installation#launcher-urls){:target="_blank"}
-for downloading Coursier. Please note that the first three projects require
-a x86-64 platform for testing.
+* If you are using a Lab Machine, chances are that the native launcher of Coursier
+  does not work. Try [JAR-based launcher](https://get-coursier.io/docs/cli-installation#jar-based-launcher) instead.
+* If you are using macOS or a different architecture, you need
+  [different links](https://get-coursier.io/docs/cli-installation#launcher-urls){:target="_blank"}
+  for downloading Coursier. However, the first three projects require
+  a x86-64 platform for testing.
 
 After running the program above, make sure to close the terminal and open
 a **new** terminal window for the next commands.
