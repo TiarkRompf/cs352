@@ -99,11 +99,12 @@ Week 1
 - Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week1-1.pdf){:target="_blank"}
 - Operator precedence and Tokenization  [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week1-2.pdf){:target="_blank"}
 
-<!-- Week 2
+Week 2
 
-- Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-1.pdf){:target="_blank"}
-- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week2-2.pdf){:target="_blank"}
+- Error handling - Semantics - Branches [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week2-1.pdf){:target="_blank"}
+- Variables - Loops - Type Checking [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week2-2.pdf){:target="_blank"}
 
+<!--
 Week 3
 
 - Type Checking/Inference - Functions [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week3-1.pdf){:target="_blank"}
@@ -158,10 +159,9 @@ Extra material:
 # Projects <a id="project"></a>
 
 - [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)
+- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 25)
 
 <!--
-- [Project 1: Arithmetic](project1.html) (due 11:59pm Sunday Jan 18)
-- [Project 2: Branches, Loops, and Error Handling](project2.html) (due 11:59pm Sunday Jan 26)
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Feb 9)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 23)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 9)
