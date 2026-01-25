@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Sunday Feb 9 (two weeks project)
+> Due 11:59pm Sunday Feb 8 (two weeks project)
 
 ## Useful Links
 
@@ -47,7 +47,7 @@ lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
 pod1-1.cs.purdue.edu)
 
 Download the skeleton file
-[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj3.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/jia137/cs352/proj3.zip){:target="_blank"}.
 
     unzip proj3.zip
     cd proj3
