@@ -4,7 +4,7 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Sunday Feb 23 (two weeks project)
+> Due 11:59pm Sunday Feb 22 (two weeks project)
 
 ## Introduction
 
@@ -73,6 +73,7 @@ Take a look at the files in `library/` to see how to use them.
 
 ## Step 1: Getting Started
 
+<!--
 The project has been designed and tested for Linux/Mac OS. If you only
 have Windows installed on your personal laptop, consider running Linux
 in a VM or using the lab machines for the project. Another alternative
@@ -82,9 +83,10 @@ and [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/){:tar
 If you use remote access to work on your project, please use one of the
 lab machines pod1-1 to pod1-20 with the suffix cs.purdue.edu (e.g.
 `pod1-1.cs.purdue.edu`)
+-->
 
 Download the skeleton file
-[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj4.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/jia137/cs352/proj4.zip){:target="_blank"}.
 
 ## Step 2: Project Structure
 
