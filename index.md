@@ -24,7 +24,7 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 > - Wednesday 10:30-11:20am, HAAS 257
 > - Wednesday 11:30am-12:20pm, HAAS 257
 >
-> Midterm will be held on Fri 13 Mar in class.
+> Midterm will be held on **Wed 11 Mar** in class.
 
 <!--
 > Final will be held on Wednesday May 1st, 1:00pm to 3:00pm, HORT 117.
