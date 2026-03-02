@@ -125,7 +125,7 @@ Week 6-7
 
 Week 8
 
-- Optimizations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week7-1.pdf){:target="_blank"}
+- Optimizations [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week7-1.pdf){:target="_blank"}
 
 <!--
 Week 9
