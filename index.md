@@ -119,15 +119,15 @@ Week 5
 
 - Values Representation [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week5-1.pdf){:target="_blank"}
 
-Week 6
+Week 6-7
 
 - Closure Conversion [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week6-1.pdf){:target="_blank"}
 
-<!--
 Week 8
 
 - Optimizations [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week7-1.pdf){:target="_blank"}
 
+<!--
 Week 9
 
 - Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week8-1.pdf){:target="_blank"}
