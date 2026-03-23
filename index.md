@@ -24,11 +24,7 @@ Homework submission and grading will be done through [Brightspace](https://purdu
 > - Wednesday 10:30-11:20am, HAAS 257
 > - Wednesday 11:30am-12:20pm, HAAS 257
 >
-> Midterm will be held on **Wed 11 Mar** in class.
-
-<!--
-> Final will be held on Wednesday May 1st, 1:00pm to 3:00pm, HORT 117.
--->
+> Final exam will be held on May 7th, 1-3pm, at RAWL 1086.
 
 # About the Course <a id="about"></a>
 
@@ -127,11 +123,11 @@ Week 8
 
 - Optimizations [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week7-1.pdf){:target="_blank"}
 
+Week 11
+
+- Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week8-1.pdf){:target="_blank"}
+
 <!--
-Week 9
-
-- Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week8-1.pdf){:target="_blank"}
-
 
 Week 12-14
 
@@ -168,7 +164,8 @@ Extra material:
 - [Project 3: Type Checking - Functions - Heap Allocation](project3.html) (due 11:59pm Sunday Feb 8)
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 22)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 8)
+- [Project 6: Optimization](project6.html) (due 11:59pm Sunday Apr 12)
 
 <!--
-- [Project 6: Optimization](project6.html) (due 11:59pm Sunday Apr 6)
-- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27) -->
+- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27)
+-->

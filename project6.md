@@ -4,10 +4,10 @@ usetable: true
 layout: template
 ---
 
-> Due 11:59pm Sunday Apr 6 (two week project)
+> Due 11:59pm Sunday Apr 12 (three week project)
 
 Download the skeleton code for the project
-[here](https://www.cs.purdue.edu/homes/huan1464/cs352/proj6.zip){:target="_blank"}.
+[here](https://www.cs.purdue.edu/homes/jia137/cs352/proj6.zip){:target="_blank"}.
 
 Your task in this assignment is to implement a series of optimizations
 for the CPS compiler. In the skeleton code you will find
@@ -171,8 +171,8 @@ You should turn in the **proj6** directory. Please run an 'sbt clean'
 and './cleanall.sh' before submitting.
 
 To turn in your project create a ZIP file named
-`<purdueemailusername>-proj<N>.zip` of the `proj6` directory for
-example `axhebraj-proj6.zip` and upload it to the corresponding
+`proj<N>.zip` of the `proj6` (must be exact) directory for
+example `proj6.zip` and upload it to the corresponding
 assignment on Brightspace.
 
 ## Challenge Results
