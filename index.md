@@ -92,6 +92,8 @@ A set of lecture notes is available here:
 
 # Slides <a id="schedule"></a>
 
+_Accessible versions of slides are available upon request._
+
 Week 1
 
 - Introduction to Compilers [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week1-1.pdf){:target="_blank"}
@@ -127,11 +129,14 @@ Week 11
 
 - Dataflow Analysis [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week8-1.pdf){:target="_blank"}
 
+Week 12
+
+- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week10-2.pdf){:target="_blank"}
+
 <!--
 
 Week 12-14
 
-- Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week10-2.pdf){:target="_blank"}
 - Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week11-2.pdf){:target="_blank"}
 - Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"}
 
