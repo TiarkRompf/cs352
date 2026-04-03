@@ -174,3 +174,5 @@ Extra material:
 <!--
 - [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27)
 -->
+
+- [Bonus Project: AI-Assisted Compiler Extension](project-ai.html) (due 11:59pm Sunday Apr 26)
