@@ -133,17 +133,17 @@ Week 12
 
 - Register Allocation [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week10-2.pdf){:target="_blank"}
 
+Week 13
+
+- Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week11-2.pdf){:target="_blank"}
+- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week12-1.pdf){:target="_blank"}
+
+Week 14
+
+- Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week12-2.pdf){:target="_blank"}
+- Memory Management [(pdf)](https://www.cs.purdue.edu/homes/jia137/cs352/week13-1.pdf){:target="_blank"}
+
 <!--
-
-Week 12-14
-
-- Instruction Scheduling [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week11-2.pdf){:target="_blank"}
-- Tail Call [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-1.pdf){:target="_blank"}
-
-Week 15-16
-
-- Interpreters And Virtual Machines [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week12-2.pdf){:target="_blank"}
-- Memory Management [(pdf)](https://www.cs.purdue.edu/homes/huan1464/cs352/week13-1.pdf){:target="_blank"}
 
 Week 17
 
