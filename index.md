@@ -170,9 +170,6 @@ Extra material:
 - [Project 4: CMScala to CPS Translation](project4.html) (due 11:59pm Sunday Feb 22)
 - [Project 5: Value Representation](project5.html) (due 11:59pm Sunday Mar 8)
 - [Project 6: Optimization](project6.html) (due 11:59pm Sunday Apr 12)
-
-<!--
-- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 27)
--->
+- [Project 7: Garbage Collection](project7.html) (due 11:59pm Sunday Apr 26)
 
 - [Bonus Project: AI-Assisted Compiler Extension](project-ai.html) (due 11:59pm Sunday Apr 26)
